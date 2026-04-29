@@ -88,7 +88,7 @@ public class GenericEntityData implements IEntityData {
     }
     //TODO add better error handling so an error does not delete all data
     public GenericEntityData(Entity attachedEntity, CompoundTag tag){
-        System.out.println("creating player data");
+//        System.out.println("creating player data");
         this.attachedEntity = attachedEntity;
         //TODO load cached form data
         ListTag formDataTags = tag.getList("form_data", Tag.TAG_COMPOUND);
@@ -412,12 +412,18 @@ public class GenericEntityData implements IEntityData {
 
     @Override
     public IPhysiqueData getPhysiqueData() {
-        return null; //TODO
+
+        if (physiqueForm == null) return null;
+        if (!heldFormData.containsKey(physiqueForm)) return null;
+
+        return heldFormData.get(physiqueForm).getPhysiqueData();
+        //return null; //TODO
     }
 
     @Override
     public ResourceLocation getPhysiqueForm() {
-        return null; //TODO
+        return physiqueForm;
+        //return null; //TODO
     }
 
     @Override

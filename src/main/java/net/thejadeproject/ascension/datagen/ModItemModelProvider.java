@@ -83,6 +83,10 @@ public class ModItemModelProvider extends ItemModelProvider {
         basicItem(ModItems.ENDER_POUCH.get());
 
 
+        talisman(ModItems.SOUL_ANCHOR_TALISMAN.get());
+
+
+
         talisman(ModItems.SPATIAL_RUPTURE_TALISMAN_T1.get());
         talisman(ModItems.SPATIAL_RUPTURE_TALISMAN_T2.get());
         talisman(ModItems.SPATIAL_RUPTURE_TALISMAN_T3.get());
@@ -183,6 +187,8 @@ public class ModItemModelProvider extends ItemModelProvider {
 
         pills(ModItems.ANTIDOTE_PILL_QDP.get());
 
+
+        pills(ModItems.MARROW_CLEANSE_PILL.get());
 
 
         pills(ModItems.QI_DEVOURING_PARASITE_PILL.get());

@@ -26,6 +26,8 @@ public class ToolTipManager {
 
         ToolTipHandler.registerTooltip(ModItems.ANTIDOTE_PILL_QDP.get(), Component.translatable("ascension.tooltip.medicinal").withStyle(ChatFormatting.RED), Component.literal("★★★★★").withStyle(ChatFormatting.YELLOW));
 
+        ToolTipHandler.registerTooltip(ModItems.MARROW_CLEANSE_PILL.get(), Component.translatable("ascension.tooltip.medicinal").withStyle(ChatFormatting.RED), Component.literal("★★★☆☆").withStyle(ChatFormatting.YELLOW));
+
 
         ToolTipHandler.registerTooltip(ModItems.CLEANSING_PILL_T1.get(), Component.translatable("ascension.tooltip.medicinal").withStyle(ChatFormatting.RED), Component.literal("★★★☆☆").withStyle(ChatFormatting.YELLOW));
         ToolTipHandler.registerTooltip(ModItems.CLEANSING_PILL_T2.get(), Component.translatable("ascension.tooltip.medicinal").withStyle(ChatFormatting.RED), Component.literal("★★★★☆").withStyle(ChatFormatting.YELLOW));
@@ -48,12 +50,44 @@ public class ToolTipManager {
 
 
         //Artifacts
+
+
+       //Talisman consumable
         ToolTipHandler.registerTooltip(ModItems.SPATIAL_RUPTURE_TALISMAN_T1.get(), Component.translatable("ascension.tooltip.srtt1").withStyle(ChatFormatting.GOLD), Component.literal("★★★★★").withStyle(ChatFormatting.YELLOW));
         ToolTipHandler.registerTooltip(ModItems.SPATIAL_RUPTURE_TALISMAN_T2.get(), Component.translatable("ascension.tooltip.srtt2").withStyle(ChatFormatting.GOLD), Component.literal("★☆☆☆☆").withStyle(ChatFormatting.DARK_RED));
         ToolTipHandler.registerTooltip(ModItems.SPATIAL_RUPTURE_TALISMAN_T3.get(), Component.translatable("ascension.tooltip.srtt3").withStyle(ChatFormatting.GOLD), Component.literal("★★☆☆☆").withStyle(ChatFormatting.DARK_RED));
         ToolTipHandler.registerTooltip(ModItems.SOULSTEAD_RETURN_TALISMAN.get(), Component.translatable("ascension.tooltip.srt").withStyle(ChatFormatting.GOLD), Component.literal("★★★★★").withStyle(ChatFormatting.YELLOW));
         ToolTipHandler.registerTooltip(ModItems.WORLD_AXIS_TALISMAN.get(), Component.translatable("ascension.tooltip.wat").withStyle(ChatFormatting.GOLD), Component.literal("★★★★★").withStyle(ChatFormatting.YELLOW));
         ToolTipHandler.registerTooltip(ModItems.VOID_MARKING_TALISMAN.get(), Component.translatable("ascension.tooltip.vmt").withStyle(ChatFormatting.GOLD), Component.literal("★☆☆☆☆").withStyle(ChatFormatting.RED));
+
+        //Talisman Permanent
+       ToolTipHandler.registerPermanentTooltip(ModItems.SPATIAL_RUPTURE_TALISMAN_T1.get(),
+               Component.translatable("ascension.tooltip.srtt1.permanent").withStyle(ChatFormatting.LIGHT_PURPLE),
+               Component.literal("★★★★★").withStyle(ChatFormatting.YELLOW));
+
+       ToolTipHandler.registerPermanentTooltip(ModItems.SPATIAL_RUPTURE_TALISMAN_T2.get(),
+               Component.translatable("ascension.tooltip.srtt2.permanent").withStyle(ChatFormatting.LIGHT_PURPLE),
+               Component.literal("★☆☆☆☆").withStyle(ChatFormatting.DARK_RED));
+
+       ToolTipHandler.registerPermanentTooltip(ModItems.SPATIAL_RUPTURE_TALISMAN_T3.get(),
+               Component.translatable("ascension.tooltip.srtt3.permanent").withStyle(ChatFormatting.LIGHT_PURPLE),
+               Component.literal("★★☆☆☆").withStyle(ChatFormatting.DARK_RED));
+
+       ToolTipHandler.registerPermanentTooltip(ModItems.SOULSTEAD_RETURN_TALISMAN.get(),
+               Component.translatable("ascension.tooltip.srt.permanent").withStyle(ChatFormatting.LIGHT_PURPLE),
+               Component.literal("★★★★★").withStyle(ChatFormatting.YELLOW));
+
+       ToolTipHandler.registerPermanentTooltip(ModItems.WORLD_AXIS_TALISMAN.get(),
+               Component.translatable("ascension.tooltip.wat.permanent").withStyle(ChatFormatting.LIGHT_PURPLE),
+               Component.literal("★★★★★").withStyle(ChatFormatting.YELLOW));
+
+       ToolTipHandler.registerPermanentTooltip(ModItems.VOID_MARKING_TALISMAN.get(),
+               Component.translatable("ascension.tooltip.vmt.permanent").withStyle(ChatFormatting.LIGHT_PURPLE),
+               Component.literal("★☆☆☆☆").withStyle(ChatFormatting.RED));
+
+
+
+
 
         ToolTipHandler.registerTooltip(ModItems.TABLET_OF_DESTRUCTION_HUMAN.get(), Component.literal("★★★☆☆").withStyle(ChatFormatting.YELLOW));
         ToolTipHandler.registerTooltip(ModItems.TABLET_OF_DESTRUCTION_EARTH.get(), Component.literal("★★★★☆").withStyle(ChatFormatting.YELLOW));
