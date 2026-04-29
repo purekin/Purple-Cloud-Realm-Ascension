@@ -205,6 +205,8 @@ public class lang extends LanguageProvider {
         add("ascension.physiques.earth_attuned", "Earth Attuned");
         add("ascension.physiques.water_attuned", "Water Attuned");
         add("ascension.physiques.fire_attuned", "Fire Attuned");
+        add("ascension.physiques.blessed", "Blessed One");
+
 
         add("ascension.physiques.world_dominator", "World Dominator");
         add("ascension.message.physique.world_dominator.acquired", "%s has become the %s. Bear witness to their Ascension!");
@@ -408,7 +410,7 @@ public class lang extends LanguageProvider {
         add("item.ascension.soul_anchor_talisman", "Soul Anchor Talisman");
         add("ascension.tooltip.sat", "Single-use │ Pulls death drops to anchor");
 
-// In-world messages (action bar)
+        // In-world messages (action bar)
         add("ascension.soulanchor.anchor_set",          "§5Anchor bound to this location.");
         add("ascension.soulanchor.no_anchor",           "§7No anchor set. Shift-right-click to bind one.");
         add("ascension.soulanchor.anchor_info",         "§5Anchor: §7%d, %d, %d");
@@ -417,7 +419,7 @@ public class lang extends LanguageProvider {
         add("ascension.soulanchor.activated",
                 "§5Soul Anchor pulled §d%d §5item(s) to §7%d, %d, %d§5.");
 
-// Tooltip lines
+        // Tooltip lines
         add("ascension.soulanchor.tooltip.anchored",    "§aAnchor Set");
         add("ascension.soulanchor.tooltip.coords",      "§7Location: %d, %d, %d");
         add("ascension.soulanchor.tooltip.dimension",   "§7Dimension: %s");
