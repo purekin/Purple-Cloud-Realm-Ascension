@@ -3,14 +3,14 @@
   "conditions": [
     {
       "condition": "neoforge:loot_table_id",
-      "loot_table_id": "minecraft:entities/witch"
+      "loot_table_id": "minecraft:entities/chicken"
     },
     {
-      "chance": 0.27,
+      "chance": 0.87,
       "condition": "minecraft:random_chance"
     }
   ],
-  "maxPurity": 33,
-  "minPurity": 7,
-  "physiqueId": "ascension:hundred_poison_physique"
+  "maxPurity": 25,
+  "minPurity": 15,
+  "physiqueId": "ascension:mortal"
 }

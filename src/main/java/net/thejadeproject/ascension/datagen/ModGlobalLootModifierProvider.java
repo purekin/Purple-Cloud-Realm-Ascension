@@ -23,12 +23,12 @@ public class ModGlobalLootModifierProvider extends GlobalLootModifierProvider {
 
 
         //Physiques
-        add("dragon_vein_from_ender_dragon", new AddPhysiqueRandomPurityModifier(
+        add("mortal_from_chicken", new AddPhysiqueRandomPurityModifier(
                 new LootItemCondition[] {
-                        LootTableIdCondition.builder(ResourceLocation.parse("minecraft:entities/ender_dragon")).build(),
-                        LootItemRandomChanceCondition.randomChance(0.17f).build()
+                        LootTableIdCondition.builder(ResourceLocation.parse("minecraft:entities/chicken")).build(),
+                        LootItemRandomChanceCondition.randomChance(0.87f).build()
                 },
-                ResourceLocation.fromNamespaceAndPath(AscensionCraft.MOD_ID, "dragon_vein_physique"),
+                ResourceLocation.fromNamespaceAndPath(AscensionCraft.MOD_ID, "mortal"),
                 15,
                 25
         ));
