@@ -31,53 +31,31 @@ import net.thejadeproject.ascension.refactor_packages.skills.custom.passive.flig
 public class ModSkills {
     public static final DeferredRegister<ISkill> SKILLS =DeferredRegister.create(AscensionRegistries.Skills.SKILL_REGISTRY, AscensionCraft.MOD_ID);
 
+    //TODO: swap skills to translatable keys not literal - sortofsmart
 
     //TODO update to not include any of these details (except path) and the technique defines the data
-    public static final DeferredHolder<ISkill,? extends GenericCultivationSkill> BASIC_CULTIVATION_SKILL = SKILLS.register("basic_essence_cultivation_skill",
-            ()->new GenericCultivationSkill(2.0,ModPaths.ESSENCE.getId()));
 
-    public static final DeferredHolder<ISkill,? extends SwordCultivationSkill> SWORD_CULTIVATION_SKILL = SKILLS.register("sword_cultivation_skill",
-            SwordCultivationSkill::new);
-    public static final DeferredHolder<ISkill,? extends EnterSpiritForm> ENTER_SPIRIT_FORM = SKILLS.register("enter_spirit_form",
-            EnterSpiritForm::new);
-
-    public static final DeferredHolder<ISkill,? extends FiveElementCirculation> FIVE_ELEMENT_CIRCULATION = SKILLS.register("five_element_circulation",
-            FiveElementCirculation::new);
-    public static final DeferredHolder<ISkill,? extends FireSpray> FIRE_SPRAY = SKILLS.register("fire_spray",
-            FireSpray::new);
-
-    // Generally Applicable
+    // ──── Universal Skills ────────────────────────────────────────────
+    // Passives
     public static final DeferredHolder<ISkill, RegenerationBoostSkill> REGENERATION_BOOST =
             SKILLS.register("regeneration_boost", RegenerationBoostSkill::new);
-
     public static final DeferredHolder<ISkill, QiSustainedBodySkill> QI_SUSTAINED_BODY =
             SKILLS.register("qi_sustained_body", QiSustainedBodySkill::new);
-
     public static final DeferredHolder<ISkill, TrueFlightSkill> TRUE_FLIGHT =
             SKILLS.register("true_flight", TrueFlightSkill::new);
 
+    // Actives
     public static final DeferredHolder<ISkill, ? extends QiFlightSkill> AIR_STEP =
             SKILLS.register("air_step", QiFlightSkill::new);
+    public static final DeferredHolder<ISkill,? extends EnterSpiritForm> ENTER_SPIRIT_FORM =
+            SKILLS.register("enter_spirit_form", EnterSpiritForm::new);
 
 
-    // White Lightning Fist Thing
-    public static final DeferredHolder<ISkill, ? extends WhiteLightningCultivationSkill> WHITE_LIGHTNING_CULTIVATION_SKILL =
-            SKILLS.register("white_lightning_cultivation_skill", WhiteLightningCultivationSkill::new);
-    public static final DeferredHolder<ISkill, ? extends TurbidEnergyPurgeSkill> TURBID_ENERGY_PURGE =
-            SKILLS.register("turbid_energy_purge", TurbidEnergyPurgeSkill::new);
+    // ──── ESSENCE SKILLS ────────────────────────────────────────────
+    // Cultivation
+    public static final DeferredHolder<ISkill,? extends GenericCultivationSkill> BASIC_CULTIVATION_SKILL =
+            SKILLS.register("basic_essence_cultivation_skill", ()->new GenericCultivationSkill(2.0,ModPaths.ESSENCE.getId()));
 
-    //TODO: Make weaker - sortofsmart
-    public static final DeferredHolder<ISkill, ? extends WhiteLightningFist> WHITE_LIGHTNING_FIST =
-            SKILLS.register("white_lightning_fist", WhiteLightningFist::new);
-
-
-    //TODO: add bookshelf check to this - sortofsmart
-    public static final DeferredHolder<ISkill, ? extends ScholarlySoulCultivationSkill> SCHOLARLY_SOUL_CULTIVATION_SKILL =
-            SKILLS.register("scholarly_soul_cultivation_skill", ScholarlySoulCultivationSkill::new);
-
-
-    // Basic Essence/Elemental Skills
-        // Cultivation Skills
     public static final DeferredHolder<ISkill, ? extends FireEssenceCultivationSkill> FIRE_ESSENCE_CULTIVATION_SKILL =
             SKILLS.register("fire_essence_cultivation_skill", FireEssenceCultivationSkill::new);
     public static final DeferredHolder<ISkill, ? extends WaterEssenceCultivationSkill> WATER_ESSENCE_CULTIVATION_SKILL =
@@ -94,17 +72,64 @@ public class ModSkills {
     public static final DeferredHolder<ISkill, ? extends WindEssenceCultivationSkill> WIND_ESSENCE_CULTIVATION_SKILL =
             SKILLS.register("wind_essence_cultivation_skill", WindEssenceCultivationSkill::new);
 
-        // Passive Skills
-    public static final DeferredHolder<ISkill, ? extends FlameTemperedBodySkill> FLAME_TEMPERED_BODY = SKILLS.register("flame_tempered_body", FlameTemperedBodySkill::new);
-    public static final DeferredHolder<ISkill, ? extends AquaticCirculationSkill> AQUATIC_CIRCULATION = SKILLS.register("aquatic_circulation", AquaticCirculationSkill::new);
-    public static final DeferredHolder<ISkill, ? extends VerdantRecoverySkill> VERDANT_RECOVERY = SKILLS.register("verdant_recovery", VerdantRecoverySkill::new);
+    public static final DeferredHolder<ISkill,? extends FiveElementCirculation> FIVE_ELEMENT_CIRCULATION =
+            SKILLS.register("five_element_circulation", FiveElementCirculation::new);
+    // Passives
+
+    // Actives
+
+
+    // ──── ELEMENTAL SKILLS ────────────────────────────────────────────
+    // Cultivation
+
+    // Passives
+    public static final DeferredHolder<ISkill, ? extends FlameTemperedBodySkill> FLAME_TEMPERED_BODY =
+            SKILLS.register("flame_tempered_body", FlameTemperedBodySkill::new);
+    public static final DeferredHolder<ISkill, ? extends AquaticCirculationSkill> AQUATIC_CIRCULATION =
+            SKILLS.register("aquatic_circulation", AquaticCirculationSkill::new);
+    public static final DeferredHolder<ISkill, ? extends VerdantRecoverySkill> VERDANT_RECOVERY =
+            SKILLS.register("verdant_recovery", VerdantRecoverySkill::new);
     // TODO: Metal and Earth Skill
-        // Active Skills
+
+    // Actives
     // TODO: Wood and Metal and Lightning and Wind Skills
+    public static final DeferredHolder<ISkill,? extends FireSpray> FIRE_SPRAY = SKILLS.register("fire_spray", FireSpray::new);
+
+
+    // ──── BODY SKILLS ────────────────────────────────────────────
+    // Cultivation
+    public static final DeferredHolder<ISkill, ? extends WhiteLightningCultivationSkill> WHITE_LIGHTNING_CULTIVATION_SKILL =
+            SKILLS.register("white_lightning_cultivation_skill", WhiteLightningCultivationSkill::new);
+
+    // Passives
+    public static final DeferredHolder<ISkill, ? extends TurbidEnergyPurgeSkill> TURBID_ENERGY_PURGE =
+            SKILLS.register("turbid_energy_purge", TurbidEnergyPurgeSkill::new);
+
+    // Actives
+    public static final DeferredHolder<ISkill, ? extends WhiteLightningFist> WHITE_LIGHTNING_FIST =
+            SKILLS.register("white_lightning_fist", WhiteLightningFist::new);
 
 
 
+    // ──── SOUL SKILLS ────────────────────────────────────────────
+    // Scholarly Soul Skills
+    public static final DeferredHolder<ISkill, ? extends ScholarlySoulCultivationSkill> SCHOLARLY_SOUL_CULTIVATION_SKILL =
+            SKILLS.register("scholarly_soul_cultivation_skill", ScholarlySoulCultivationSkill::new);
 
+    // Passives
+
+    // Actives
+
+    // ──── WEAPON SKILLS ────────────────────────────────────────────
+    // Cultivation
+    public static final DeferredHolder<ISkill,? extends SwordCultivationSkill> SWORD_CULTIVATION_SKILL =
+            SKILLS.register("sword_cultivation_skill", SwordCultivationSkill::new);
+    // Passives
+    // Actives
+
+
+
+    // ──── Register Skills with onPlayerTick methods ────────────────────────────────────────────
     public static void registerTickingSkills() {
         registerTickingSkill(TURBID_ENERGY_PURGE);
         registerTickingSkill(AQUATIC_CIRCULATION);
