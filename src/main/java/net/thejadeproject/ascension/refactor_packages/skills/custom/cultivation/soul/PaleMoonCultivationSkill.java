@@ -47,9 +47,10 @@ public class PaleMoonCultivationSkill extends GenericCultivationSkill {
 
     @Override
     public boolean continueCasting(int ticksElapsed, Entity caster, ICastData castData) {
-        if (!caster.level().isClientSide() && isSunExposed(caster)) {
+        boolean continuing = super.continueCasting(ticksElapsed, caster, castData);
+        if (continuing && !caster.level().isClientSide() && isSunExposed(caster)) {
             if (caster instanceof LivingEntity living) {
-                float damage = living.getMaxHealth() * 0.01f;
+                float damage = living.getMaxHealth() * 0.0025f;
                 DamageSource source = new DamageSource(
                         caster.level().registryAccess()
                                 .registryOrThrow(Registries.DAMAGE_TYPE)
@@ -58,7 +59,7 @@ public class PaleMoonCultivationSkill extends GenericCultivationSkill {
                 living.hurt(source, damage);
             }
         }
-        return super.continueCasting(ticksElapsed, caster, castData);
+        return continuing;
     }
 
     // --- Shared helpers (reused by GibbousMoonCultivationSkill) ---
