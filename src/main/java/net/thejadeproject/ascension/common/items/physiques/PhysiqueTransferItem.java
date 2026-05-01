@@ -13,11 +13,16 @@ import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
 
 import net.neoforged.neoforge.network.PacketDistributor;
+import net.thejadeproject.ascension.clients.toast.AscensionToast;
 import net.thejadeproject.ascension.data_attachments.ModAttachments;
+import net.thejadeproject.ascension.events.ElementalPhysiqueHandler;
 import net.thejadeproject.ascension.common.items.data_components.ModDataComponents;
 import net.thejadeproject.ascension.common.items.ModItems;
 import net.thejadeproject.ascension.refactor_packages.network.client_bound.toast.ShowAscensionToast;
 import net.thejadeproject.ascension.refactor_packages.physiques.IPhysique;
+import net.thejadeproject.ascension.refactor_packages.physiques.IPhysiqueData;
+import net.thejadeproject.ascension.refactor_packages.physiques.custom.ElementalBodyPhysique;
+import net.thejadeproject.ascension.refactor_packages.physiques.custom.ElementalPhysiqueData;
 import net.thejadeproject.ascension.refactor_packages.registries.AscensionRegistries;
 
 import java.util.List;
@@ -32,41 +37,48 @@ public class PhysiqueTransferItem extends Item {
     public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand hand) {
         ItemStack stack = player.getItemInHand(hand);
 
-        if (!level.isClientSide() && player.isShiftKeyDown()) {
-            String targetPhysiqueId = stack.get(ModDataComponents.PHYSIQUE_ID.get());
-            Integer purity = stack.get(ModDataComponents.PURITY.get());
+        if (level.isClientSide()) return InteractionResultHolder.pass(stack);
 
-            if (targetPhysiqueId == null || targetPhysiqueId.isEmpty() || purity == null) {
-                return InteractionResultHolder.fail(stack);
-            }
+        String targetPhysiqueId = stack.get(ModDataComponents.PHYSIQUE_ID.get());
+        Integer purity = stack.get(ModDataComponents.PURITY.get());
 
-            if (purity < 100) {
-                player.sendSystemMessage(
-                        Component.literal("Cannot transfer physique: ")
-                                .append(Component.literal(purity + "%").withStyle(ChatFormatting.GOLD))
-                                .append(Component.literal(" purity. Need "))
-                                .append(Component.literal("100%").withStyle(ChatFormatting.GREEN))
-                                .append(Component.literal(" purity."))
-                );
-                return InteractionResultHolder.fail(stack);
-            }
+        if (targetPhysiqueId == null || targetPhysiqueId.isEmpty() || purity == null) {
+            return InteractionResultHolder.fail(stack);
+        }
 
-            Component physiqueName = getPhysiqueDisplayName(targetPhysiqueId);
+        if (purity < 100) {
+            player.sendSystemMessage(
+                    Component.literal("Cannot transfer physique: ")
+                            .append(Component.literal(purity + "%").withStyle(ChatFormatting.GOLD))
+                            .append(Component.literal(" purity. Need "))
+                            .append(Component.literal("100%").withStyle(ChatFormatting.GREEN))
+                            .append(Component.literal(" purity."))
+            );
+            return InteractionResultHolder.fail(stack);
+        }
 
-            ItemStack toastIcon = stack.copy();
-            toastIcon.setCount(1);
+
+        Component physiqueName = getPhysiqueDisplayName(targetPhysiqueId);
+
+        ItemStack toastIcon = stack.copy();
+        toastIcon.setCount(1);
+
+        ResourceLocation targetId = ResourceLocation.bySeparator(targetPhysiqueId, ':');
+        IPhysique targetPhysique = AscensionRegistries.Physiques.PHSIQUES_REGISTRY.get(targetId);
+
+        if (player.isShiftKeyDown()) {
+            // Shift+right-click: replace physique entirely
+            player.getData(ModAttachments.ENTITY_DATA).setPhysique(targetId);
 
             if (!player.getAbilities().instabuild) {
                 stack.shrink(1);
             }
 
-            player.getData(ModAttachments.ENTITY_DATA).setPhysique(ResourceLocation.bySeparator(targetPhysiqueId, ':'));
-
-//            player.sendSystemMessage(
-//                    Component.literal("Successfully transferred to ")
-//                            .append(physiqueName)
-//                            .append(Component.literal("!"))
-//            );
+            player.sendSystemMessage(
+                    Component.literal("Physique replaced with ")
+                            .append(getPhysiqueDisplayName(targetPhysiqueId))
+                            .append(Component.literal("!"))
+            );
 
             if (player instanceof ServerPlayer serverPlayer) {
                 PacketDistributor.sendToPlayer(
@@ -74,7 +86,8 @@ public class PhysiqueTransferItem extends Item {
                         new ShowAscensionToast(
                                 physiqueName.getString(),
                                 "Physique Transferred",
-                                toastIcon
+                                toastIcon,
+                                AscensionToast.DEFAULT_BACKGROUND
                         )
                 );
             }
@@ -82,7 +95,31 @@ public class PhysiqueTransferItem extends Item {
             return InteractionResultHolder.success(stack);
         }
 
-        return InteractionResultHolder.pass(stack);
+        // Right-click: attempt elemental fusion
+        if (!(targetPhysique instanceof ElementalBodyPhysique targetElemental)) {
+            return InteractionResultHolder.pass(stack);
+        }
+
+        IPhysiqueData currentData = player.getData(ModAttachments.ENTITY_DATA).getActiveFormData().getPhysiqueData();
+        if (!(currentData instanceof ElementalPhysiqueData elementalData)) {
+            player.sendSystemMessage(Component.literal("Your current physique cannot be fused.").withStyle(ChatFormatting.RED));
+            return InteractionResultHolder.fail(stack);
+        }
+
+        if (!ElementalPhysiqueHandler.canMerge(elementalData, targetElemental.getElement())) {
+            player.sendSystemMessage(Component.literal("This essence is not compatible with your current physique.").withStyle(ChatFormatting.RED));
+            return InteractionResultHolder.fail(stack);
+        }
+
+        // setPhysique fires PhysiqueChangeEvent.Pre — our handler cancels it and upgrades the data
+        if (!player.getAbilities().instabuild) stack.shrink(1);
+        player.getData(ModAttachments.ENTITY_DATA).setPhysique(targetId);
+        player.sendSystemMessage(
+                Component.literal("Physique fused with ")
+                        .append(getPhysiqueDisplayName(targetPhysiqueId))
+                        .append(Component.literal("!"))
+        );
+        return InteractionResultHolder.success(stack);
     }
 
     @Override
@@ -137,8 +174,10 @@ public class PhysiqueTransferItem extends Item {
             tooltip.add(Component.literal("No physique set").withStyle(ChatFormatting.GRAY));
         }
 
-        tooltip.add(Component.literal("Shift-right-click to transfer physique")
+        tooltip.add(Component.literal("Right-click to fuse into current physique")
                 .withStyle(ChatFormatting.YELLOW));
+        tooltip.add(Component.literal("Shift-right-click to replace physique entirely")
+                .withStyle(ChatFormatting.GRAY));
 
         if (purity != null && purity >= 100) {
             tooltip.add(Component.literal("Ready to use!").withStyle(ChatFormatting.GREEN, ChatFormatting.BOLD));

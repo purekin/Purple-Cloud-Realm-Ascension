@@ -33,7 +33,7 @@ import net.thejadeproject.ascension.refactor_packages.skills.castable.ICastData;
 import net.thejadeproject.ascension.refactor_packages.skills.castable.ICastableSkill;
 import net.thejadeproject.ascension.refactor_packages.skills.castable.IPreCastData;
 import net.thejadeproject.ascension.refactor_packages.techniques.ITechnique;
-import net.thejadeproject.ascension.refactor_packages.techniques.custom.FiveElementCultivationTechnique;
+import net.thejadeproject.ascension.refactor_packages.techniques.custom.essence.FiveElementCultivationTechnique;
 
 import java.util.List;
 
@@ -245,11 +245,11 @@ public class FiveElementCirculation implements ICastableSkill {
 
     @Override
     public Component getTitle() {
-        return null;
+        return Component.translatable("ascension.skill.five_element_circulation");
     }
 
     @Override
     public Component getDescription() {
-        return null;
+        return Component.translatable("ascension.skill.five_element_circulation.description");
     }
 }

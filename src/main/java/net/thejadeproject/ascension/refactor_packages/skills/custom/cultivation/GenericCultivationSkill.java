@@ -100,14 +100,25 @@ public class GenericCultivationSkill implements ICastableSkill {
         );
     }
 
+    private Component getPathTitle() {
+        var pathObj = AscensionRegistries.Paths.PATHS_REGISTRY.get(path);
+        return pathObj != null ? pathObj.getDisplayTitle() : Component.literal(path.toString());
+    }
+
     @Override
     public Component getTitle() {
-        return Component.empty().append(AscensionRegistries.Paths.PATHS_REGISTRY.get(path).getDisplayTitle()).append(" Cultivation Skill");
+        return Component.translatable(
+                "ascension.skill.cultivation_skill",
+                getPathTitle()
+        );
     }
 
     @Override
     public Component getDescription() {
-        return Component.empty();
+        return Component.translatable(
+                "ascension.skill.cultivation_skill.description",
+                getPathTitle()
+        );
     }
 
 
@@ -138,6 +149,10 @@ public class GenericCultivationSkill implements ICastableSkill {
         return new CastResult(CastResult.Type.SUCCESS);
     }
 
+    protected double getEffectiveRate(Entity caster) {
+        return baseRate;
+    }
+
     @Override
     public boolean continueCasting(int ticksElapsed, Entity caster, ICastData castData) {
         if(!caster.hasData(ModAttachments.INPUT_STATES)) return false;
@@ -149,7 +164,7 @@ public class GenericCultivationSkill implements ICastableSkill {
 
             //TODO add a cultivate event
             ITechnique technique = AscensionRegistries.Techniques.TECHNIQUES_REGISTRY.get(pathData.getLastUsedTechnique());
-            double amount = baseRate;
+            double amount = getEffectiveRate(caster);
 
 
             if(pathData.getCurrentRealmProgress()+amount >= technique.getMaxQiForRealm(pathData.getMajorRealm(),pathData.getMinorRealm())){

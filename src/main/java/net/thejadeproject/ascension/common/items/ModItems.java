@@ -1,5 +1,6 @@
 package net.thejadeproject.ascension.common.items;
 
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.*;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.common.DeferredSpawnEggItem;
@@ -9,6 +10,7 @@ import net.thejadeproject.ascension.AscensionCraft;
 import net.thejadeproject.ascension.common.blocks.ModBlocks;
 
 import net.thejadeproject.ascension.common.items.artifacts.talismans.*;
+import net.thejadeproject.ascension.common.items.tools.hidden_weapons.NeedleItem;
 import net.thejadeproject.ascension.entity.ModEntities;
 import net.thejadeproject.ascension.common.items.artifacts.*;
 import net.thejadeproject.ascension.common.items.data_components.ModDataComponents;
@@ -36,6 +38,11 @@ public class ModItems {
     public static final DeferredItem<Item> FAN = ITEMS.register("fan",
             () -> new FanItem(new Item.Properties()));
 
+
+
+    // ── Silver Needles ──────────────────────────────────────────────────────────
+    public static final DeferredItem<NeedleItem> SILVER_NEEDLE = ITEMS.register("silver_needle",
+            () -> new NeedleItem(new Item.Properties().stacksTo(64)));
 
 
 
@@ -267,9 +274,17 @@ public class ModItems {
     // ── Poison Pills ──────────────────────────────────────────────
     public static final DeferredItem<PillItem> QI_DEVOURING_PARASITE_PILL = ITEMS.register("qi_devouring_parasite_pill",
             () -> new PillItem(new Item.Properties()
-                    .food(ModFoodProperties.QI_DEVOURING_PARASITE_PILL)
+                    .food(ModFoodProperties.POISON_PILL)
                     .component(ModDataComponents.PILL_EFFECTS, List.of(ModPillEffects.PARASITE_PILL_EFFECT.getId().toString()))
                     , 0, true));
+
+
+    // ── Positive Pills ──────────────────────────────────────────────
+    public static final DeferredItem<PillItem> QI_ENHANCED_REGEN_PILL = ITEMS.register("regeneration_pill",
+            () -> new PillItem(new Item.Properties()
+                    .food(ModFoodProperties.MEDICINAL_PILL)
+                    .component(ModDataComponents.PILL_EFFECTS, List.of(ModPillEffects.QI_ENHANCED_REGEN_EFFECT.getId().toString()))
+                    , 0, false));
 
     // ── Antidote Pills ────────────────────────────────────────────
     public static final DeferredItem<PillItem> ANTIDOTE_PILL_QDP = ITEMS.register("antidote_qdp_pill",
@@ -335,32 +350,42 @@ public class ModItems {
             () -> new DeferredSpawnEggItem(ModEntities.RAT, 0x4F2242, 0x703240,
                     new Item.Properties()));
 
-    //Scholar Chapters
 
+    // ── Scholarly Soul Technique Chapters ──────────────────────────────────────────────
     public static final DeferredItem<ScholarlySoulChapterItem> SCHOLARLY_SOUL_RECTIFICATION_OF_NAMES =
-            ITEMS.register("scholarly_soul_rectification_of_names",
-                    () -> new ScholarlySoulChapterItem(
-                            new Item.Properties(),
-                            ScholarlySoulTechniqueData.RECTIFICATION_OF_NAMES
-                    ));
+            registerScholarlySoulChapter(
+                    "rectification_of_names",
+                    ScholarlySoulTechniqueData.RECTIFICATION_OF_NAMES
+            );
+
     public static final DeferredItem<ScholarlySoulChapterItem> SCHOLARLY_SOUL_GREAT_LEARNING =
-            ITEMS.register("scholarly_soul_great_learning",
-                    () -> new ScholarlySoulChapterItem(
-                            new Item.Properties(),
-                            ScholarlySoulTechniqueData.GREAT_LEARNING
-                    ));
+            registerScholarlySoulChapter(
+                    "great_learning",
+                    ScholarlySoulTechniqueData.GREAT_LEARNING
+            );
+
     public static final DeferredItem<ScholarlySoulChapterItem> SCHOLARLY_SOUL_THOUSAND_COMMENTARIES =
-            ITEMS.register("scholarly_soul_thousand_commentaries",
-                    () -> new ScholarlySoulChapterItem(
-                            new Item.Properties(),
-                            ScholarlySoulTechniqueData.THOUSAND_COMMENTARIES
-                    ));
+            registerScholarlySoulChapter(
+                    "thousand_commentaries",
+                    ScholarlySoulTechniqueData.THOUSAND_COMMENTARIES
+            );
+
     public static final DeferredItem<ScholarlySoulChapterItem> SCHOLARLY_SOUL_SAGE_MANDATE =
-            ITEMS.register("scholarly_soul_sage_mandate",
-                    () -> new ScholarlySoulChapterItem(
-                            new Item.Properties(),
-                            ScholarlySoulTechniqueData.SAGE_MANDATE
-                    ));
+            registerScholarlySoulChapter(
+                    "sage_mandate",
+                    ScholarlySoulTechniqueData.SAGE_MANDATE
+            );
+
+    private static DeferredItem<ScholarlySoulChapterItem> registerScholarlySoulChapter(
+            String name,
+            ResourceLocation chapter
+    ) {
+        return ITEMS.register("scholarly_soul_" + name,
+                () -> new ScholarlySoulChapterItem(
+                        new Item.Properties(),
+                        chapter
+                ));
+    }
 
 
 

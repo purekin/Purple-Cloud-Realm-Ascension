@@ -3,7 +3,12 @@ package net.thejadeproject.ascension.refactor_packages.physiques.custom;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.item.ItemStack;
+import net.neoforged.neoforge.network.PacketDistributor;
+import net.thejadeproject.ascension.clients.toast.AscensionToast;
+import net.thejadeproject.ascension.common.items.ModItems;
 import net.thejadeproject.ascension.refactor_packages.entity_data.IEntityData;
+import net.thejadeproject.ascension.refactor_packages.network.client_bound.toast.ShowAscensionToast;
 import net.thejadeproject.ascension.refactor_packages.physiques.IPhysique;
 import net.thejadeproject.ascension.refactor_packages.physiques.IPhysiqueData;
 import net.thejadeproject.ascension.refactor_packages.registries.AscensionRegistries;
@@ -53,12 +58,28 @@ public class EvolvingPhysique extends GenericPhysique {
         boolean changed = entityData.setPhysique(evolvesInto, newData, currentForm);
 
         if (changed) {
-            player.sendSystemMessage(
-                    Component.translatable("ascension.message.physique.evolved")
-            );
+            Component physiqueName = newPhysique.getDisplayTitle();
+
+            if (player.connection != null) {
+                PacketDistributor.sendToPlayer(
+                        player,
+                        new ShowAscensionToast(
+                                physiqueName.getString(),
+                                "Physique Evolved",
+                                getEvolutionToastIcon(evolvesInto),
+                                AscensionToast.DEFAULT_BACKGROUND
+                        )
+                );
+            }
         }
 
         return changed;
+    }
+
+    protected ItemStack getEvolutionToastIcon(ResourceLocation evolvesInto) {
+        ItemStack stack = new ItemStack(ModItems.PHYSIQUE_ESSENCE.get());
+        stack.setCount(1);
+        return stack;
     }
 
     // Override in Physique Registration to change evolution conditions

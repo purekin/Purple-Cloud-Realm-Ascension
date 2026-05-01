@@ -49,6 +49,8 @@ public class GenericTechnique implements ITechnique {
         return this;
     }
 
+    public double getBaseRate() { return baseRate; }
+
     @Override
     public Component getDisplayTitle() {
         return title;
@@ -74,9 +76,11 @@ public class GenericTechnique implements ITechnique {
         if(getPath().equals(ModPaths.ESSENCE.getId())){
             heldEntity.giveSkill(ModSkills.BASIC_CULTIVATION_SKILL.getId(),new GenericCultivationSkillData(baseRate, secondaryPaths), ModForms.MORTAL_VESSEL.getId());
             heldEntity.giveSkill(ModSkills.ENTER_SPIRIT_FORM.getId(),ModForms.SOUL_FORM.getId());
+            heldEntity.giveSkill(ModSkills.QI_RELEASE.getId(), ModForms.MORTAL_VESSEL.getId());
         }
         if(getPath().equals(ModPaths.SWORD.getId())){
             heldEntity.giveSkill(ModSkills.SWORD_CULTIVATION_SKILL.getId(),ModForms.MORTAL_VESSEL.getId());
+            heldEntity.giveSkill(ModSkills.SWORD_MASTERY_SKILL.getId(),ModForms.MORTAL_VESSEL.getId());
         }
 
         refreshUniversalTechniqueSkills(heldEntity);
@@ -88,9 +92,11 @@ public class GenericTechnique implements ITechnique {
         if(getPath().equals(ModPaths.ESSENCE.getId())){
             heldEntity.removeSkill(ModSkills.BASIC_CULTIVATION_SKILL.getId(), ModForms.MORTAL_VESSEL.getId());
             heldEntity.giveSkill(ModSkills.ENTER_SPIRIT_FORM.getId(),ModForms.SOUL_FORM.getId());
+            heldEntity.removeSkill(ModSkills.QI_RELEASE.getId(), ModForms.MORTAL_VESSEL.getId());
         }
         if(getPath().equals(ModPaths.SWORD.getId())){
             heldEntity.removeSkill(ModSkills.SWORD_CULTIVATION_SKILL.getId(),ModForms.MORTAL_VESSEL.getId());
+            heldEntity.removeSkill(ModSkills.SWORD_MASTERY_SKILL.getId(),ModForms.MORTAL_VESSEL.getId());
         }
 
         refreshUniversalTechniqueSkills(heldEntity);
@@ -107,6 +113,7 @@ public class GenericTechnique implements ITechnique {
         entityData.getActiveFormData().getStatSheet().log();
         entityData.getAscensionAttributeHolder().log();
 
+        if(entityData.isLoading()) return;
         if(entityData.getAttachedEntity().level().isClientSide()) return;
         if(!(entityData.getAttachedEntity() instanceof  ServerPlayer serverPlayer)) return;
         if(serverPlayer.connection == null) return;
