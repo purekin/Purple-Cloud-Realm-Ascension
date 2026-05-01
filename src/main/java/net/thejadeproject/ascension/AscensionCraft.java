@@ -1,8 +1,12 @@
 package net.thejadeproject.ascension;
 
+import net.minecraft.core.Direction;
+import net.minecraft.core.Position;
 import net.minecraft.core.RegistryAccess;
 import net.minecraft.core.UUIDUtil;
 import net.minecraft.core.component.DataComponentType;
+import net.minecraft.core.dispenser.BlockSource;
+import net.minecraft.core.dispenser.DefaultDispenseItemBehavior;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
@@ -17,6 +21,8 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.RecipeSerializer;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.DispenserBlock;
 import net.neoforged.fml.event.lifecycle.FMLLoadCompleteEvent;
 import net.neoforged.neoforge.client.event.*;
 import net.neoforged.neoforge.event.RegisterCommandsEvent;
@@ -36,6 +42,7 @@ import net.thejadeproject.ascension.common.command.AscensionCommand;
 
 import net.thejadeproject.ascension.common.items.artifacts.talismans.SoulAnchorTalisman;
 import net.thejadeproject.ascension.common.items.data_components.ModDataComponents;
+import net.thejadeproject.ascension.entity.custom.NeedleProjectile;
 import net.thejadeproject.ascension.events.TeleportationEventHandler;
 
 import net.thejadeproject.ascension.common.items.artifacts.talismans.DeathRecallTalisman;
@@ -325,7 +332,25 @@ public class AscensionCraft {
         ToolTipManager.registerAllTooltips();
         FreezingEffectItems.onCommonSetup(event);
 
-        event.enqueueWork(ModSkills::registerTickingSkills);
+        event.enqueueWork(() -> {
+            ModSkills.registerTickingSkills();
+            DispenserBlock.registerBehavior(ModItems.SILVER_NEEDLE.get(), new DefaultDispenseItemBehavior() {
+                @Override
+                protected ItemStack execute(BlockSource source, ItemStack stack) {
+                    Level level = source.level();
+                    Direction facing = source.state().getValue(DispenserBlock.FACING);
+                    Position position = DispenserBlock.getDispensePosition(source);
+
+                    NeedleProjectile needle = new NeedleProjectile(
+                            level, position.x(), position.y(), position.z(), stack.copyWithCount(1)
+                    );
+                    needle.shoot(facing.getStepX(), facing.getStepY() + 0.1, facing.getStepZ(), 2.5f, 1.0f);
+                    level.addFreshEntity(needle);
+                    stack.shrink(1);
+                    return stack;
+                }
+            });
+        });
 
     }
 
