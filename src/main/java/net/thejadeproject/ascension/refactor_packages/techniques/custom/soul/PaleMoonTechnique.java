@@ -40,7 +40,7 @@ public class PaleMoonTechnique extends GenericTechnique {
     @Override
     public Component getDescription() {
         return Component.literal(
-                "Cultivates the Soul path by drawing upon pale lunar essence. Its cultivation rate is slightly increased under the night sky."
+                "Cultivates the Soul path by drawing upon pale lunar essence. Must be practised under open sky. Cultivation rate increases when gazing directly at the moon. Harmful beneath direct sunlight."
         );
     }
 
