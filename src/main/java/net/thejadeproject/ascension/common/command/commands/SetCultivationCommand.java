@@ -1,7 +1,7 @@
-package net.thejadeproject.ascension.common.command.cultivation;
+package net.thejadeproject.ascension.common.command.commands;
 
-import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.arguments.IntegerArgumentType;
+import com.mojang.brigadier.builder.LiteralArgumentBuilder;
 import com.mojang.brigadier.context.CommandContext;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import net.minecraft.commands.CommandSourceStack;
@@ -15,21 +15,19 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
 import net.thejadeproject.ascension.data_attachments.ModAttachments;
 import net.thejadeproject.ascension.refactor_packages.entity_data.IEntityData;
-import net.thejadeproject.ascension.refactor_packages.paths.ModPaths;
 import net.thejadeproject.ascension.refactor_packages.paths.PathData;
 import net.thejadeproject.ascension.refactor_packages.qi.EntityQiContainer;
 import net.thejadeproject.ascension.refactor_packages.physiques.IPhysique;
 import net.thejadeproject.ascension.refactor_packages.physiques.custom.ElementalBodyPhysique;
 import net.thejadeproject.ascension.refactor_packages.physiques.custom.ElementalPhysiqueData;
-import net.thejadeproject.ascension.refactor_packages.physiques.IPhysique;
 import net.thejadeproject.ascension.refactor_packages.registries.AscensionRegistries;
 import net.thejadeproject.ascension.refactor_packages.techniques.ITechnique;
 
 
 public class SetCultivationCommand {
 
-    public static void register(CommandDispatcher<CommandSourceStack> dispatcher) {
-        dispatcher.register(Commands.literal("cultivation")
+    public static LiteralArgumentBuilder<CommandSourceStack> build() {
+        return Commands.literal("cultivation")
                 .requires(source -> source.hasPermission(2))
                 .then(Commands.literal("set")
                         .then(Commands.argument("target", EntityArgument.players())
@@ -54,8 +52,8 @@ public class SetCultivationCommand {
                                         .executes(SetCultivationCommand::getPhysiqueInfo)
                                 )
                         )
-                )
-        );
+                );
+
     }
 
     private static int setCultivationRealm(CommandContext<CommandSourceStack> context) throws CommandSyntaxException {

@@ -1,7 +1,6 @@
-package net.thejadeproject.ascension.common.command.cultivation;
+package net.thejadeproject.ascension.common.command.commands;
 
-import com.mojang.brigadier.CommandDispatcher;
-import com.mojang.brigadier.arguments.StringArgumentType;
+import com.mojang.brigadier.builder.LiteralArgumentBuilder;
 import com.mojang.brigadier.context.CommandContext;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import com.mojang.brigadier.suggestion.SuggestionsBuilder;
@@ -9,6 +8,7 @@ import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.commands.Commands;
 import net.minecraft.commands.SharedSuggestionProvider;
 import net.minecraft.commands.arguments.EntityArgument;
+import net.minecraft.commands.arguments.ResourceLocationArgument;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
@@ -28,22 +28,16 @@ import java.util.List;
 
 public class GiveSkillCommand {
 
-    public static void register(CommandDispatcher<CommandSourceStack> dispatcher) {
-        dispatcher.register(Commands.literal("skill")
+    public static LiteralArgumentBuilder<CommandSourceStack> build() {
+        return Commands.literal("skill")
                 .requires(source -> source.hasPermission(2))
-
-                /*
-                    Commands:
-                    /skill give <targets> <skill> [form]
-                    /skill remove <targets> <skill> [form]
-                                                            */
 
                 .then(Commands.literal("give")
                         .then(Commands.argument("targets", EntityArgument.players())
-                                .then(Commands.argument("skill", StringArgumentType.string())
+                                .then(Commands.argument("skill", ResourceLocationArgument.id())
                                         .suggests(GiveSkillCommand::suggestSkills)
                                         .executes(GiveSkillCommand::giveSkillToActiveForm)
-                                        .then(Commands.argument("form", StringArgumentType.string())
+                                        .then(Commands.argument("form", ResourceLocationArgument.id())
                                                 .suggests(GiveSkillCommand::suggestForms)
                                                 .executes(GiveSkillCommand::giveSkillToSpecifiedForm)
                                         )
@@ -53,23 +47,22 @@ public class GiveSkillCommand {
 
                 .then(Commands.literal("remove")
                         .then(Commands.argument("targets", EntityArgument.players())
-                                .then(Commands.argument("skill", StringArgumentType.string())
+                                .then(Commands.argument("skill", ResourceLocationArgument.id())
                                         .suggests(GiveSkillCommand::suggestSkills)
                                         .executes(GiveSkillCommand::removeSkillFromActiveForm)
-                                        .then(Commands.argument("form", StringArgumentType.string())
+                                        .then(Commands.argument("form", ResourceLocationArgument.id())
                                                 .suggests(GiveSkillCommand::suggestForms)
                                                 .executes(GiveSkillCommand::removeSkillFromSpecifiedForm)
                                         )
                                 )
                         )
-                )
-        );
+                );
     }
 
     // give
     private static int giveSkillToActiveForm(CommandContext<CommandSourceStack> context) throws CommandSyntaxException {
         Collection<ServerPlayer> players = EntityArgument.getPlayers(context, "targets");
-        ResourceLocation skillId = normalizeId(StringArgumentType.getString(context, "skill"));
+        ResourceLocation skillId = ResourceLocationArgument.getId(context, "skill");
 
         if (!isValidSkill(skillId)) {
             context.getSource().sendFailure(Component.literal("Invalid skill: " + skillId));
@@ -100,8 +93,8 @@ public class GiveSkillCommand {
     private static int giveSkillToSpecifiedForm(CommandContext<CommandSourceStack> context) throws CommandSyntaxException {
         Collection<ServerPlayer> players = EntityArgument.getPlayers(context, "targets");
 
-        ResourceLocation skillId = normalizeId(StringArgumentType.getString(context, "skill"));
-        ResourceLocation formId = normalizeId(StringArgumentType.getString(context, "form"));
+        ResourceLocation skillId = ResourceLocationArgument.getId(context, "skill");
+        ResourceLocation formId = ResourceLocationArgument.getId(context, "form");
 
         if (!isValidSkill(skillId)) {
             context.getSource().sendFailure(Component.literal("Invalid skill: " + skillId));
@@ -174,7 +167,7 @@ public class GiveSkillCommand {
     // remove
     private static int removeSkillFromActiveForm(CommandContext<CommandSourceStack> context) throws CommandSyntaxException {
         Collection<ServerPlayer> players = EntityArgument.getPlayers(context, "targets");
-        ResourceLocation skillId = normalizeId(StringArgumentType.getString(context, "skill"));
+        ResourceLocation skillId = ResourceLocationArgument.getId(context, "skill");
 
         if (!isValidSkill(skillId)) {
             context.getSource().sendFailure(Component.literal("Invalid skill: " + skillId));
@@ -205,8 +198,8 @@ public class GiveSkillCommand {
     private static int removeSkillFromSpecifiedForm(CommandContext<CommandSourceStack> context) throws CommandSyntaxException {
         Collection<ServerPlayer> players = EntityArgument.getPlayers(context, "targets");
 
-        ResourceLocation skillId = normalizeId(StringArgumentType.getString(context, "skill"));
-        ResourceLocation formId = normalizeId(StringArgumentType.getString(context, "form"));
+        ResourceLocation skillId = ResourceLocationArgument.getId(context, "skill");
+        ResourceLocation formId = ResourceLocationArgument.getId(context, "form");
 
         if (!isValidSkill(skillId)) {
             context.getSource().sendFailure(Component.literal("Invalid skill: " + skillId));
@@ -310,18 +303,6 @@ public class GiveSkillCommand {
                 .forEach(loc -> suggestions.add(loc.toString()));
 
         return SharedSuggestionProvider.suggest(suggestions, builder);
-    }
-
-    private static ResourceLocation normalizeId(String input) {
-        try {
-            if (input.contains(":")) {
-                return ResourceLocation.parse(input);
-            }
-
-            return ResourceLocation.fromNamespaceAndPath("ascension", input);
-        } catch (Exception e) {
-            return null;
-        }
     }
 
     private static boolean isValidSkill(ResourceLocation skillId) {

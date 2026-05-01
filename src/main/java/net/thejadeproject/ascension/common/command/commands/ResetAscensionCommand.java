@@ -1,7 +1,6 @@
-package net.thejadeproject.ascension.common.command.cultivation;
+package net.thejadeproject.ascension.common.command.commands;
 
-import com.mojang.brigadier.CommandDispatcher;
-import com.mojang.brigadier.arguments.StringArgumentType;
+import com.mojang.brigadier.builder.LiteralArgumentBuilder;
 import com.mojang.brigadier.context.CommandContext;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import com.mojang.brigadier.suggestion.Suggestions;
@@ -10,6 +9,7 @@ import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.commands.Commands;
 import net.minecraft.commands.SharedSuggestionProvider;
 import net.minecraft.commands.arguments.EntityArgument;
+import net.minecraft.commands.arguments.ResourceLocationArgument;
 import net.minecraft.core.Holder;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceKey;
@@ -41,14 +41,10 @@ import java.util.concurrent.CompletableFuture;
 
 public class ResetAscensionCommand {
 
-    // DOES NOT WORK -> methods missing
-    // TODO: IMPLEMENT REMOVE METHODS IN GENERIC ENTITY DATA - PLEASE OLLI, UNLESS U ARE BUSY, THEN I CAN DO IT
 
-    public static void register(CommandDispatcher<CommandSourceStack> dispatcher) {
-        dispatcher.register(Commands.literal("ascension")
-                .requires(source -> source.hasPermission(2))
 
-                .then(Commands.literal("reset")
+    public static LiteralArgumentBuilder<CommandSourceStack> build() {
+        return Commands.literal("reset")
 
                         .then(Commands.literal("all")
                                 .then(Commands.argument("targets", EntityArgument.players())
@@ -70,7 +66,7 @@ public class ResetAscensionCommand {
 
                         .then(Commands.literal("path")
                                 .then(Commands.argument("targets", EntityArgument.players())
-                                        .then(Commands.argument("path", StringArgumentType.string())
+                                        .then(Commands.argument("path", ResourceLocationArgument.id())
                                                 .suggests(ResetAscensionCommand::suggestPaths)
                                                 .executes(ResetAscensionCommand::resetSpecificPath)
                                         )
@@ -91,7 +87,7 @@ public class ResetAscensionCommand {
 
                         .then(Commands.literal("technique")
                                 .then(Commands.argument("targets", EntityArgument.players())
-                                        .then(Commands.argument("path", StringArgumentType.string())
+                                        .then(Commands.argument("path", ResourceLocationArgument.id())
                                                 .suggests(ResetAscensionCommand::suggestPaths)
                                                 .executes(ResetAscensionCommand::resetSpecificTechnique)
                                         )
@@ -102,8 +98,6 @@ public class ResetAscensionCommand {
                                 .then(Commands.argument("targets", EntityArgument.players())
                                         .executes(ResetAscensionCommand::resetPhysique)
                                 )
-                        )
-                )
         );
     }
 
@@ -169,8 +163,8 @@ public class ResetAscensionCommand {
     private static int resetSpecificPath(CommandContext<CommandSourceStack> context) throws CommandSyntaxException {
         Collection<ServerPlayer> players = EntityArgument.getPlayers(context, "targets");
 
-        String inputPath = StringArgumentType.getString(context, "path");
-        ResourceLocation pathId = normalizeId(inputPath);
+        ResourceLocation pathId = ResourceLocationArgument.getId(context, "path");
+        String inputPath = pathId.toString();
 
         if (!isValidPath(pathId)) {
             context.getSource().sendFailure(
@@ -245,8 +239,8 @@ public class ResetAscensionCommand {
 
     private static int resetSpecificTechnique(CommandContext<CommandSourceStack> context) throws CommandSyntaxException {
         Collection<ServerPlayer> players = EntityArgument.getPlayers(context, "targets");
-        String inputPath = StringArgumentType.getString(context, "path");
-        ResourceLocation pathId = normalizeId(inputPath);
+        ResourceLocation pathId = ResourceLocationArgument.getId(context, "path");
+        String inputPath = pathId.toString();
 
         if (!isValidPath(pathId)) {
             context.getSource().sendFailure(
@@ -448,17 +442,6 @@ public class ResetAscensionCommand {
         return SharedSuggestionProvider.suggest(suggestions, builder);
     }
 
-    private static ResourceLocation normalizeId(String input) {
-        try {
-            if (input.contains(":")) {
-                return ResourceLocation.parse(input);
-            }
-
-            return ResourceLocation.fromNamespaceAndPath("ascension", input);
-        } catch (Exception e) {
-            return null;
-        }
-    }
 
     private static boolean isValidPath(ResourceLocation pathId) {
         if (pathId == null) return false;
