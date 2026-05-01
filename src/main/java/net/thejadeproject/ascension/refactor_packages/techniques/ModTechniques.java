@@ -285,8 +285,8 @@ public class ModTechniques {
     //    public static final DeferredHolder<ITechnique, ? extends >
     //    public static final DeferredHolder<ITechnique, ? extends >
     //
-    //    P.S. I don't rally mean to make this many individual classes to extend, maybe just a couple general ones?
-    //    Unless someone wants to :)
+    //    P.S. I don't really mean we should make this many individual classes to extend, maybe just a couple general ones?
+    //    Unless someone wants to or the technique actually requires it :)
     //    I'm just jotting down ideas - sortofsmart
     //
     // ──── TECHNIQUE IDEAS | Fill in as you please ────────────────────────────────────────────
