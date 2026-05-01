@@ -11,6 +11,7 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
+import net.minecraft.server.level.ServerPlayer;
 import net.thejadeproject.ascension.AscensionCraft;
 import net.thejadeproject.ascension.refactor_packages.paths.ModPaths;
 import net.thejadeproject.ascension.refactor_packages.skill_casting.casting.CastResult;
@@ -48,15 +49,20 @@ public class PaleMoonCultivationSkill extends GenericCultivationSkill {
     @Override
     public boolean continueCasting(int ticksElapsed, Entity caster, ICastData castData) {
         boolean continuing = super.continueCasting(ticksElapsed, caster, castData);
-        if (continuing && !caster.level().isClientSide() && isSunExposed(caster)) {
-            if (caster instanceof LivingEntity living) {
-                float damage = living.getMaxHealth() * 0.0025f;
-                DamageSource source = new DamageSource(
-                        caster.level().registryAccess()
-                                .registryOrThrow(Registries.DAMAGE_TYPE)
-                                .getHolderOrThrow(DamageTypes.IN_FIRE)
-                );
-                living.hurt(source, damage);
+        if (continuing && !caster.level().isClientSide()) {
+            if (isSunExposed(caster)) {
+                if (caster instanceof LivingEntity living) {
+                    float damage = living.getMaxHealth() * 0.0025f;
+                    DamageSource source = new DamageSource(
+                            caster.level().registryAccess()
+                                    .registryOrThrow(Registries.DAMAGE_TYPE)
+                                    .getHolderOrThrow(DamageTypes.IN_FIRE)
+                    );
+                    living.hurt(source, damage);
+                }
+            }
+            if (ticksElapsed % 20 == 0 && isLookingAtMoon(caster) && caster instanceof ServerPlayer player) {
+                player.sendSystemMessage(Component.literal("[Debug] Pale Moon bonus active (1.5x)"));
             }
         }
         return continuing;
