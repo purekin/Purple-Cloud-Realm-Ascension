@@ -210,14 +210,30 @@ public class lang extends LanguageProvider {
         add("ascension.physiques.water_attuned", "Water Attuned");
         add("ascension.physiques.fire_attuned", "Fire Attuned");
         add("ascension.physiques.blessed", "Blessed One");
+        add("ascension.physiques.metal_body", "Metal Body");
+        add("ascension.physiques.water_body", "Water Body");
+        add("ascension.physiques.fire_body", "Fire Body");
+        add("ascension.physiques.wood_body", "Wood Body");
+        add("ascension.physiques.earth_body", "Earth Body");
+        add("ascension.physiques.clear_spirit", "Clear Spirit");
+        add("ascension.physiques.dreaming_soul", "Dreaming Soul");
+        add("ascension.physiques.soul_gaze", "Soul Gazing Eyes");
+        add("ascension.physiques.ashen_soul_flame", "Ashen Soul Flame");
+        add("ascension.physiques.thundering_soul_core", "Thundering Soul Core");
+        add("ascension.physiques.soul_sword_heart", "Sword Heart Soul");
+        add("ascension.physiques.spear_soul_mark", "Spear Marked Soul");
 
         add("ascension.physiques.world_dominator", "World Dominator");
         add("ascension.message.physique.world_dominator.acquired", "%s has become the %s. Bear witness to their Ascension!");
+        add("ascension.physiques.soul_crowned_king", "Crowned Soul King");
+        add("ascension.message.physique.soul_crowned_king.acquired", "%s has become the %s. Tremble beneath their Throne!");
+
 
 
         // Physique Evolution Messages
         add("ascension.message.physique_evolution.pacifist_mortal_reset", "Your peaceful mortal streak has been broken.");
         add("ascension.message.physique_evolution.pacifist_blessed_broken", "The Blessed path has been stained by blood.");
+
 
 
         //Techniques
@@ -228,7 +244,6 @@ public class lang extends LanguageProvider {
         add("ascension.technique.five_element","Five Element Circulation Method");
         add("ascension.technique.scholarly_soul_technique","Scholar's Soul Transcendence");
         add("ascension.technique.white_lightning_ten_stage_technique","White Lightning Ten Stages");
-
         add("ascension.technique.fire_essence_technique","Fire Essence Technique");
         add("ascension.technique.water_essence_technique","Water Essence Technique");
         add("ascension.technique.earth_essence_technique","Earth Essence Technique");
@@ -236,36 +251,26 @@ public class lang extends LanguageProvider {
         add("ascension.technique.wood_essence_technique","Wood Essence Technique");
         add("ascension.technique.lightning_essence_technique","Lightning Essence Technique");
         add("ascension.technique.wind_essence_technique","Wind Essence Technique");
-
-        // Single-element body techniques
         add("ascension.technique.heart_fire_technique", "Heart Flame Cultivation");
         add("ascension.technique.kidney_water_technique", "Kidney Tide Cultivation");
         add("ascension.technique.liver_wood_technique", "Liver Grove Cultivation");
         add("ascension.technique.spleen_earth_technique", "Spleen Mountain Cultivation");
         add("ascension.technique.lung_metal_technique", "Lung Forge Cultivation");
-
-        // 2-element body techniques
         add("ascension.technique.wood_fire_body_technique", "Rising Flame Method");
         add("ascension.technique.fire_earth_body_technique", "Smoldering Earth Method");
         add("ascension.technique.earth_metal_body_technique", "Hidden Vein Method");
         add("ascension.technique.metal_water_body_technique", "Jade Spring Method");
         add("ascension.technique.water_wood_body_technique", "Evergreen Current Method");
-
-        // 3-element body techniques
         add("ascension.technique.wood_fire_earth_body_technique", "Ascending Pyre Method");
         add("ascension.technique.fire_earth_metal_body_technique", "Forge and Harvest Method");
         add("ascension.technique.earth_metal_water_body_technique", "Deep Vein Spring Method");
         add("ascension.technique.metal_water_wood_body_technique", "Iron Root Current Method");
         add("ascension.technique.water_wood_fire_body_technique", "Morning Mist Method");
-
-        // 4-element body techniques
         add("ascension.technique.wood_fire_earth_metal_body_technique", "Earthbound Cycle Method");
         add("ascension.technique.fire_earth_metal_water_body_technique", "Sunken Forge Method");
         add("ascension.technique.earth_metal_water_wood_body_technique", "Rooted Tide Method");
         add("ascension.technique.metal_water_wood_fire_body_technique", "Untempered Blaze Method");
         add("ascension.technique.water_wood_fire_earth_body_technique", "Smoldering Grove Method");
-
-        // 5-element body technique
         add("ascension.technique.five_element_body_technique", "Five Harmony Body Method");
 
 
