@@ -272,7 +272,7 @@ public class lang extends LanguageProvider {
         add("ascension.technique.metal_water_wood_fire_body_technique", "Untempered Blaze Method");
         add("ascension.technique.water_wood_fire_earth_body_technique", "Smoldering Grove Method");
         add("ascension.technique.five_element_body_technique", "Five Harmony Body Method");
-        add("ascension.technique.pale_moon_technique", "Pale Moon Sutra");
+        add("ascension.technique.pale_moon_scripture", "Pale Moon Scripture");
 
 
 
@@ -353,8 +353,9 @@ public class lang extends LanguageProvider {
         add("ascension.skill.paralyzed_body_debuff.description", "An opposing energy floods your Body, halting your movement.");
         add("ascension.skill.venomous_meridians_debuff", "Venomous Meridians");
         add("ascension.skill.venomous_meridians_debuff.description", "As opposing energy floods your Meridians, corroding your flesh and blood.");
-        add("ascension.skill.pale_moon_cultivation_skill", "Pale Moon Cultivation Skill");
-        add("ascension.skill.pale_moon_cultivation_skill.description", "Cultivates the soul by drawing upon pale lunar essence. Slightly stronger beneath the night sky.");
+        add("ascension.skill.pale_moon_cultivation_skill", "Pale Moon Cultivation");
+        add("ascension.skill.pale_moon_cultivation_skill.description", "Cultivates the Soul by drawing upon pale lunar essence. Must be practised under open sky. Stronger when gazing directly at the moon. Harmful beneath direct sunlight.");
+        add("ascension.skill.pale_moon_cultivation_skill.blocked_indoors", "You cannot cultivate the Pale Moon Scripture indoors.");
 
 
 

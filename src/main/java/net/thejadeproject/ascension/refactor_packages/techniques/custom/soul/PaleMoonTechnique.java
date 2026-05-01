@@ -24,7 +24,7 @@ public class PaleMoonTechnique extends GenericTechnique {
     public PaleMoonTechnique(BasicStatChangeHandler statChangeHandler) {
         super(
                 ModPaths.SOUL.getId(),
-                Component.translatable("ascension.technique.pale_moon_technique"),
+                Component.translatable("ascension.technique.pale_moon_scripture"),
                 BASE_RATE,
                 Set.of()
         );
