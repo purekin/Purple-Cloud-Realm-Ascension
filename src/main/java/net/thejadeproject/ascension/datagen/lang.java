@@ -297,6 +297,13 @@ public class lang extends LanguageProvider {
 
 
 
+        // Demonic Techniques
+        add("ascension.technique.bloodfeast_soul_refining_scripture", "§4Bloodfeast Soul-Refining Scripture");
+        add("ascension.technique.bloodfeast_soul_refining_scripture.short_desc", "§4A heretical scripture that refines the soul through the blood of the slain.");
+        add("ascension.technique.bloodfeast_soul_refining_scripture.desc", "§4By feasting on the vital essence of nearby creatures the cultivator advances at an\nextraordinary pace. Yet the path is stained crimson each higher realm demands\nproof of the hunt, and those who hunt only their fellow cultivators grow ever more\nfearsome with each slaughter.");
+
+
+
         //Skills
         add("ascension.skill.regeneration_boost", "Regenerative Body");
         add("ascension.skill.regeneration_boost.description", "Your refined body slowly restores lost health over time.");
@@ -358,6 +365,16 @@ public class lang extends LanguageProvider {
         add("ascension.skill.sword_mastery_skill.description", "As your worldview and realm increase, so to does your command over the Sword.");
         add("ascension.skill.trident_mastery_skill", "Trident Mastery");
         add("ascension.skill.trident_mastery_skill.description", "As your worldview and realm increase, so to does your command over the Trident.");
+        add("ascension.skill.pale_moon_cultivation_skill", "Pale Moon Cultivation");
+        add("ascension.skill.pale_moon_cultivation_skill.description", "Cultivates the Soul by drawing upon pale lunar essence. Must be practised under open sky. Stronger when gazing directly at the moon. Harmful beneath direct sunlight.");
+        add("ascension.skill.pale_moon_cultivation_skill.blocked_indoors", "You cannot cultivate the Pale Moon Scripture indoors.");
+        add("ascension.skill.gibbous_moon_cultivation_skill", "Gibbous Moon Cultivation");
+        add("ascension.skill.gibbous_moon_cultivation_skill.description", "Cultivates the Soul by drawing upon the swelling power of the gibbous moon. Must be practised under open sky. Greatly empowered when gazing directly at the moon. Harmful beneath direct sunlight.");
+        add("ascension.skill.gibbous_moon_cultivation_skill.blocked_indoors", "You cannot cultivate the Gibbous Moon Scripture indoors.");
+
+        add("ascension.skill.bloodfeast_banquet", "§4Bloodfeast Banquet");
+        add("ascension.skill.bloodfeast_banquet.description", "§4Draw upon the life-force of nearby creatures, feasting on their blood to fuel your cultivation. The greater your realm, the wider your table.");
+
 
 
 
@@ -371,18 +388,17 @@ public class lang extends LanguageProvider {
         add("ascension.skill.paralyzed_body_debuff.description", "An opposing energy floods your Body, halting your movement.");
         add("ascension.skill.venomous_meridians_debuff", "Venomous Meridians");
         add("ascension.skill.venomous_meridians_debuff.description", "As opposing energy floods your Meridians, corroding your flesh and blood.");
-        add("ascension.skill.qi_devouring_poison_debuff", "Qi Devouring Poison");
-        add("ascension.skill.qi_devouring_poison_debuff.description", "Slowly Devours your internal energy until empty, Then it takes your life energy.");
-        add("ascension.skill.corrosive_poison_debuff", "Corrosive Poison");
-        add("ascension.skill.corrosive_poison_debuff.description", "Slowly drains your gear of durability.");
-        add("ascension.skill.ascension.skill.scorching_yang_debuff", "Scorching Yang Poison");
-        add("ascension.skill.ascension.skill.scorching_yang_debuff.description", "Scorches the target with Extreme Yang that bypasses Immunities!");
-        add("ascension.skill.pale_moon_cultivation_skill", "Pale Moon Cultivation");
-        add("ascension.skill.pale_moon_cultivation_skill.description", "Cultivates the Soul by drawing upon pale lunar essence. Must be practised under open sky. Stronger when gazing directly at the moon. Harmful beneath direct sunlight.");
-        add("ascension.skill.pale_moon_cultivation_skill.blocked_indoors", "You cannot cultivate the Pale Moon Scripture indoors.");
-        add("ascension.skill.gibbous_moon_cultivation_skill", "Gibbous Moon Cultivation");
-        add("ascension.skill.gibbous_moon_cultivation_skill.description", "Cultivates the Soul by drawing upon the swelling power of the gibbous moon. Must be practised under open sky. Greatly empowered when gazing directly at the moon. Harmful beneath direct sunlight.");
-        add("ascension.skill.gibbous_moon_cultivation_skill.blocked_indoors", "You cannot cultivate the Gibbous Moon Scripture indoors.");
+        add("ascension.skill.qi_devouring_parasite_debuff", "Qi Devouring Parasite");
+        add("ascension.skill.qi_devouring_parasite_debuff.description", "Slowly Devours your internal energy until empty, Then it takes your life energy.");
+        add("ascension.skill.corrosive_miasma_debuff", "Corrosive Poison");
+        add("ascension.skill.corrosive_miasma_debuff.description", "Slowly drains your gear of durability.");
+        add("ascension.skill.scorching_yang_debuff", "Scorching Yang Poison");
+        add("ascension.skill.scorching_yang_debuff.description", "Scorches the target with Extreme Yang that bypasses Immunities!");
+        add("ascension.skill.frost_silkworm_poison_debuff", "Frost Silkworm Poison");
+        add("ascension.skill.frost_silkworm_poison_debuff.description", "A silkworm's frost seeps into your meridians, freezing Qi and body alike. Cannot be cleansed. Leads only to death.");
+        add("ascension.skill.frost_silkworm_poison_temp_debuff", "Frost Silkworm Venom");
+        add("ascension.skill.frost_silkworm_poison_temp_debuff.description", "A concentrated burst of silkworm frost. The cold builds quickly — flee before it reaches your core.");
+
 
 
 
@@ -496,13 +512,15 @@ public class lang extends LanguageProvider {
         add("needle_effect.ascension.needle_weakness", "Weakness");
 
 
-        add("needle_effect.ascension.needle_qi_devouring_poison", "Qi Devouring");
+        add("needle_effect.ascension.needle_qi_devouring_poison", "Qi Devouring Parasite");
         add("needle_effect.ascension.needle_cracked_meridians", "Cracked Meridians");
         add("needle_effect.ascension.needle_blinded_senses", "Blinded Senses");
         add("needle_effect.ascension.needle_paralyzed_body", "Paralyzed Body");
         add("needle_effect.ascension.needle_venomous_meridians", "Venomous Meridians");
         add("needle_effect.ascension.needle_corrosive_poison", "Corrosive Poison");
         add("needle_effect.ascension.needle_scorching_yang_poison", "Scorching Yang Poison");
+        add("needle_effect.ascension.needle_frost_silkworm_poison_temp", "Frost Silkworm Venom");
+        add("needle_effect.ascension.needle_frost_silkworm_poison", "Frost Silkworm Poison");
 
 
 
@@ -559,6 +577,46 @@ public class lang extends LanguageProvider {
         add("item.ascension.essence_gathering_pill", "Essence Gathering Pill");
         add("item.ascension.soul_focus_pill", "Soul Focus Pill");
 
+
+
+
+        //Technique Manual Stuff
+        add("item.ascension.technique_binder", "Technique Binder");
+        add("item.ascension.technique_page", "Technique Page");
+
+        add("ascension.item.technique_page", "%s");
+        add("ascension.item.technique_page.blank", "Blank Technique Page");
+
+        add("ascension.binder.technique", "Technique: %s");
+        add("ascension.binder.progress", "Progress: %s/%s");
+        add("ascension.binder.empty", "Empty binder. Add technique pages.");
+
+        add("ascension.toast.invalid_page", "Invalid Page");
+        add("ascension.toast.no_manual_data", "No manual data found");
+        add("ascension.toast.mismatch", "Mismatch");
+        add("ascension.toast.different_technique", "Page is for a different technique");
+        add("ascension.toast.duplicate_page", "Duplicate Page");
+        add("ascension.toast.already_collected", "This chapter is already in the binder");
+        add("ascension.toast.manual_complete", "Manual Complete!");
+        add("ascension.toast.page_added", "%s Added (%s/%s)");
+
+        add("ascension.chapter.bloodfeast_soul_refining_scripture.1", "Chapter 1: The Hunger");
+        add("ascension.chapter.bloodfeast_soul_refining_scripture.2", "Chapter 2: First Blood");
+        add("ascension.chapter.bloodfeast_soul_refining_scripture.3", "Chapter 3: The Feast");
+        add("ascension.chapter.bloodfeast_soul_refining_scripture.4", "Chapter 4: Soul Devouring");
+        add("ascension.chapter.bloodfeast_soul_refining_scripture.5", "Chapter 5: Crimson Ascension");
+        add("ascension.chapter.bloodfeast_soul_refining_scripture.6", "Chapter 6: The Eternal Banquet");
+
+        add("ascension.chapter.white_lightning_ten_stage_technique.1", "Stage 1: Awakening the Spark");
+        add("ascension.chapter.white_lightning_ten_stage_technique.2", "Stage 2: Meridian Ignition");
+        add("ascension.chapter.white_lightning_ten_stage_technique.3", "Stage 3: Tempering the Flesh");
+        add("ascension.chapter.white_lightning_ten_stage_technique.4", "Stage 4: Bone Forging");
+        add("ascension.chapter.white_lightning_ten_stage_technique.5", "Stage 5: The Conductor");
+        add("ascension.chapter.white_lightning_ten_stage_technique.6", "Stage 6: Lightning Heart");
+        add("ascension.chapter.white_lightning_ten_stage_technique.7", "Stage 7: White Flash");
+        add("ascension.chapter.white_lightning_ten_stage_technique.8", "Stage 8: Thunderclap Vessel");
+        add("ascension.chapter.white_lightning_ten_stage_technique.9", "Stage 9: Heaven's Wrath");
+        add("ascension.chapter.white_lightning_ten_stage_technique.10", "Stage 10: The Fist King's Rebirth");
 
 
         //Tooltips

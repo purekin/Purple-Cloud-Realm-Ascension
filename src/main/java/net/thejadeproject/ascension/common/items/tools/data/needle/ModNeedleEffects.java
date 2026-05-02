@@ -7,10 +7,7 @@ import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.projectile.Projectile;
 import net.thejadeproject.ascension.AscensionCraft;
-import net.thejadeproject.ascension.data_attachments.ModAttachments;
-import net.thejadeproject.ascension.refactor_packages.entity_data.IEntityData;
-import net.thejadeproject.ascension.refactor_packages.forms.forms.ModForms;
-import net.thejadeproject.ascension.refactor_packages.skills.tempskills.TemporarySkillHelper;
+import net.thejadeproject.ascension.refactor_packages.skills.custom.passive.debuff.skill_data.DebuffSkillHelper;
 import net.thejadeproject.ascension.refactor_packages.skills.custom.ModSkills;
 
 import java.util.HashMap;
@@ -105,6 +102,15 @@ public class ModNeedleEffects {
             "needle_corrosive_poison",
             ModSkills.CORROSIVE_POISON_DEBUFF.getId()
     );
+    public static final INeedleEffect FROST_SILKWORM_POISON_TEMP = temporaryPassive(
+            "needle_frost_silkworm_poison_temp",
+            ModSkills.FROST_SILKWORM_POISON_TEMP.getId(),
+            20 * 45 // 45 seconds
+    );
+    public static final INeedleEffect FROST_SILKWORM_POISON = permanentPassive(
+            "needle_frost_silkworm_poison",
+            ModSkills.FROST_SILKWORM_POISON.getId()
+    );
 
     private static INeedleEffect temporaryPassive(String path, ResourceLocation skillId, int durationTicks) {
         return register(new INeedleEffect() {
@@ -119,7 +125,7 @@ public class ModNeedleEffects {
             public void onHit(LivingEntity target, LivingEntity shooter, Projectile projectile) {
                 if (!(target instanceof ServerPlayer serverTarget)) return;
 
-                TemporarySkillHelper.giveTemporarySkill(
+                DebuffSkillHelper.giveTemporaryDebuff(
                         serverTarget,
                         skillId,
                         durationTicks
@@ -128,7 +134,6 @@ public class ModNeedleEffects {
         });
     }
 
-    // directly add the passive skill with giveSkill() (remove it in another class/event with removeSkill() lol)
     private static INeedleEffect permanentPassive(String path, ResourceLocation skillId) {
         return register(new INeedleEffect() {
             private final ResourceLocation id = ResourceLocation.fromNamespaceAndPath(AscensionCraft.MOD_ID, path);
@@ -141,11 +146,11 @@ public class ModNeedleEffects {
             @Override
             public void onHit(LivingEntity target, LivingEntity shooter, Projectile projectile) {
                 if (!(target instanceof ServerPlayer serverTarget)) return;
-                if (!serverTarget.hasData(ModAttachments.ENTITY_DATA)) return;
 
-                IEntityData targetData = serverTarget.getData(ModAttachments.ENTITY_DATA);
-
-                targetData.giveSkill(skillId, ModForms.MORTAL_VESSEL.getId());
+                DebuffSkillHelper.givePermanentDebuff(
+                        serverTarget,
+                        skillId
+                );
             }
         });
     }

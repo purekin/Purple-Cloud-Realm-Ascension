@@ -14,6 +14,7 @@ import net.thejadeproject.ascension.refactor_packages.skills.custom.active.attac
 import net.thejadeproject.ascension.refactor_packages.skills.custom.active.utility.QiFlightSkill;
 import net.thejadeproject.ascension.refactor_packages.skills.custom.cultivation.body.BodyCultivationSkill;
 import net.thejadeproject.ascension.refactor_packages.skills.custom.cultivation.GenericCultivationSkill;
+import net.thejadeproject.ascension.refactor_packages.skills.custom.cultivation.essence.BloodfeastBanquetSkill;
 import net.thejadeproject.ascension.refactor_packages.skills.custom.cultivation.soul.*;
 import net.thejadeproject.ascension.refactor_packages.skills.custom.cultivation.weapon.SwordCultivationSkill;
 import net.thejadeproject.ascension.refactor_packages.skills.custom.cultivation.body.WhiteLightningCultivationSkill;
@@ -156,6 +157,16 @@ public class ModSkills {
 
 
 
+
+
+
+
+    //Demonic shhhh
+    public static final DeferredHolder<ISkill, ? extends BloodfeastBanquetSkill> BLOODFEAST_BANQUET_SKILL =
+            SKILLS.register("bloodfeast_banquet_skill", BloodfeastBanquetSkill::new);
+
+
+
     // ──── DEBUFF SKILLS ────────────────────────────────────────────
     // Passives
     public static final DeferredHolder<ISkill, CrackedMeridiansDebuff> CRACKED_MERIDIANS =
@@ -172,6 +183,10 @@ public class ModSkills {
             SKILLS.register("corrosive_poison", CorrosivePoisonDebuff::new);
     public static final DeferredHolder<ISkill, ScorchingYangPoisonDebuff> SCORCHING_YANG_POISON =
             SKILLS.register("scorching_fire_poison", ScorchingYangPoisonDebuff::new);
+    public static final DeferredHolder<ISkill, FrostSilkwormPoisonDebuff> FROST_SILKWORM_POISON =
+            SKILLS.register("frost_silkworm_poison", FrostSilkwormPoisonDebuff::new);
+    public static final DeferredHolder<ISkill, FrostSilkwormVenomDebuff> FROST_SILKWORM_POISON_TEMP =
+            SKILLS.register("frost_silkworm_poison_temp", FrostSilkwormVenomDebuff::new);
 
     // Actives
 
@@ -190,6 +205,8 @@ public class ModSkills {
         registerTickingSkill(QI_DEVOURING_POISON);
         registerTickingSkill(CORROSIVE_POISON_DEBUFF);
         registerTickingSkill(SCORCHING_YANG_POISON);
+        registerTickingSkill(FROST_SILKWORM_POISON);
+        registerTickingSkill(FROST_SILKWORM_POISON_TEMP);
     }
 
     private static void registerTickingSkill(DeferredHolder<ISkill, ? extends ISkill> skillHolder) {
