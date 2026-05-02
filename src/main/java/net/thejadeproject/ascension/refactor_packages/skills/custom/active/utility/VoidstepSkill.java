@@ -68,6 +68,11 @@ public class VoidstepSkill implements ICastableSkill {
         return Component.translatable("ascension.skill.voidstep.description");
     }
 
+    @Override
+    public RenderableElement getInformationContainer(UIFrame frame) {
+        return null;
+    }
+
     // ── ICastableSkill ────────────────────────────────────────────────────────
 
     @Override
