@@ -40,6 +40,7 @@ public class ModTechniques {
     public static final ResourceLocation TIER3_BODY_KEY  = ResourceLocation.fromNamespaceAndPath(AscensionCraft.MOD_ID, "tier3_body_tech");
     public static final ResourceLocation TIER4_BODY_KEY  = ResourceLocation.fromNamespaceAndPath(AscensionCraft.MOD_ID, "tier4_body_tech");
     public static final ResourceLocation TIER5_BODY_KEY  = ResourceLocation.fromNamespaceAndPath(AscensionCraft.MOD_ID, "tier5_body_tech");
+    public static final ResourceLocation BLOODFEAST_KEY = ResourceLocation.fromNamespaceAndPath(AscensionCraft.MOD_ID, "bloodfeast_soul_refining");
 
     // --- Placeholder handler ---
     public static BasicStatChangeHandler testHandler = new BasicStatChangeHandler()
@@ -121,6 +122,27 @@ public class ModTechniques {
     public static final DeferredHolder<ITechnique, ? extends GenericTechnique> ADVANCED_CULTIVATION_TECHNIQUE = TECHNIQUES.register("advanced_cultivation_technique",()->
             new GenericTechnique(ModPaths.ESSENCE.getId(),Component.translatable("ascension.technique.advanced_cultivation_technique"),10.0,Set.of())
                     .setStatChangeHandler(testHandler));
+
+
+
+
+    public static final DeferredHolder<ITechnique, ? extends BloodfeastSoulRefiningTechnique>
+            BLOODFEAST_SOUL_REFINING_SCRIPTURE = TECHNIQUES.register(
+            "bloodfeast_soul_refining_scripture",
+            () -> new BloodfeastSoulRefiningTechnique(new BasicStatChangeHandler())
+                    // ── Minor realm gains (per minor realm advance) ───────────────
+                    .addMinorRealmStatModifier(ModStats.VITALITY.getId(),
+                            new ValueContainerModifier(10, ModifierOperation.ADD_BASE, BLOODFEAST_KEY))
+                    .addMinorRealmStatModifier(ModStats.STRENGTH.getId(),
+                            new ValueContainerModifier(5,  ModifierOperation.ADD_BASE, BLOODFEAST_KEY))
+                    .addMinorRealmStatModifier(ModStats.AGILITY.getId(),
+                            new ValueContainerModifier(3,  ModifierOperation.ADD_BASE, BLOODFEAST_KEY))
+                    .addMinorRealmAttributeModifier(Attributes.MAX_HEALTH,
+                            new ValueContainerModifier(7,  ModifierOperation.ADD_BASE, BLOODFEAST_KEY))
+                    // ── Major realm gains (per major realm advance) ───────────────
+                    .addMajorRealmStatModifier(ModStats.VITALITY.getId(),
+                            new ValueContainerModifier(0.20, ModifierOperation.MULTIPLY_FINAL, BLOODFEAST_KEY))
+    );
 
 
 

@@ -14,6 +14,7 @@ import net.thejadeproject.ascension.refactor_packages.skills.custom.active.attac
 import net.thejadeproject.ascension.refactor_packages.skills.custom.active.utility.QiFlightSkill;
 import net.thejadeproject.ascension.refactor_packages.skills.custom.cultivation.body.BodyCultivationSkill;
 import net.thejadeproject.ascension.refactor_packages.skills.custom.cultivation.GenericCultivationSkill;
+import net.thejadeproject.ascension.refactor_packages.skills.custom.cultivation.essence.BloodfeastBanquetSkill;
 import net.thejadeproject.ascension.refactor_packages.skills.custom.cultivation.soul.*;
 import net.thejadeproject.ascension.refactor_packages.skills.custom.cultivation.weapon.SwordCultivationSkill;
 import net.thejadeproject.ascension.refactor_packages.skills.custom.cultivation.body.WhiteLightningCultivationSkill;
@@ -153,6 +154,16 @@ public class ModSkills {
             SKILLS.register("blade_mastery_skill", BladeMasterySkill::new);
 
     // Actives
+
+
+
+
+
+
+
+    //Demonic shhhh
+    public static final DeferredHolder<ISkill, ? extends BloodfeastBanquetSkill> BLOODFEAST_BANQUET_SKILL =
+            SKILLS.register("bloodfeast_banquet_skill", BloodfeastBanquetSkill::new);
 
 
 
