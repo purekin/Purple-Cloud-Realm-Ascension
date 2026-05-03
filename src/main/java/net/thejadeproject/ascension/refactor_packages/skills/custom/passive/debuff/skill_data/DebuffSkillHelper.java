@@ -22,22 +22,27 @@ public final class DebuffSkillHelper {
 
         if (!entityData.hasSkill(skillId)) {
             entityData.giveSkill(skillId, debuffSkillData, form);
-            System.out.println("adding entity source : "+debuffId);
+
+        }else{
+            IPersistentSkillData existingRawData = entityData.getSkillData(skillId);
+
+            DebuffSkillData finalData = debuffSkillData;
+
+            if (existingRawData instanceof DebuffSkillData existingData) {
+                finalData = existingData.mergeWith(debuffSkillData);
+            }
+
+
+            entityData.removeSkill(skillId, form);
+            entityData.giveSkill(skillId, finalData, form);
+        }
+        if(entityData.getSourceContainer(debuffId) == null) {
             entityData.addEntityDataSource(temporarySkillContainer);
-            return;
-        }
-
-        IPersistentSkillData existingRawData = entityData.getSkillData(skillId);
-
-        DebuffSkillData finalData = debuffSkillData;
-
-        if (existingRawData instanceof DebuffSkillData existingData) {
-            finalData = existingData.mergeWith(debuffSkillData);
+        }else if(entityData.getSourceContainer(debuffId) instanceof  TemporarySkillContainer skillContainer){
+            skillContainer.setTicksLeft(skillContainer.getTicksLeft()+ticks);
         }
 
 
-        entityData.removeSkill(skillId, form);
-        entityData.giveSkill(skillId, finalData, form);
 
 
     }

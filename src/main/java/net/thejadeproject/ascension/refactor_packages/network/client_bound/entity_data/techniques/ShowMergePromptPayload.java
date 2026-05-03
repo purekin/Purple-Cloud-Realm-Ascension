@@ -5,6 +5,9 @@ import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
 import net.minecraft.resources.ResourceLocation;
+import net.neoforged.api.distmarker.Dist;
+import net.neoforged.api.distmarker.OnlyIn;
+import net.neoforged.fml.loading.FMLEnvironment;
 import net.neoforged.neoforge.network.handling.IPayloadContext;
 import net.thejadeproject.ascension.AscensionCraft;
 import net.thejadeproject.ascension.refactor_packages.gui.screens.TechniqueMergeScreen;
@@ -50,8 +53,14 @@ public record ShowMergePromptPayload(List<Set<ResourceLocation>> eligibleMerges)
     public Type<? extends CustomPacketPayload> type() { return TYPE; }
 
     public static void handlePayload(ShowMergePromptPayload payload, IPayloadContext context) {
-        context.enqueueWork(() ->
-            Minecraft.getInstance().setScreen(new TechniqueMergeScreen(payload.eligibleMerges))
-        );
+        context.enqueueWork(()->
+                open(payload.eligibleMerges));
+    }
+
+    @OnlyIn(Dist.CLIENT)
+    public static void open(List<Set<ResourceLocation>> eligibleMerges){
+        if(FMLEnvironment.dist == Dist.CLIENT){
+            Minecraft.getInstance().setScreen(new TechniqueMergeScreen(eligibleMerges));
+        }
     }
 }

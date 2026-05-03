@@ -291,6 +291,7 @@ public class RemoteEntityData implements IEntityData{
         EntityDataManager.getEntityData(getWatchedEntityData()).removePath(path);
     }
 
+
     @Override
     public PathBonusHandler getPathBonusHandler() {
         return EntityDataManager.getEntityData(getWatchedEntityData()).getPathBonusHandler();

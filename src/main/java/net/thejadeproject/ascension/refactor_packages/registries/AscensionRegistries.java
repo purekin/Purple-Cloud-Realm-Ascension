@@ -31,6 +31,7 @@ public class AscensionRegistries {
                 .fromNamespaceAndPath(AscensionCraft.MOD_ID,"entity_forms"));
         public static final Registry<IEntityForm> ENTITY_FORMS_REGISTRY = new RegistryBuilder<>(ENTITY_FORM_REGISTRY_KEY)
                 .create();
+
     }
     public static class Techniques{
         public static final ResourceKey<Registry<ITechnique>> TECHNIQUES_REGISTRY_KEY = ResourceKey.createRegistryKey(ResourceLocation.fromNamespaceAndPath(
@@ -88,7 +89,14 @@ public class AscensionRegistries {
                 .create();
 
     }
-
+    public static <T> T getRegistryObject(ResourceLocation location,Registry<T> registry){
+        try{
+            return registry.get(location);
+        }catch (Exception e){
+            AscensionCraft.LOGGER.error("error loading registry object with id: {} from registry: {}", location, registry.key().location());
+            return null;
+        }
+    }
     @SubscribeEvent // on the mod event bus
     public static void registerRegistries(NewRegistryEvent event) {
         event.register(Stats.STATS_REGISTRY);

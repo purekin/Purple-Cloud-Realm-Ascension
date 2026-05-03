@@ -1,5 +1,7 @@
 package net.thejadeproject.ascension.refactor_packages.entity_data;
 
+import com.mojang.datafixers.util.Pair;
+import it.unimi.dsi.fastutil.Hash;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
 import net.minecraft.nbt.Tag;
@@ -12,6 +14,7 @@ import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
 import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.network.PacketDistributor;
+import net.thejadeproject.ascension.AscensionCraft;
 import net.thejadeproject.ascension.refactor_packages.attributes.AscensionAttributeHolder;
 import net.thejadeproject.ascension.refactor_packages.bloodlines.IBloodline;
 import net.thejadeproject.ascension.refactor_packages.bloodlines.IBloodlineData;
@@ -66,6 +69,7 @@ public class GenericEntityData implements IEntityData {
     //important because during simulation something might exist before we actually made any data for it
     private HashMap<ResourceLocation,IEntityFormData> cachedFormData = new HashMap<>();
     private HashMap<ResourceLocation, IPersistentSkillData> cachedSkillData = new HashMap<>();
+    private HashMap<ResourceLocation,ArrayList<Pair<ResourceLocation,CompoundTag>>> cachedFormPathDataTag = new HashMap<>();
 
     private double currentHealth = 0;
     private boolean loading = false;
@@ -97,89 +101,145 @@ public class GenericEntityData implements IEntityData {
     public GenericEntityData(Entity attachedEntity, CompoundTag tag){
         System.out.println("creating player data");
         this.attachedEntity = attachedEntity;
-        //TODO load cached form data
+
         ListTag formDataTags = tag.getList("form_data", Tag.TAG_COMPOUND);
         ListTag skillDataTags = tag.getList("skill_data",Tag.TAG_COMPOUND);
         ListTag pathDataTags = tag.getList("path_progress",Tag.TAG_COMPOUND);
 
-
-        for(int i=0;i<formDataTags.size();i++){
-            CompoundTag formDataTag = formDataTags.getCompound(i);
-            ResourceLocation formId = ResourceLocation.bySeparator(formDataTag.getString("form"),':');
-            IEntityForm form = AscensionRegistries.EntityForms.ENTITY_FORMS_REGISTRY.get(formId);
-            IEntityFormData formData = form.fromCompound(formDataTag.getCompound("data"),this);
-            cachedFormData.put(formId,formData);
+        try {
+            for(int i=0;i<formDataTags.size();i++){
+                try{
+                    CompoundTag formDataTag = formDataTags.getCompound(i);
+                    ResourceLocation formId = ResourceLocation.bySeparator(formDataTag.getString("form"),':');
+                    IEntityForm form = AscensionRegistries.getRegistryObject(formId,AscensionRegistries.EntityForms.ENTITY_FORMS_REGISTRY);
+                    IEntityFormData formData = IEntityForm.getFromCompound(this,form,formDataTag.getCompound("data"));
+                    cachedFormData.put(formId,formData);
+                }catch (Exception e){
+                    AscensionCraft.LOGGER.error("error trying to load individual form",e);
+                }
+            }
+        }catch (Exception e){
+            AscensionCraft.LOGGER.error("error trying to load all forms",e);
+            //TODO make sure to add back in MORTAL VESSEL AND SOUL_FORM
         }
-        for(int i=0;i<skillDataTags.size();i++){
-            CompoundTag skillDataTag = skillDataTags.getCompound(i);
-            ResourceLocation skillId = ResourceLocation.bySeparator(skillDataTag.getString("skill"),':');
-            ISkill skill = AscensionRegistries.Skills.SKILL_REGISTRY.get(skillId);
-            IPersistentSkillData skillData = skill.fromCompound(skillDataTag.getCompound("data"),this);
-            cachedSkillData.put(skillId,skillData);
+        try{
+            for(int i=0;i<skillDataTags.size();i++){
+                try{
+                    CompoundTag skillDataTag = skillDataTags.getCompound(i);
+                    ResourceLocation skillId = ResourceLocation.bySeparator(skillDataTag.getString("skill"),':');
+                    ISkill skill = AscensionRegistries.getRegistryObject(skillId,AscensionRegistries.Skills.SKILL_REGISTRY);
+                    IPersistentSkillData skillData = ISkill.getFromCompound(this,skill,skillDataTag.getCompound("data"));
+                    cachedSkillData.put(skillId,skillData);
+                }catch (Exception e){
+                    AscensionCraft.LOGGER.error("error trying to load individual skill",e);
+                }
+            }
+        }catch (Exception e){
+            AscensionCraft.LOGGER.error("error trying to load all skill data",e);
         }
 
-        if(tag.getBoolean("vessel_flag")){
-
-            heldFormData.put(ModForms.MORTAL_VESSEL.getId(),
-                    cachedFormData.containsKey(ModForms.MORTAL_VESSEL.getId()) ?
-                            cachedFormData.get(ModForms.MORTAL_VESSEL.getId()) : ModForms.MORTAL_VESSEL.get().freshEntityFormData(this));
+        try{
+            if(tag.getBoolean("vessel_flag")){
+                heldFormData.put(ModForms.MORTAL_VESSEL.getId(),
+                        cachedFormData.containsKey(ModForms.MORTAL_VESSEL.getId()) ?
+                                cachedFormData.get(ModForms.MORTAL_VESSEL.getId()) : ModForms.MORTAL_VESSEL.get().freshEntityFormData(this));
+            }
+        }catch (Exception e){
+            AscensionCraft.LOGGER.error("error trying to read lost mortal vessel flag",e);
         }
 
         heldFormData.put(ModForms.SOUL_FORM.getId(),
                 cachedFormData.containsKey(ModForms.SOUL_FORM.getId()) ?
                         cachedFormData.get(ModForms.SOUL_FORM.getId()) : ModForms.SOUL_FORM.get().freshEntityFormData(this));
+
         if(attachedEntity instanceof LivingEntity entity){
             ascensionAttributeHolder = new AscensionAttributeHolder(entity);
             addDefaultAttributes(entity);
-
         }
-
-        String rawPhysique = tag.getString("physique");
-        //the user has no physique
-        if(!rawPhysique.equals("none")){
-            ResourceLocation physique = ResourceLocation.bySeparator(rawPhysique,':');
-            IPhysique physiqueInstance = AscensionRegistries.Physiques.PHSIQUES_REGISTRY.get(physique);
-            IPhysiqueData physiqueData = physiqueInstance.fromCompound(tag.getCompound("physique_data"),this);
-            setPhysique(physique,physiqueData);
-        }
-        String rawBloodline = tag.getString("bloodline");
-        //no bloodline
-        if(!rawBloodline.equals("none")){
-            ResourceLocation bloodline = ResourceLocation.bySeparator(rawBloodline,':');
-            IBloodline bloodlineInstance = AscensionRegistries.Bloodlines.BLOODLINE_REGISTRY.get(bloodline);
-            IBloodlineData bloodlineData = bloodlineInstance.fromCompound(tag.getCompound("bloodline_data"),this);
-            //TODO add to mortal vessel, then run proper physique addition code
-        }
-
-        //TODO add cultivation
-        loading = true;
-        for(int i = 0;i<pathDataTags.size();i++){
-            CompoundTag pathDataTag = pathDataTags.getCompound(i);
-            ResourceLocation pathId = ResourceLocation.parse(pathDataTag.getString("path"));
-            if(pathDataLocation.containsKey(pathId)){
-                heldFormData.get(pathDataLocation.get(pathId)).getPathData(pathId).read(pathDataTag.getCompound("data"),this);
+        try {
+            String rawPhysique = tag.getString("physique");
+            //the user has no physique
+            if(!rawPhysique.equals("none")){
+                ResourceLocation physique = ResourceLocation.bySeparator(rawPhysique,':');
+                IPhysique physiqueInstance = AscensionRegistries.getRegistryObject(physique,AscensionRegistries.Physiques.PHSIQUES_REGISTRY);
+                IPhysiqueData physiqueData = IPhysique.getFromCompound(this,physiqueInstance,tag.getCompound("physique_data"));
+                setPhysique(physique,physiqueData);
             }
-
-            //TODO add a cache for when the form does not yet exist
+        }catch (Exception e){
+            AscensionCraft.LOGGER.error("error when trying to load physique",e);
+            //TODO make sure to set physique to default
+            //if mortal vessel is present -> mortal
+            //if soul is present -> smth?
         }
+        try{
+            String rawBloodline = tag.getString("bloodline");
+            //no bloodline
+            if(!rawBloodline.equals("none")){
+                ResourceLocation bloodline = ResourceLocation.bySeparator(rawBloodline,':');
+                IBloodline bloodlineInstance = AscensionRegistries.getRegistryObject(bloodline,AscensionRegistries.Bloodlines.BLOODLINE_REGISTRY);
+                IBloodlineData bloodlineData = IBloodline.getFromCompound(this,bloodlineInstance,tag.getCompound("bloodline_data"));
+
+            }
+        }catch (Exception e){
+            AscensionCraft.LOGGER.error("error when trying to load physique",e);
+            //TODO make sure to set bloodline to default
+            //if in soul form set to null
+            //yes make sure bloodline can have a null state
+        }
+
+
+
+        loading = true;
+        try {
+            for(int i = 0;i<pathDataTags.size();i++){
+                try {
+                    CompoundTag pathDataTag = pathDataTags.getCompound(i);
+                    ResourceLocation pathId = ResourceLocation.parse(pathDataTag.getString("path"));
+                    IPath path = AscensionRegistries.getRegistryObject(pathId,AscensionRegistries.Paths.PATHS_REGISTRY);
+                    if(pathDataLocation.containsKey(pathId) && heldFormData.containsKey(path.defaultForm()) ){
+                        heldFormData.get(pathDataLocation.get(pathId)).getPathData(pathId).read(pathDataTag.getCompound("data"),this);
+                    }else{
+                        if(!cachedFormPathDataTag.containsKey(path.defaultForm())) cachedFormPathDataTag.put(path.defaultForm(),new ArrayList<>());
+                        cachedFormPathDataTag.get(path.defaultForm()).add(new Pair<>(pathId,pathDataTag));
+                    }
+                }catch (Exception e){
+                    AscensionCraft.LOGGER.error("error logging path",e);
+                }
+
+
+            }
+        }catch (Exception e){
+            AscensionCraft.LOGGER.error("error loading all paths",e);
+        }
+
         loading = false;
 
         loading = true;
 
-
-        ListTag dataSources = tag.getList("entity_data_sources",Tag.TAG_COMPOUND);
-        for(int i = 0;i<dataSources.size();i++){
-            CompoundTag dataSource = dataSources.getCompound(i);
-            ResourceLocation key = ResourceLocation.parse(dataSource.getString("type"));
-            IEntityDataSourceContainer container = AscensionRegistries.EntityDataSources.ENTITY_DATA_SOURCES_REGISTRY.get(key).fromCompound(dataSource);
-            container.getDataSource().onAdded(this,container);
-            sourceContainers.put(container.getInstanceIdentifier(),container);
-            System.out.println("loaded data source : "+container.getInstanceIdentifier());
+        try{
+            ListTag dataSources = tag.getList("entity_data_sources",Tag.TAG_COMPOUND);
+            for(int i = 0;i<dataSources.size();i++){
+                try {
+                    CompoundTag dataSource = dataSources.getCompound(i);
+                    ResourceLocation key = ResourceLocation.parse(dataSource.getString("type"));
+                    IEntityDataSource source = AscensionRegistries.getRegistryObject(key,AscensionRegistries.EntityDataSources.ENTITY_DATA_SOURCES_REGISTRY);
+                    IEntityDataSourceContainer container = source.fromCompound(dataSource);
+                    sourceContainers.put(container.getInstanceIdentifier(),container);
+                    container.getDataSource().onAdded(this,container);
+                }catch (Exception e){
+                    AscensionCraft.LOGGER.error("error loading entity data source container",e);
+                }
+            }
+        }catch (Exception e){
+            AscensionCraft.LOGGER.error("error loading entity data sources",e);
         }
 
         loading = false;
-
-        getSkillCastHandler().read(tag.getCompound("skill_cast_handler"));
+        try {
+            getSkillCastHandler().read(tag.getCompound("skill_cast_handler"));
+        }catch (Exception e){
+            AscensionCraft.LOGGER.error("error loading skill cast handler");
+        }
         getAscensionAttributeHolder().updateAttributes(this);
         getQiContainer().fullFillQi();
 
@@ -349,6 +409,8 @@ public class GenericEntityData implements IEntityData {
         IEntityFormData formData = formFactory.freshEntityFormData(this);
         addEntityForm(form,formData);
 
+
+
     }
 
     @Override
@@ -365,6 +427,17 @@ public class GenericEntityData implements IEntityData {
         for(Map.Entry<ResourceLocation,IEntityFormData> heldForm : forms){
             IEntityForm heldFormFactory = AscensionRegistries.EntityForms.ENTITY_FORMS_REGISTRY.get(heldForm.getKey());
             heldFormFactory.onFormAdded(this,heldForm.getValue(),formData);
+        }
+
+        if(cachedFormPathDataTag.containsKey(form)){
+            for(Pair<ResourceLocation,CompoundTag> pathDataTags : cachedFormPathDataTag.get(form)){
+                try {
+                    IPath path = AscensionRegistries.getRegistryObject(pathDataTags.getFirst(),AscensionRegistries.Paths.PATHS_REGISTRY);
+                    path.fromCompound(pathDataTags.getSecond(),this);
+                } catch (Exception e){
+                    AscensionCraft.LOGGER.error("error trying to load path for later added form: "+ form, e);
+                }
+            }
         }
     }
 
@@ -718,6 +791,7 @@ public class GenericEntityData implements IEntityData {
             PacketDistributor.sendToPlayer(serverPlayer, new SyncEntityForm(formData));
         }
     }
+
 
     @Override
     public PathBonusHandler getPathBonusHandler() {

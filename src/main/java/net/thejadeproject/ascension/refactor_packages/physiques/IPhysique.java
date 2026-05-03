@@ -9,9 +9,13 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.LivingEntity;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
+import net.thejadeproject.ascension.AscensionCraft;
 import net.thejadeproject.ascension.refactor_packages.entity_data.IEntityData;
 import net.thejadeproject.ascension.refactor_packages.forms.IEntityFormData;
 import net.thejadeproject.ascension.refactor_packages.gui.elements.info_elements.IInformationContainer;
+import net.thejadeproject.ascension.refactor_packages.registries.AscensionRegistries;
+import net.thejadeproject.ascension.refactor_packages.skills.IPersistentSkillData;
+import net.thejadeproject.ascension.refactor_packages.skills.ISkill;
 
 import java.util.Collection;
 import java.util.Map;
@@ -58,4 +62,14 @@ public interface IPhysique {
     IPhysiqueData freshPhysiqueData(IEntityData heldEntity);
     IPhysiqueData fromCompound(CompoundTag tag,IEntityData heldEntity);
     IPhysiqueData fromNetwork(RegistryFriendlyByteBuf buf);
+
+    static IPhysiqueData getFromCompound(IEntityData entityData, IPhysique physique, CompoundTag tag){
+        try {
+            return physique.fromCompound(tag,entityData);
+        }catch (Exception e){
+            AscensionCraft.LOGGER.error("error trying to load physique data data data for physique: "+
+                    AscensionRegistries.Physiques.PHSIQUES_REGISTRY.getKey(physique),e);
+            return physique.freshPhysiqueData(entityData);
+        }
+    }
 }

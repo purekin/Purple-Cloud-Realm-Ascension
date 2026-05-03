@@ -19,7 +19,7 @@ public class ModPhysiques {
 
 
     /*
-    .addPath(ResourceLocation.fromNamespaceAndPath(AscensionCraft.MOD_ID,"essence")) allows you to choose what path to give the Physique what it can cultivate.
+        .addPath(ResourceLocation.fromNamespaceAndPath(AscensionCraft.MOD_ID,"essence")) allows you to choose what path to give the Physique what it can cultivate.
     Without a path it can not cultivate anything. You can add as many paths as you want or as little as you want.
         You can also use .addPath(ModPaths.---.getId())
 

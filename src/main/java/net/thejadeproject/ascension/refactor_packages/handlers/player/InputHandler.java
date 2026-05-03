@@ -135,7 +135,7 @@ public class InputHandler {
                 keyHandler.getValue().actionDown.accept(modifiers);
                 sendSatePacket(keyHandler.getValue().actionName,modifiers,true);
 
-            }else if (button == keyHandler.getKey().getKey().getValue() && action == GLFW.GLFW_RELEASE){
+            }else if (button == keyHandler.getKey().getKey().getValue() && action == GLFW.GLFW_RELEASE && keyHandler.getKey().isConflictContextAndModifierActive()){
                 //key released
                 state.remove(keyHandler.getKey());
                 keyHandler.getValue().actionReleased.accept(modifiers);
@@ -143,14 +143,16 @@ public class InputHandler {
             }else if (button == keyHandler.getKey().getKey().getValue() && action == GLFW.GLFW_REPEAT &&keyHandler.getKey().isConflictContextAndModifierActive()){
                 keyHandler.getValue().actionHeld.accept(modifiers);
 
-            }else{
-                if(state.contains(keyHandler.getKey())){
-                    state.remove(keyHandler.getKey());
-                    keyHandler.getValue().actionReleased.accept(modifiers);
-                    sendSatePacket(keyHandler.getValue().actionName,modifiers,false);
+            }
+        }
+        if(Minecraft.getInstance().screen != null){
+            for(KeyMapping mapping : state){
+                if(!mapping.isConflictContextAndModifierActive()){
+                    state.remove(mapping);
+                    actionHandlerMapping.get(mapping).actionReleased.accept(modifiers);
+                    sendSatePacket(actionHandlerMapping.get(mapping).actionName,modifiers,false);
                 }
             }
         }
-
     }
 }
