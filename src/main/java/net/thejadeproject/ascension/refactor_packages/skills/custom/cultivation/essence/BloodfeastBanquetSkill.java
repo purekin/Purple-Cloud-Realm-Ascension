@@ -250,7 +250,7 @@ public class BloodfeastBanquetSkill implements ICastableSkill {
 
     @Override
     public RenderableElement getInformationContainer(UIFrame frame) {
-       return new DescriptionDisplayContainer(frame,getTitle(),getDescription());
+        return new DescriptionDisplayContainer(frame, getTitle(), getDescription());
     }
 
     @Override
