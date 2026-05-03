@@ -4,6 +4,7 @@ import net.neoforged.neoforge.network.event.RegisterPayloadHandlersEvent;
 import net.neoforged.neoforge.network.registration.PayloadRegistrar;
 import net.thejadeproject.ascension.AscensionCraft;
 
+import net.thejadeproject.ascension.refactor_packages.network.client_bound.entity_data.qi.SyncQi;
 import net.thejadeproject.ascension.refactor_packages.network.client_bound.mob_ranks.SyncMobRank;
 import net.thejadeproject.ascension.network.serverBound.*;
 import net.thejadeproject.ascension.network.serverBound.input.ChangePlayerInputState;
@@ -34,6 +35,11 @@ public class ModPayloads {
                 SyncHeldSkills.TYPE,
                 SyncHeldSkills.STREAM_CODEC,
                 SyncHeldSkills::handlePayload
+        );
+        registrar.playToClient(
+                SyncQi.TYPE,
+                SyncQi.STREAM_CODEC,
+                SyncQi::handlePayload
         );
         registrar.playToClient(
                 SyncEntityForm.TYPE,

@@ -60,7 +60,7 @@ public class GenericEntityData implements IEntityData {
     private final EntityQiContainer entityQiContainer = new EntityQiContainer(this);
     boolean attachedEntityLoaded;
 
-    private HashMap<ResourceLocation,IEntityDataSourceContainer> sourceContainers;
+    private HashMap<ResourceLocation,IEntityDataSourceContainer> sourceContainers = new HashMap<>();
 
     //used during loading to temporarily store data, and when we save ignore.
     //important because during simulation something might exist before we actually made any data for it
@@ -173,7 +173,8 @@ public class GenericEntityData implements IEntityData {
             ResourceLocation key = ResourceLocation.parse(dataSource.getString("type"));
             IEntityDataSourceContainer container = AscensionRegistries.EntityDataSources.ENTITY_DATA_SOURCES_REGISTRY.get(key).fromCompound(dataSource);
             container.getDataSource().onAdded(this,container);
-            sourceContainers.put(key,container);
+            sourceContainers.put(container.getInstanceIdentifier(),container);
+            System.out.println("loaded data source : "+container.getInstanceIdentifier());
         }
 
         loading = false;
@@ -253,8 +254,10 @@ public class GenericEntityData implements IEntityData {
         ListTag dataSources = new ListTag();
         for(ResourceLocation key : sourceContainers.keySet()){
             CompoundTag dataSource = new CompoundTag();
-            dataSource.putString("type",key.toString());
+            dataSource.putString("type",AscensionRegistries.EntityDataSources.ENTITY_DATA_SOURCES_REGISTRY.getKey(sourceContainers.get(key).getDataSource()).toString());
             sourceContainers.get(key).write(dataSource);
+            System.out.println("writing data source:"+sourceContainers.get(key).getInstanceIdentifier());
+            dataSources.add(dataSource);
         }
         tag.put("entity_data_sources",dataSources);
 
@@ -909,6 +912,7 @@ public class GenericEntityData implements IEntityData {
      */
     @Override
     public void setHealth(double val) {
+        val = Math.min(val,getAscensionAttributeHolder().getAttribute(Attributes.MAX_HEALTH).getValue());
         this.currentHealth = val;
         if(currentHealth <= 0 && getAttachedEntity() != null && getAttachedEntity() instanceof LivingEntity entity) {
 
@@ -936,6 +940,7 @@ public class GenericEntityData implements IEntityData {
 
         }
     }
+
 
     @Override
     public double getHealth() {

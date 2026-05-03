@@ -13,7 +13,7 @@ import net.thejadeproject.ascension.refactor_packages.entity_data_source.IEntity
 import net.thejadeproject.ascension.refactor_packages.forms.forms.ModForms;
 import net.thejadeproject.ascension.refactor_packages.skills.ISkill;
 import net.thejadeproject.ascension.refactor_packages.util.ByteBufUtil;
-@EventBusSubscriber(modid = AscensionCraft.MOD_ID)
+
 public class TemporarySkill implements IEntityDataSource {
     @Override
     public void onAdded(IEntityData entityData,IEntityDataSourceContainer container) {

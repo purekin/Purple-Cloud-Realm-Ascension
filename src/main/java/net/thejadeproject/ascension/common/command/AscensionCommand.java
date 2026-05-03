@@ -3,7 +3,6 @@ package net.thejadeproject.ascension.common.command;
 import com.mojang.brigadier.CommandDispatcher;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.commands.Commands;
-import net.thejadeproject.ascension.common.command.commands.GiveSkillCommand;
 import net.thejadeproject.ascension.common.command.commands.ResetAscensionCommand;
 import net.thejadeproject.ascension.common.command.commands.SetCultivationCommand;
 
@@ -37,7 +36,7 @@ public class AscensionCommand {
 
                 .then(ResetAscensionCommand.build())
                 .then(SetCultivationCommand.build())
-                .then(GiveSkillCommand.build())
+
         );
     }
 }
