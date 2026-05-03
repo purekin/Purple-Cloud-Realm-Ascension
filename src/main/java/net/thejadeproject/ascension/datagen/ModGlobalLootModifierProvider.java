@@ -4,6 +4,7 @@ import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.storage.loot.predicates.LootItemCondition;
+import net.minecraft.world.level.storage.loot.predicates.LootItemKilledByPlayerCondition;
 import net.minecraft.world.level.storage.loot.predicates.LootItemRandomChanceCondition;
 import net.neoforged.neoforge.common.data.GlobalLootModifierProvider;
 import net.neoforged.neoforge.common.loot.LootTableIdCondition;
@@ -11,6 +12,9 @@ import net.thejadeproject.ascension.AscensionCraft;
 import net.thejadeproject.ascension.common.items.ModItems;
 import net.thejadeproject.ascension.datagen.loot.AddItemModifier;
 import net.thejadeproject.ascension.datagen.loot.AddPhysiqueRandomPurityModifier;
+import net.thejadeproject.ascension.datagen.loot.AddTechniquePageModifier;
+import net.thejadeproject.ascension.datagen.loot.conditions.AddTechniqueManualModifier;
+import net.thejadeproject.ascension.datagen.loot.conditions.MobRankLootCondition;
 
 import java.util.concurrent.CompletableFuture;
 
@@ -20,6 +24,391 @@ public class ModGlobalLootModifierProvider extends GlobalLootModifierProvider {
     }
     @Override
     protected void start() {
+
+
+
+
+        //Technique Pages
+
+        add("bloodfeast_ch5_from_ender_dragon", new AddTechniquePageModifier(
+                new LootItemCondition[] {
+                        LootTableIdCondition.builder(ResourceLocation.parse("minecraft:entities/ender_dragon")).build(),
+                        LootItemRandomChanceCondition.randomChance(0.03f).build()
+                },
+                ResourceLocation.fromNamespaceAndPath(AscensionCraft.MOD_ID, "bloodfeast_soul_refining_scripture"),
+                4
+        ));
+
+        //Techniques
+        add("basic_cultivation_technique_from_village", new AddTechniqueManualModifier(
+                new LootItemCondition[] {
+                        LootTableIdCondition.builder(ResourceLocation.withDefaultNamespace("chests/village/village_plains_house")).build(),
+                        LootItemRandomChanceCondition.randomChance(0.05f).build()
+                },
+                ResourceLocation.fromNamespaceAndPath(AscensionCraft.MOD_ID, "basic_cultivation_technique")
+        ));
+
+        add("advanced_cultivation_technique_from_zombie_villager", new AddTechniqueManualModifier(
+                new LootItemCondition[] {
+                        LootTableIdCondition.builder(ResourceLocation.withDefaultNamespace("entities/zombie_villager")).build(),
+                        LootItemKilledByPlayerCondition.killedByPlayer().build(),
+                        LootItemRandomChanceCondition.randomChance(0.04f).build(),
+                        MobRankLootCondition.between("qi_gathering", 5, "formation_establishment", 9).build()
+                },
+                ResourceLocation.fromNamespaceAndPath(AscensionCraft.MOD_ID, "advanced_cultivation_technique")
+        ));
+
+        add("advanced_cultivation_technique_from_stronghold_library", new AddTechniqueManualModifier(
+                new LootItemCondition[] {
+                        LootTableIdCondition.builder(ResourceLocation.withDefaultNamespace("chests/stronghold_library")).build(),
+                        LootItemRandomChanceCondition.randomChance(0.06f).build()
+                },
+                ResourceLocation.fromNamespaceAndPath(AscensionCraft.MOD_ID, "advanced_cultivation_technique")
+        ));
+
+        add("fire_essence_technique_from_blaze", new AddTechniqueManualModifier(
+                new LootItemCondition[] {
+                        LootTableIdCondition.builder(ResourceLocation.withDefaultNamespace("entities/blaze")).build(),
+                        LootItemKilledByPlayerCondition.killedByPlayer().build(),
+                        LootItemRandomChanceCondition.randomChance(0.04f).build(),
+                        MobRankLootCondition.between("formation_establishment", 5, "formation_establishment", 9).build()
+                },
+                ResourceLocation.fromNamespaceAndPath(AscensionCraft.MOD_ID, "fire_essence_technique")
+        ));
+
+        add("water_essence_technique_from_elder_guardian", new AddTechniqueManualModifier(
+                new LootItemCondition[] {
+                        LootTableIdCondition.builder(ResourceLocation.withDefaultNamespace("entities/elder_guardian")).build(),
+                        LootItemKilledByPlayerCondition.killedByPlayer().build(),
+                        LootItemRandomChanceCondition.randomChance(0.05f).build(),
+                        MobRankLootCondition.between("formation_establishment", 6, "formation_establishment", 9).build()
+                },
+                ResourceLocation.fromNamespaceAndPath(AscensionCraft.MOD_ID, "water_essence_technique")
+        ));
+
+        add("wood_essence_technique_from_jungle_temple", new AddTechniqueManualModifier(
+                new LootItemCondition[] {
+                        LootTableIdCondition.builder(ResourceLocation.withDefaultNamespace("chests/jungle_temple")).build(),
+                        LootItemRandomChanceCondition.randomChance(0.05f).build()
+                },
+                ResourceLocation.fromNamespaceAndPath(AscensionCraft.MOD_ID, "wood_essence_technique")
+        ));
+
+        add("earth_essence_technique_from_trail_ruins", new AddTechniqueManualModifier(
+                new LootItemCondition[] {
+                        LootTableIdCondition.builder(ResourceLocation.withDefaultNamespace("archaeology/trail_ruins_rare")).build(),
+                        LootItemRandomChanceCondition.randomChance(0.04f).build()
+                },
+                ResourceLocation.fromNamespaceAndPath(AscensionCraft.MOD_ID, "earth_essence_technique")
+        ));
+
+        add("metal_essence_technique_from_iron_golem", new AddTechniqueManualModifier(
+                new LootItemCondition[] {
+                        LootTableIdCondition.builder(ResourceLocation.withDefaultNamespace("entities/iron_golem")).build(),
+                        LootItemKilledByPlayerCondition.killedByPlayer().build(),
+                        LootItemRandomChanceCondition.randomChance(0.04f).build(),
+                        MobRankLootCondition.between("formation_establishment", 4, "formation_establishment", 9).build()
+                },
+                ResourceLocation.fromNamespaceAndPath(AscensionCraft.MOD_ID, "metal_essence_technique")
+        ));
+
+        add("lightning_essence_technique_from_creeper", new AddTechniqueManualModifier(
+                new LootItemCondition[] {
+                        LootTableIdCondition.builder(ResourceLocation.withDefaultNamespace("entities/creeper")).build(),
+                        LootItemKilledByPlayerCondition.killedByPlayer().build(),
+                        LootItemRandomChanceCondition.randomChance(0.04f).build(),
+                        MobRankLootCondition.between("formation_establishment", 6, "formation_establishment", 9).build()
+                },
+                ResourceLocation.fromNamespaceAndPath(AscensionCraft.MOD_ID, "lightning_essence_technique")
+        ));
+
+        add("wind_essence_technique_from_phantom", new AddTechniqueManualModifier(
+                new LootItemCondition[] {
+                        LootTableIdCondition.builder(ResourceLocation.withDefaultNamespace("entities/phantom")).build(),
+                        LootItemKilledByPlayerCondition.killedByPlayer().build(),
+                        LootItemRandomChanceCondition.randomChance(0.04f).build(),
+                        MobRankLootCondition.between("formation_establishment", 7, "formation_establishment", 9).build()
+                },
+                ResourceLocation.fromNamespaceAndPath(AscensionCraft.MOD_ID, "wind_essence_technique")
+        ));
+
+        add("five_element_cultivation_technique_from_end_city", new AddTechniqueManualModifier(
+                new LootItemCondition[] {
+                        LootTableIdCondition.builder(ResourceLocation.withDefaultNamespace("chests/end_city_treasure")).build(),
+                        LootItemRandomChanceCondition.randomChance(0.03f).build()
+                },
+                ResourceLocation.fromNamespaceAndPath(AscensionCraft.MOD_ID, "five_element_cultivation_technique")
+        ));
+
+        add("heart_fire_technique_from_nether_fortress", new AddTechniqueManualModifier(
+                new LootItemCondition[] {
+                        LootTableIdCondition.builder(ResourceLocation.withDefaultNamespace("chests/nether_bridge")).build(),
+                        LootItemRandomChanceCondition.randomChance(0.05f).build()
+                },
+                ResourceLocation.fromNamespaceAndPath(AscensionCraft.MOD_ID, "heart_fire_technique")
+        ));
+
+        add("heart_fire_technique_from_wither_skeleton", new AddTechniqueManualModifier(
+                new LootItemCondition[] {
+                        LootTableIdCondition.builder(ResourceLocation.withDefaultNamespace("entities/wither_skeleton")).build(),
+                        LootItemKilledByPlayerCondition.killedByPlayer().build(),
+                        LootItemRandomChanceCondition.randomChance(0.03f).build(),
+                        MobRankLootCondition.between("formation_establishment", 5, "formation_establishment", 9).build()
+                },
+                ResourceLocation.fromNamespaceAndPath(AscensionCraft.MOD_ID, "heart_fire_technique")
+        ));
+
+        add("kidney_water_technique_from_drowned", new AddTechniqueManualModifier(
+                new LootItemCondition[] {
+                        LootTableIdCondition.builder(ResourceLocation.withDefaultNamespace("entities/drowned")).build(),
+                        LootItemKilledByPlayerCondition.killedByPlayer().build(),
+                        LootItemRandomChanceCondition.randomChance(0.03f).build(),
+                        MobRankLootCondition.between("formation_establishment", 4, "formation_establishment", 9).build()
+                },
+                ResourceLocation.fromNamespaceAndPath(AscensionCraft.MOD_ID, "kidney_water_technique")
+        ));
+
+        add("kidney_water_technique_from_ocean_ruin", new AddTechniqueManualModifier(
+                new LootItemCondition[] {
+                        LootTableIdCondition.builder(ResourceLocation.withDefaultNamespace("chests/underwater_ruin_big")).build(),
+                        LootItemRandomChanceCondition.randomChance(0.05f).build()
+                },
+                ResourceLocation.fromNamespaceAndPath(AscensionCraft.MOD_ID, "kidney_water_technique")
+        ));
+
+        add("liver_wood_technique_from_jungle_temple", new AddTechniqueManualModifier(
+                new LootItemCondition[] {
+                        LootTableIdCondition.builder(ResourceLocation.withDefaultNamespace("chests/jungle_temple")).build(),
+                        LootItemRandomChanceCondition.randomChance(0.05f).build()
+                },
+                ResourceLocation.fromNamespaceAndPath(AscensionCraft.MOD_ID, "liver_wood_technique")
+        ));
+
+        add("spleen_earth_technique_from_desert_pyramid", new AddTechniqueManualModifier(
+                new LootItemCondition[] {
+                        LootTableIdCondition.builder(ResourceLocation.withDefaultNamespace("chests/desert_pyramid")).build(),
+                        LootItemRandomChanceCondition.randomChance(0.05f).build()
+                },
+                ResourceLocation.fromNamespaceAndPath(AscensionCraft.MOD_ID, "spleen_earth_technique")
+        ));
+
+        add("lung_metal_technique_from_mineshaft", new AddTechniqueManualModifier(
+                new LootItemCondition[] {
+                        LootTableIdCondition.builder(ResourceLocation.withDefaultNamespace("chests/abandoned_mineshaft")).build(),
+                        LootItemRandomChanceCondition.randomChance(0.05f).build()
+                },
+                ResourceLocation.fromNamespaceAndPath(AscensionCraft.MOD_ID, "lung_metal_technique")
+        ));
+
+        add("lung_metal_technique_from_iron_golem", new AddTechniqueManualModifier(
+                new LootItemCondition[] {
+                        LootTableIdCondition.builder(ResourceLocation.withDefaultNamespace("entities/iron_golem")).build(),
+                        LootItemKilledByPlayerCondition.killedByPlayer().build(),
+                        LootItemRandomChanceCondition.randomChance(0.03f).build(),
+                        MobRankLootCondition.between("formation_establishment", 7, "formation_establishment", 9).build()
+                },
+                ResourceLocation.fromNamespaceAndPath(AscensionCraft.MOD_ID, "lung_metal_technique")
+        ));
+
+        add("wood_fire_body_technique_from_mansion", new AddTechniqueManualModifier(
+                new LootItemCondition[] {
+                        LootTableIdCondition.builder(ResourceLocation.withDefaultNamespace("chests/woodland_mansion")).build(),
+                        LootItemRandomChanceCondition.randomChance(0.04f).build()
+                },
+                ResourceLocation.fromNamespaceAndPath(AscensionCraft.MOD_ID, "wood_fire_body_technique")
+        ));
+
+        add("fire_earth_body_technique_from_bastion", new AddTechniqueManualModifier(
+                new LootItemCondition[] {
+                        LootTableIdCondition.builder(ResourceLocation.withDefaultNamespace("chests/bastion_treasure")).build(),
+                        LootItemRandomChanceCondition.randomChance(0.04f).build()
+                },
+                ResourceLocation.fromNamespaceAndPath(AscensionCraft.MOD_ID, "fire_earth_body_technique")
+        ));
+
+        add("earth_metal_body_technique_from_ancient_city", new AddTechniqueManualModifier(
+                new LootItemCondition[] {
+                        LootTableIdCondition.builder(ResourceLocation.withDefaultNamespace("chests/ancient_city")).build(),
+                        LootItemRandomChanceCondition.randomChance(0.04f).build()
+                },
+                ResourceLocation.fromNamespaceAndPath(AscensionCraft.MOD_ID, "earth_metal_body_technique")
+        ));
+
+        add("metal_water_body_technique_from_shipwreck", new AddTechniqueManualModifier(
+                new LootItemCondition[] {
+                        LootTableIdCondition.builder(ResourceLocation.withDefaultNamespace("chests/shipwreck_treasure")).build(),
+                        LootItemRandomChanceCondition.randomChance(0.04f).build()
+                },
+                ResourceLocation.fromNamespaceAndPath(AscensionCraft.MOD_ID, "metal_water_body_technique")
+        ));
+
+        add("water_wood_body_technique_from_dungeon", new AddTechniqueManualModifier(
+                new LootItemCondition[] {
+                        LootTableIdCondition.builder(ResourceLocation.withDefaultNamespace("chests/simple_dungeon")).build(),
+                        LootItemRandomChanceCondition.randomChance(0.04f).build()
+                },
+                ResourceLocation.fromNamespaceAndPath(AscensionCraft.MOD_ID, "water_wood_body_technique")
+        ));
+
+        add("wood_fire_earth_body_technique_from_mansion", new AddTechniqueManualModifier(
+                new LootItemCondition[] {
+                        LootTableIdCondition.builder(ResourceLocation.withDefaultNamespace("chests/woodland_mansion")).build(),
+                        LootItemRandomChanceCondition.randomChance(0.03f).build()
+                },
+                ResourceLocation.fromNamespaceAndPath(AscensionCraft.MOD_ID, "wood_fire_earth_body_technique")
+        ));
+
+        add("fire_earth_metal_body_technique_from_bastion", new AddTechniqueManualModifier(
+                new LootItemCondition[] {
+                        LootTableIdCondition.builder(ResourceLocation.withDefaultNamespace("chests/bastion_treasure")).build(),
+                        LootItemRandomChanceCondition.randomChance(0.03f).build()
+                },
+                ResourceLocation.fromNamespaceAndPath(AscensionCraft.MOD_ID, "fire_earth_metal_body_technique")
+        ));
+
+        add("earth_metal_water_body_technique_from_ancient_city", new AddTechniqueManualModifier(
+                new LootItemCondition[] {
+                        LootTableIdCondition.builder(ResourceLocation.withDefaultNamespace("chests/ancient_city")).build(),
+                        LootItemRandomChanceCondition.randomChance(0.03f).build()
+                },
+                ResourceLocation.fromNamespaceAndPath(AscensionCraft.MOD_ID, "earth_metal_water_body_technique")
+        ));
+
+        add("metal_water_wood_body_technique_from_end_city", new AddTechniqueManualModifier(
+                new LootItemCondition[] {
+                        LootTableIdCondition.builder(ResourceLocation.withDefaultNamespace("chests/end_city_treasure")).build(),
+                        LootItemRandomChanceCondition.randomChance(0.03f).build()
+                },
+                ResourceLocation.fromNamespaceAndPath(AscensionCraft.MOD_ID, "metal_water_wood_body_technique")
+        ));
+
+        add("water_wood_fire_body_technique_from_stronghold", new AddTechniqueManualModifier(
+                new LootItemCondition[] {
+                        LootTableIdCondition.builder(ResourceLocation.withDefaultNamespace("chests/stronghold_library")).build(),
+                        LootItemRandomChanceCondition.randomChance(0.03f).build()
+                },
+                ResourceLocation.fromNamespaceAndPath(AscensionCraft.MOD_ID, "water_wood_fire_body_technique")
+        ));
+
+        add("wood_fire_earth_metal_body_technique_from_ancient_city", new AddTechniqueManualModifier(
+                new LootItemCondition[] {
+                        LootTableIdCondition.builder(ResourceLocation.withDefaultNamespace("chests/ancient_city")).build(),
+                        LootItemRandomChanceCondition.randomChance(0.02f).build()
+                },
+                ResourceLocation.fromNamespaceAndPath(AscensionCraft.MOD_ID, "wood_fire_earth_metal_body_technique")
+        ));
+
+        add("fire_earth_metal_water_body_technique_from_bastion", new AddTechniqueManualModifier(
+                new LootItemCondition[] {
+                        LootTableIdCondition.builder(ResourceLocation.withDefaultNamespace("chests/bastion_treasure")).build(),
+                        LootItemRandomChanceCondition.randomChance(0.02f).build()
+                },
+                ResourceLocation.fromNamespaceAndPath(AscensionCraft.MOD_ID, "fire_earth_metal_water_body_technique")
+        ));
+
+        add("earth_metal_water_wood_body_technique_from_end_city", new AddTechniqueManualModifier(
+                new LootItemCondition[] {
+                        LootTableIdCondition.builder(ResourceLocation.withDefaultNamespace("chests/end_city_treasure")).build(),
+                        LootItemRandomChanceCondition.randomChance(0.02f).build()
+                },
+                ResourceLocation.fromNamespaceAndPath(AscensionCraft.MOD_ID, "earth_metal_water_wood_body_technique")
+        ));
+
+        add("metal_water_wood_fire_body_technique_from_mansion", new AddTechniqueManualModifier(
+                new LootItemCondition[] {
+                        LootTableIdCondition.builder(ResourceLocation.withDefaultNamespace("chests/woodland_mansion")).build(),
+                        LootItemRandomChanceCondition.randomChance(0.02f).build()
+                },
+                ResourceLocation.fromNamespaceAndPath(AscensionCraft.MOD_ID, "metal_water_wood_fire_body_technique")
+        ));
+
+        add("water_wood_fire_earth_body_technique_from_stronghold", new AddTechniqueManualModifier(
+                new LootItemCondition[] {
+                        LootTableIdCondition.builder(ResourceLocation.withDefaultNamespace("chests/stronghold_library")).build(),
+                        LootItemRandomChanceCondition.randomChance(0.02f).build()
+                },
+                ResourceLocation.fromNamespaceAndPath(AscensionCraft.MOD_ID, "water_wood_fire_earth_body_technique")
+        ));
+
+        add("scholarly_soul_technique_from_stronghold_library", new AddTechniqueManualModifier(
+                new LootItemCondition[] {
+                        LootTableIdCondition.builder(ResourceLocation.withDefaultNamespace("chests/stronghold_library")).build(),
+                        LootItemRandomChanceCondition.randomChance(0.04f).build()
+                },
+                ResourceLocation.fromNamespaceAndPath(AscensionCraft.MOD_ID, "scholarly_soul_technique")
+        ));
+
+        add("scholarly_soul_technique_from_zombie_villager", new AddTechniqueManualModifier(
+                new LootItemCondition[] {
+                        LootTableIdCondition.builder(ResourceLocation.withDefaultNamespace("entities/zombie_villager")).build(),
+                        LootItemKilledByPlayerCondition.killedByPlayer().build(),
+                        LootItemRandomChanceCondition.randomChance(0.03f).build(),
+                        MobRankLootCondition.between("formation_establishment", 6, "formation_establishment", 9).build()
+                },
+                ResourceLocation.fromNamespaceAndPath(AscensionCraft.MOD_ID, "scholarly_soul_technique")
+        ));
+
+        add("pale_moon_scripture_from_ancient_city", new AddTechniqueManualModifier(
+                new LootItemCondition[] {
+                        LootTableIdCondition.builder(ResourceLocation.withDefaultNamespace("chests/ancient_city")).build(),
+                        LootItemRandomChanceCondition.randomChance(0.04f).build()
+                },
+                ResourceLocation.fromNamespaceAndPath(AscensionCraft.MOD_ID, "pale_moon_scripture")
+        ));
+
+        add("pale_moon_scripture_from_phantom", new AddTechniqueManualModifier(
+                new LootItemCondition[] {
+                        LootTableIdCondition.builder(ResourceLocation.withDefaultNamespace("entities/phantom")).build(),
+                        LootItemKilledByPlayerCondition.killedByPlayer().build(),
+                        LootItemRandomChanceCondition.randomChance(0.03f).build(),
+                        MobRankLootCondition.between("formation_establishment", 8, "formation_establishment", 9).build()
+                },
+                ResourceLocation.fromNamespaceAndPath(AscensionCraft.MOD_ID, "pale_moon_scripture")
+        ));
+
+        add("gibbous_moon_scripture_from_end_city", new AddTechniqueManualModifier(
+                new LootItemCondition[] {
+                        LootTableIdCondition.builder(ResourceLocation.withDefaultNamespace("chests/end_city_treasure")).build(),
+                        LootItemRandomChanceCondition.randomChance(0.03f).build()
+                },
+                ResourceLocation.fromNamespaceAndPath(AscensionCraft.MOD_ID, "gibbous_moon_scripture")
+        ));
+
+        add("gibbous_moon_scripture_from_enderman", new AddTechniqueManualModifier(
+                new LootItemCondition[] {
+                        LootTableIdCondition.builder(ResourceLocation.withDefaultNamespace("entities/enderman")).build(),
+                        LootItemKilledByPlayerCondition.killedByPlayer().build(),
+                        LootItemRandomChanceCondition.randomChance(0.02f).build(),
+                        MobRankLootCondition.between("formation_establishment", 8, "formation_establishment", 9).build()
+                },
+                ResourceLocation.fromNamespaceAndPath(AscensionCraft.MOD_ID, "gibbous_moon_scripture")
+        ));
+
+        add("sword_comprehension_technique_from_pillager_outpost", new AddTechniqueManualModifier(
+                new LootItemCondition[] {
+                        LootTableIdCondition.builder(ResourceLocation.withDefaultNamespace("chests/pillager_outpost")).build(),
+                        LootItemRandomChanceCondition.randomChance(0.05f).build()
+                },
+                ResourceLocation.fromNamespaceAndPath(AscensionCraft.MOD_ID, "sword_comprehension_technique")
+        ));
+
+        add("sword_comprehension_technique_from_vindicator", new AddTechniqueManualModifier(
+                new LootItemCondition[] {
+                        LootTableIdCondition.builder(ResourceLocation.withDefaultNamespace("entities/vindicator")).build(),
+                        LootItemKilledByPlayerCondition.killedByPlayer().build(),
+                        LootItemRandomChanceCondition.randomChance(0.03f).build(),
+                        MobRankLootCondition.between("formation_establishment", 4, "formation_establishment", 9).build()
+                },
+                ResourceLocation.fromNamespaceAndPath(AscensionCraft.MOD_ID, "sword_comprehension_technique")
+        ));
+
+        add("sword_comprehension_technique_from_mansion", new AddTechniqueManualModifier(
+                new LootItemCondition[] {
+                        LootTableIdCondition.builder(ResourceLocation.withDefaultNamespace("chests/woodland_mansion")).build(),
+                        LootItemRandomChanceCondition.randomChance(0.04f).build()
+                },
+                ResourceLocation.fromNamespaceAndPath(AscensionCraft.MOD_ID, "sword_comprehension_technique")
+        ));
 
 
 

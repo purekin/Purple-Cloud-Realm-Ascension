@@ -1,7 +1,7 @@
-// 1.21.1	2026-05-03T16:06:54.7816225	Loot Tables
-e8991c94934923e5c65740fe45be4123fb74ed28 data/ascension/loot_table/barrels/sword_tomb1.json
-7357b1ffdb27c5e093000dae972983352c6a8b70 data/ascension/loot_table/barrels/sword_tomb2.json
-b00f1c9d698cd5f3a01f2cb7ce010737aad6cbb0 data/ascension/loot_table/barrels/sword_tomb3.json
+// 1.21.1	2026-05-03T17:23:20.6723257	Loot Tables
+56f70cb70d9a56ccb169d653d4f86dec4e7ebcdd data/ascension/loot_table/barrels/sword_tomb1.json
+fd2797d7d4ba5086be94d9004bcbd57f92ce2a9d data/ascension/loot_table/barrels/sword_tomb2.json
+adc08ccbbf4449492c6433b778e61eeb30597409 data/ascension/loot_table/barrels/sword_tomb3.json
 4e350a86b42d1ae1ba4f4fbeb663b3ef86261196 data/ascension/loot_table/blocks/black_iron_block.json
 38f47b8a49c39deb26be96306d89c92e4f616193 data/ascension/loot_table/blocks/black_iron_ore.json
 8fa1f6d0faab7897bb4c5b07978d69be87825eae data/ascension/loot_table/blocks/blue_marble.json
@@ -244,4 +244,4 @@ d4aa5efdade3dd0e230ab2a870e02212930c6237 data/ascension/loot_table/blocks/yellow
 f263d07a4f80d69f184138a2f1b83db9d973aa43 data/ascension/loot_table/blocks/yellow_marble_tile_wall.json
 56d7924161f069949754c27ffc308f5d4f74f2b5 data/ascension/loot_table/blocks/yellow_polished_marble.json
 fbc8d23b29ab6cb6439af44a4f1851682a7a936e data/ascension/loot_table/entities/player_body.json
-286e58a92229183a8cd29beed900ca4567ad2d02 data/ascension/loot_table/entities/treasure_rat.json
+10d1999a3249af3a6cfc0d6c2412837c9fd417f2 data/ascension/loot_table/entities/treasure_rat.json

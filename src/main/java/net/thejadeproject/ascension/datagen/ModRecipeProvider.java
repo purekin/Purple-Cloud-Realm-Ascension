@@ -338,6 +338,13 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .define('B', ModItems.BLACK_IRON_NUGGET.get())
                 .unlockedBy("has_black_iron_nugget", has(ModItems.BLACK_IRON_NUGGET)).save(recipeOutput, "ascension:shaped/black_iron_ingot_from_nugget");
 
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.SILVER_NEEDLE.get())
+                .pattern("  B")
+                .pattern(" B ")
+                .pattern("B  ")
+                .define('B', ModItems.FROST_SILVER_INGOT.get())
+                .unlockedBy("has_frost_silver_ingot", has(ModItems.FROST_SILVER_INGOT)).save(recipeOutput, "ascension:shaped/silver_needle");
+
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModBlocks.FROST_SILVER_BLOCK.get())
                 .pattern("BBB")
                 .pattern("BBB")
@@ -699,6 +706,9 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
         // Pill Recipes
 
         // TODO: give actual heat values
+        // ── Cultivation Pills ─────────────────────────────────────────
+
+        // Essence Gathering Pill
         PillCauldronRecipeBuilder.lowHuman(
                         ModItems.ESSENCE_GATHERING_PILL.get(),
                         ModItems.PILL_RESIDUE.get()
@@ -707,19 +717,266 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .ingredient(ModItems.WHITE_JADE_ORCHID.get(), 1)
                 .ingredient(ModItems.HUNDRED_YEAR_SNOW_GINSENG.get(), 1)
                 .chance(0.75D)
-                .temperature(672, 1236, 790)
-                .timeSeconds(5)
+                .temperature(478, 1248, 677)
+                .timeSeconds(10)
                 .realm(1, "lower")
                 .purity(10, 100)
                 .bonusChance(0.08D)
+                .unlockedBy("has_hundred_year_fire_ginseng", has(ModItems.HUNDRED_YEAR_FIRE_GINSENG.get()))
+                .save(recipeOutput, ResourceLocation.fromNamespaceAndPath(AscensionCraft.MOD_ID, "cauldron/essence_gathering_pill"));
+
+        // Inner Reinforcement Pill
+        PillCauldronRecipeBuilder.lowHuman(
+                        ModItems.INNER_REINFORCEMENT_PILL.get(),
+                        ModItems.PILL_RESIDUE.get()
+                )
+                .ingredient(ModItems.HUNDRED_YEAR_GINSENG.get(), 1)
+                .ingredient(ModItems.IRONWOOD_SPROUT.get(), 1)
+                .ingredient(ModItems.GOLDEN_SUN_LEAF.get(), 1)
+                .chance(0.70D)
+                .temperature(325, 986, 543)
+                .timeSeconds(10)
+                .realm(1, "lower")
+                .purity(15, 90)
+                .bonusChance(0.06D)
                 .unlockedBy("has_hundred_year_ginseng", has(ModItems.HUNDRED_YEAR_GINSENG.get()))
-                .save(
-                        recipeOutput,
-                        ResourceLocation.fromNamespaceAndPath(
-                                AscensionCraft.MOD_ID,
-                                "cauldron/essence_gathering_pill_t1"
-                        )
-                );
+                .save(recipeOutput, ResourceLocation.fromNamespaceAndPath(AscensionCraft.MOD_ID, "cauldron/inner_reinforcement_pill"));
+
+        // Soul Focus Pill
+        PillCauldronRecipeBuilder.lowHuman(
+                        ModItems.SOUL_FOCUS_PILL.get(),
+                        ModItems.PILL_RESIDUE.get()
+                )
+                .ingredient(ModItems.JADE_BAMBOO_OF_SERENITY.get(), 1)
+                .ingredient(ModItems.WHITE_JADE_ORCHID.get(), 1)
+                .ingredient(ModItems.HUNDRED_YEAR_SNOW_GINSENG.get(), 1)
+                .chance(0.70D)
+                .temperature(146, 752, 322)
+                .timeSeconds(10)
+                .realm(1, "lower")
+                .purity(15, 90)
+                .bonusChance(0.06D)
+                .unlockedBy("has_jade_bamboo_of_serenity", has(ModItems.JADE_BAMBOO_OF_SERENITY.get()))
+                .save(recipeOutput, ResourceLocation.fromNamespaceAndPath(AscensionCraft.MOD_ID, "cauldron/soul_focus_pill"));
+
+
+        // ── Poison Pills ──────────────────────────────────────────────
+
+        // Qi Devouring Parasite Pill
+        PillCauldronRecipeBuilder.lowHuman(
+                        ModItems.QI_DEVOURING_PARASITE_PILL.get(),
+                        ModItems.PILL_RESIDUE.get()
+                )
+                .ingredient(Items.ROTTEN_FLESH, 16)
+                .ingredient(ModItems.IRONWOOD_SPROUT.get(), 1)
+                .ingredient(Items.FERMENTED_SPIDER_EYE, 16)
+                .chance(0.60D)
+                .temperature(587, 1479, 670)
+                .timeSeconds(5)
+                .realm(1, "lower")
+                .purity(20, 80)
+                .bonusChance(0.05D)
+                .unlockedBy("has_hundred_year_fire_ginseng", has(ModItems.HUNDRED_YEAR_FIRE_GINSENG.get()))
+                .save(recipeOutput, ResourceLocation.fromNamespaceAndPath(AscensionCraft.MOD_ID, "cauldron/qi_devouring_parasite_pill"));
+
+
+        // ── Positive / Medicinal Pills ────────────────────────────────
+
+        // Qi Enhanced Regeneration Pill
+        PillCauldronRecipeBuilder.lowHuman(
+                        ModItems.QI_ENHANCED_REGEN_PILL.get(),
+                        ModItems.PILL_RESIDUE.get()
+                )
+                .ingredient(Items.GOLDEN_APPLE, 2)
+                .ingredient(ModItems.WHITE_JADE_ORCHID.get(), 1)
+                .ingredient(Items.GOLDEN_CARROT, 2)
+                .chance(0.65D)
+                .temperature(345, 974, 666)
+                .timeSeconds(7)
+                .realm(1, "lower")
+                .purity(15, 100)
+                .bonusChance(0.07D)
+                .unlockedBy("has_hundred_year_ginseng", has(ModItems.HUNDRED_YEAR_GINSENG.get()))
+                .save(recipeOutput, ResourceLocation.fromNamespaceAndPath(AscensionCraft.MOD_ID, "cauldron/regeneration_pill"));
+
+
+        // ── Antidote Pills ────────────────────────────────────────────
+
+        // Antidote for Qi Devouring Parasite
+        PillCauldronRecipeBuilder.lowHuman(
+                        ModItems.ANTIDOTE_PILL_QDP.get(),
+                        ModItems.PILL_RESIDUE.get()
+                )
+                .ingredient(ModItems.JADE_BAMBOO_OF_SERENITY.get(), 1)
+                .ingredient(ModItems.HUNDRED_YEAR_SNOW_GINSENG.get(), 1)
+                .ingredient(ModItems.GOLDEN_SUN_LEAF.get(), 1)
+                .chance(0.70D)
+                .temperature(327, 895, 535)
+                .timeSeconds(6)
+                .realm(1, "lower")
+                .purity(20, 90)
+                .bonusChance(0.06D)
+                .unlockedBy("has_jade_bamboo_of_serenity", has(ModItems.JADE_BAMBOO_OF_SERENITY.get()))
+                .save(recipeOutput, ResourceLocation.fromNamespaceAndPath(AscensionCraft.MOD_ID, "cauldron/antidote_qdp_pill"));
+
+
+        // ── Physique Changing Pills ───────────────────────────────────
+
+        // Marrow Cleanse Pill
+        PillCauldronRecipeBuilder.lowHuman(
+                        ModItems.MARROW_CLEANSE_PILL.get(),
+                        ModItems.PILL_RESIDUE.get()
+                )
+                .ingredient(ModItems.HUNDRED_YEAR_GINSENG.get(), 1)
+                .ingredient(ModItems.HUNDRED_YEAR_FIRE_GINSENG.get(), 1)
+                .ingredient(ModItems.HUNDRED_YEAR_SNOW_GINSENG.get(), 1)
+                .chance(0.55D)
+                .temperature(175, 1247, 649)
+                .timeSeconds(10)
+                .realm(2, "lower")
+                .purity(25, 100)
+                .bonusChance(0.04D)
+                .unlockedBy("has_hundred_year_ginseng", has(ModItems.HUNDRED_YEAR_GINSENG.get()))
+                .save(recipeOutput, ResourceLocation.fromNamespaceAndPath(AscensionCraft.MOD_ID, "cauldron/marrow_cleanse_pill"));
+
+
+        // ── Utility Pills ─────────────────────────────────────────────
+
+        // Neutrality Pill
+        PillCauldronRecipeBuilder.lowHuman(
+                        ModItems.NEUTRALITY_PILL.get(),
+                        ModItems.PILL_RESIDUE.get()
+                )
+                .ingredient(Items.GOLD_INGOT, 2)
+                .ingredient(ModItems.GOLDEN_SUN_LEAF.get(), 1)
+                .ingredient(Items.BONE, 8)
+                .chance(0.80D)
+                .temperature(365, 975, 592)
+                .timeSeconds(4)
+                .realm(1, "lower")
+                .purity(10, 80)
+                .bonusChance(0.10D)
+                .unlockedBy("has_jade_bamboo_of_serenity", has(ModItems.JADE_BAMBOO_OF_SERENITY.get()))
+                .save(recipeOutput, ResourceLocation.fromNamespaceAndPath(AscensionCraft.MOD_ID, "cauldron/neutrality_pill"));
+
+        // Cleansing Pill T1
+        PillCauldronRecipeBuilder.lowHuman(
+                        ModItems.CLEANSING_PILL_T1.get(),
+                        ModItems.PILL_RESIDUE.get()
+                )
+                .ingredient(ModItems.GOLDEN_SUN_LEAF.get(), 1)
+                .ingredient(Items.MILK_BUCKET, 1)
+                .ingredient(ModItems.WHITE_JADE_ORCHID.get(), 1)
+                .chance(0.85D)
+                .temperature(212, 975, 460)
+                .timeSeconds(3)
+                .realm(1, "lower")
+                .purity(10, 60)
+                .bonusChance(0.10D)
+                .unlockedBy("has_golden_sun_leaf", has(ModItems.GOLDEN_SUN_LEAF.get()))
+                .save(recipeOutput, ResourceLocation.fromNamespaceAndPath(AscensionCraft.MOD_ID, "cauldron/cleansing_pill_t1"));
+
+        // Cleansing Pill T2
+        PillCauldronRecipeBuilder.lowHuman(
+                        ModItems.CLEANSING_PILL_T2.get(),
+                        ModItems.PILL_RESIDUE.get()
+                )
+                .ingredient(ModItems.GOLDEN_SUN_LEAF.get(), 1)
+                .ingredient(ModItems.CLEANSING_PILL_T1, 1)
+                .ingredient(ModItems.WHITE_JADE_ORCHID.get(), 1)
+                .chance(0.80D)
+                .temperature(212, 975, 460)
+                .timeSeconds(4)
+                .realm(1, "lower")
+                .purity(15, 70)
+                .bonusChance(0.08D)
+                .unlockedBy("has_jade_bamboo_of_serenity", has(ModItems.JADE_BAMBOO_OF_SERENITY.get()))
+                .save(recipeOutput, ResourceLocation.fromNamespaceAndPath(AscensionCraft.MOD_ID, "cauldron/cleansing_pill_t2"));
+
+        // Cleansing Pill T3
+        PillCauldronRecipeBuilder.lowHuman(
+                        ModItems.CLEANSING_PILL_T3.get(),
+                        ModItems.PILL_RESIDUE.get()
+                )
+                .ingredient(ModItems.GOLDEN_SUN_LEAF.get(), 1)
+                .ingredient(ModItems.CLEANSING_PILL_T2, 1)
+                .ingredient(ModItems.WHITE_JADE_ORCHID.get(), 1)
+                .chance(0.75D)
+                .temperature(212, 975, 460)
+                .timeSeconds(5)
+                .realm(2, "lower")
+                .purity(20, 80)
+                .bonusChance(0.07D)
+                .unlockedBy("has_ironwood_sprout", has(ModItems.IRONWOOD_SPROUT.get()))
+                .save(recipeOutput, ResourceLocation.fromNamespaceAndPath(AscensionCraft.MOD_ID, "cauldron/cleansing_pill_t3"));
+
+        // Cleansing Pill T4
+        PillCauldronRecipeBuilder.lowHuman(
+                        ModItems.CLEANSING_PILL_T4.get(),
+                        ModItems.PILL_RESIDUE.get()
+                )
+                .ingredient(ModItems.HUNDRED_YEAR_FIRE_GINSENG.get(), 1)
+                .ingredient(ModItems.CLEANSING_PILL_T2, 1)
+                .ingredient(ModItems.WHITE_JADE_ORCHID.get(), 1)
+                .chance(0.70D)
+                .temperature(212, 975, 460)
+                .timeSeconds(6)
+                .realm(2, "lower")
+                .purity(25, 90)
+                .bonusChance(0.06D)
+                .unlockedBy("has_white_jade_orchid", has(ModItems.WHITE_JADE_ORCHID.get()))
+                .save(recipeOutput, ResourceLocation.fromNamespaceAndPath(AscensionCraft.MOD_ID, "cauldron/cleansing_pill_t4"));
+
+        // Fasting Pill T1
+        PillCauldronRecipeBuilder.lowHuman(
+                        ModItems.FASTING_PILL_T1.get(),
+                        ModItems.PILL_RESIDUE.get()
+                )
+                .ingredient(Items.CARROT, 4)
+                .ingredient(Items.APPLE, 4)
+                .ingredient(Items.BEETROOT, 4)
+                .chance(0.80D)
+                .temperature(100, 1000, 500)
+                .timeSeconds(4)
+                .realm(1, "lower")
+                .purity(10, 70)
+                .bonusChance(0.08D)
+                .unlockedBy("has_ironwood_sprout", has(ModItems.IRONWOOD_SPROUT.get()))
+                .save(recipeOutput, ResourceLocation.fromNamespaceAndPath(AscensionCraft.MOD_ID, "cauldron/fasting_pill_t1"));
+
+        // Fasting Pill T2
+        PillCauldronRecipeBuilder.lowHuman(
+                        ModItems.FASTING_PILL_T2.get(),
+                        ModItems.PILL_RESIDUE.get()
+                )
+                .ingredient(Items.CARROT, 4)
+                .ingredient(ModItems.FASTING_PILL_T1.get(), 1)
+                .ingredient(Items.BEETROOT, 4)
+                .chance(0.75D)
+                .temperature(100, 1000, 500)
+                .timeSeconds(5)
+                .realm(1, "lower")
+                .purity(15, 75)
+                .bonusChance(0.07D)
+                .unlockedBy("has_hundred_year_ginseng", has(ModItems.HUNDRED_YEAR_GINSENG.get()))
+                .save(recipeOutput, ResourceLocation.fromNamespaceAndPath(AscensionCraft.MOD_ID, "cauldron/fasting_pill_t2"));
+
+        // Fasting Pill T3
+        PillCauldronRecipeBuilder.lowHuman(
+                        ModItems.FASTING_PILL_T3.get(),
+                        ModItems.PILL_RESIDUE.get()
+                )
+                .ingredient(Items.CARROT, 4)
+                .ingredient(ModItems.FASTING_PILL_T2.get(), 1)
+                .ingredient(Items.BEETROOT, 4)
+                .chance(0.70D)
+                .temperature(100, 1000, 500)
+                .timeSeconds(6)
+                .realm(2, "lower")
+                .purity(20, 85)
+                .bonusChance(0.06D)
+                .unlockedBy("has_hundred_year_snow_ginseng", has(ModItems.HUNDRED_YEAR_SNOW_GINSENG.get()))
+                .save(recipeOutput, ResourceLocation.fromNamespaceAndPath(AscensionCraft.MOD_ID, "cauldron/fasting_pill_t3"));
 
 
     }

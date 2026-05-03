@@ -14,6 +14,8 @@ import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.EntityHitResult;
 import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
+import net.neoforged.api.distmarker.Dist;
+import net.neoforged.api.distmarker.OnlyIn;
 import net.thejadeproject.ascension.AscensionCraft;
 import net.thejadeproject.ascension.data_attachments.ModAttachments;
 import net.thejadeproject.ascension.particle.ModParticles;
@@ -33,6 +35,10 @@ import net.thejadeproject.ascension.refactor_packages.skills.castable.IPreCastDa
 import java.util.HashSet;
 
 public class FireSpray implements ICastableSkill {
+
+    private static final double QI_COST_PER_SECOND = 5.0D;
+    private static final int COOLDOWN_TICKS = 100;
+
     @Override
     public void onEquip(IEntityData entityData) {
 
@@ -55,6 +61,14 @@ public class FireSpray implements ICastableSkill {
 
     @Override
     public CastResult canCast(Entity caster, IPreCastData preCastData) {
+        if (caster.level().isClientSide()) return new CastResult(CastResult.Type.SUCCESS);
+        if (!caster.hasData(ModAttachments.ENTITY_DATA)) return new CastResult(CastResult.Type.FAILURE);
+
+        IEntityData entityData = caster.getData(ModAttachments.ENTITY_DATA);
+        if (!entityData.getQiContainer().hasQi(QI_COST_PER_SECOND)) {
+            return new CastResult(CastResult.Type.FAILURE);
+        }
+
         return new CastResult(CastResult.Type.SUCCESS);
     }
 
@@ -106,13 +120,18 @@ public class FireSpray implements ICastableSkill {
                 eyePosition.x,eyePosition.y-0.2,eyePosition.z,
                 viewVector.x,viewVector.y,viewVector.z);
 
+        if (!caster.level().isClientSide() && ticksElapsed > 0 && ticksElapsed % 20 == 0) {
+            IEntityData entityData = caster.getData(ModAttachments.ENTITY_DATA);
+            if (!entityData.getQiContainer().tryConsumeQi(QI_COST_PER_SECOND)) return false;
+        }
+
         if(caster.level().isClientSide) return ticksElapsed < 100;
         return caster.getData(ModAttachments.INPUT_STATES).isHeld("skill_cast") && ticksElapsed < 100;
    }
 
     @Override
     public int getCooldown(CastEndData castEndData) {
-        return 0;
+        return COOLDOWN_TICKS;
     }
 
     @Override
@@ -175,6 +194,7 @@ public class FireSpray implements ICastableSkill {
         return CastType.LONG;
     }
 
+    @OnlyIn(Dist.CLIENT)
     @Override
     public RenderableElement getCastElement(UIFrame frame) {
         return null;
@@ -238,6 +258,7 @@ public class FireSpray implements ICastableSkill {
         return Component.translatable("ascension.skill.fire_spray.description");
     }
 
+    @OnlyIn(Dist.CLIENT)
     @Override
     public RenderableElement getInformationContainer(UIFrame frame) {
         return new DescriptionDisplayContainer(frame,getTitle(),getDescription());
