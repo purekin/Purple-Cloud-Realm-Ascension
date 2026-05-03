@@ -56,6 +56,7 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
         dropSelf(ModBlocks.CUSHION_PURPLE.get());
         dropSelf(ModBlocks.CUSHION_MAGENTA.get());
         dropSelf(ModBlocks.CUSHION_PINK.get());
+        dropSelf(ModBlocks.TECHNIQUE_STAND.get());
 
 
         /** Marble */

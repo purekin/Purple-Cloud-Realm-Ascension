@@ -79,11 +79,6 @@
         },
         {
           "type": "minecraft:item",
-          "name": "ascension:spatial_stone_tier_2",
-          "weight": 12
-        },
-        {
-          "type": "minecraft:item",
           "name": "ascension:undead_core",
           "weight": 10
         },

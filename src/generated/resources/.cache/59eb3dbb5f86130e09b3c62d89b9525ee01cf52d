@@ -1,7 +1,7 @@
-// 1.21.1	2026-04-25T21:20:41.8297355	Loot Tables
+// 1.21.1	2026-05-03T16:06:54.7816225	Loot Tables
 e8991c94934923e5c65740fe45be4123fb74ed28 data/ascension/loot_table/barrels/sword_tomb1.json
 7357b1ffdb27c5e093000dae972983352c6a8b70 data/ascension/loot_table/barrels/sword_tomb2.json
-9fc927f41d81081f1bae4a9f24e27d9c636c4449 data/ascension/loot_table/barrels/sword_tomb3.json
+b00f1c9d698cd5f3a01f2cb7ce010737aad6cbb0 data/ascension/loot_table/barrels/sword_tomb3.json
 4e350a86b42d1ae1ba4f4fbeb663b3ef86261196 data/ascension/loot_table/blocks/black_iron_block.json
 38f47b8a49c39deb26be96306d89c92e4f616193 data/ascension/loot_table/blocks/black_iron_ore.json
 8fa1f6d0faab7897bb4c5b07978d69be87825eae data/ascension/loot_table/blocks/blue_marble.json
@@ -230,6 +230,7 @@ a5459a1083d0a65e1f7e007ca5d45aafd37d47a8 data/ascension/loot_table/blocks/stripp
 e610897b3658ea687b13e2173d10f1bd4e588851 data/ascension/loot_table/blocks/stripped_golden_palm_wood.json
 ab65f25dc36a529163d07338105ec578104357ce data/ascension/loot_table/blocks/stripped_ironwood_log.json
 fdd2fc63648dd31aeee5b76f3c0579e81fc16b6e data/ascension/loot_table/blocks/stripped_ironwood_wood.json
+76613f681a05932eed07b2bfb0d6a3f7eb24b53b data/ascension/loot_table/blocks/technique_stand.json
 3019b11a608a4c2ff23747ffb24b82bbf099bb92 data/ascension/loot_table/blocks/white_jade_orchid_crop.json
 84c69270665e810fa4651866dc21b4996a06e7b8 data/ascension/loot_table/blocks/yellow_marble.json
 42abce5f1cff291ed9c58a2fa617db76df608e31 data/ascension/loot_table/blocks/yellow_marble_bricks.json

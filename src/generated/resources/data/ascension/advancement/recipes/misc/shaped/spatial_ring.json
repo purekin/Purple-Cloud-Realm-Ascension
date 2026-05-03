@@ -1,11 +1,11 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_black_iron_ingot": {
+    "has_frost_silver_ingot": {
       "conditions": {
         "items": [
           {
-            "items": "ascension:black_iron_ingot"
+            "items": "ascension:frost_silver_ingot"
           }
         ]
       },
@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "ascension:shaped/spirit_sealing_ring"
+        "recipe": "ascension:shaped/spatial_ring"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -21,12 +21,12 @@
   "requirements": [
     [
       "has_the_recipe",
-      "has_black_iron_ingot"
+      "has_frost_silver_ingot"
     ]
   ],
   "rewards": {
     "recipes": [
-      "ascension:shaped/spirit_sealing_ring"
+      "ascension:shaped/spatial_ring"
     ]
   }
 }

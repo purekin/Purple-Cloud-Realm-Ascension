@@ -8,6 +8,7 @@ import net.thejadeproject.ascension.data_attachments.ModAttachments;
 import net.thejadeproject.ascension.refactor_packages.entity_data.IEntityData;
 import net.thejadeproject.ascension.refactor_packages.paths.ModPaths;
 import net.thejadeproject.ascension.refactor_packages.paths.PathData;
+import net.thejadeproject.ascension.refactor_packages.qi.EntityQiContainer;
 import net.thejadeproject.ascension.refactor_packages.skills.custom.passive.SimplePassiveSkill;
 
 public class BodyCultivationSkill extends SimplePassiveSkill {
@@ -36,15 +37,21 @@ public class BodyCultivationSkill extends SimplePassiveSkill {
             return;
         }
 
-        double progressGain = damage * 3.3;
-        double currentProgress = bodyPath.getCurrentRealmProgress();
-        double newProgress = currentProgress - damage + progressGain;
-
-        if (newProgress < 0.0) {
-            newProgress = 0.0;
+        EntityQiContainer qiContainer = entityData.getQiContainer();
+        if (qiContainer == null) {
+            return;
         }
 
-        bodyPath.setCurrentRealmProgress(newProgress);
+        if (!qiContainer.hasQi(damage)) {
+            return;
+        }
+
+        if (!qiContainer.tryConsumeQi(damage)) {
+            return;
+        }
+
+        double progressGain = damage * 3.3;
+        bodyPath.setCurrentRealmProgress(bodyPath.getCurrentRealmProgress() + progressGain);
         bodyPath.sync(player);
     }
 

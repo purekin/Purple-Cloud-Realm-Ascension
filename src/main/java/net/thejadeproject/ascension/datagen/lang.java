@@ -399,7 +399,8 @@ public class lang extends LanguageProvider {
         add("ascension.skill.bloodfeast_banquet", "§4Bloodfeast Banquet");
         add("ascension.skill.bloodfeast_banquet.description", "§4Draw upon the life-force of nearby creatures, feasting on their blood to fuel your cultivation. The greater your realm, the wider your table.");
 
-
+        add("ascension.skill.body_cultivation", "§6Body Refinement Technique");
+        add("ascension.skill.body_cultivation.description", "§6Adversity reveals the true body. When dealt a blow of sufficient weight, your Qi channels the impact directly into your core, forging your flesh ever denser. Damage beyond tenfold becomes fuel — more pain, more progress.");
 
 
 
