@@ -39,6 +39,20 @@ public class SkillOptionsScrollBox extends ScrollBox {
         ResourceLocation skill = btn.getSkill();
         parentContainer.selectSkill(skill);
     }
+
+    @Override
+    public int getMaxYScroll() {
+        return Math.max(0,(getChildren().size()+2)*12-getHeight());
+    }
+
+    @Override
+    public void updateVisibility(RenderableElement element) {
+        boolean condition =
+                !(element.getPositioning().getY()+element.getHeight() <= 0) &&
+                        !(element.getPositioning().getY() > getHeight());
+        element.setVisible(condition);
+    }
+
     public void loadSkills(){
         IEntityData entityData = Minecraft.getInstance().player.getData(ModAttachments.ENTITY_DATA);
         Collection<ResourceLocation> skills =  entityData.getAllSkills();

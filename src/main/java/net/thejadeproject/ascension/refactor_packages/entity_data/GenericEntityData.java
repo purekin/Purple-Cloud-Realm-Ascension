@@ -15,6 +15,8 @@ import net.neoforged.neoforge.network.PacketDistributor;
 import net.thejadeproject.ascension.refactor_packages.attributes.AscensionAttributeHolder;
 import net.thejadeproject.ascension.refactor_packages.bloodlines.IBloodline;
 import net.thejadeproject.ascension.refactor_packages.bloodlines.IBloodlineData;
+import net.thejadeproject.ascension.refactor_packages.entity_data_source.IEntityDataSource;
+import net.thejadeproject.ascension.refactor_packages.entity_data_source.IEntityDataSourceContainer;
 import net.thejadeproject.ascension.refactor_packages.events.PhysiqueChangeEvent;
 import net.thejadeproject.ascension.refactor_packages.forms.IEntityForm;
 import net.thejadeproject.ascension.refactor_packages.forms.IEntityFormData;
@@ -58,6 +60,7 @@ public class GenericEntityData implements IEntityData {
     private final EntityQiContainer entityQiContainer = new EntityQiContainer(this);
     boolean attachedEntityLoaded;
 
+    private HashMap<ResourceLocation,IEntityDataSourceContainer> sourceContainers;
 
     //used during loading to temporarily store data, and when we save ignore.
     //important because during simulation something might exist before we actually made any data for it
@@ -160,6 +163,21 @@ public class GenericEntityData implements IEntityData {
             //TODO add a cache for when the form does not yet exist
         }
         loading = false;
+
+        loading = true;
+
+
+        ListTag dataSources = tag.getList("entity_data_sources",Tag.TAG_COMPOUND);
+        for(int i = 0;i<dataSources.size();i++){
+            CompoundTag dataSource = dataSources.getCompound(i);
+            ResourceLocation key = ResourceLocation.parse(dataSource.getString("type"));
+            IEntityDataSourceContainer container = AscensionRegistries.EntityDataSources.ENTITY_DATA_SOURCES_REGISTRY.get(key).fromCompound(dataSource);
+            container.getDataSource().onAdded(this,container);
+            sourceContainers.put(key,container);
+        }
+
+        loading = false;
+
         getSkillCastHandler().read(tag.getCompound("skill_cast_handler"));
         getAscensionAttributeHolder().updateAttributes(this);
         getQiContainer().fullFillQi();
@@ -232,6 +250,13 @@ public class GenericEntityData implements IEntityData {
         tag.put("skill_data",skillTags);
         tag.put("path_progress",pathDataTags);
 
+        ListTag dataSources = new ListTag();
+        for(ResourceLocation key : sourceContainers.keySet()){
+            CompoundTag dataSource = new CompoundTag();
+            dataSource.putString("type",key.toString());
+            sourceContainers.get(key).write(dataSource);
+        }
+        tag.put("entity_data_sources",dataSources);
 
         tag.put("skill_cast_handler",getSkillCastHandler().write());
         //path data, make sure to also hold the path
@@ -757,6 +782,27 @@ public class GenericEntityData implements IEntityData {
     }
 
     @Override
+    public void removeSkill(ResourceLocation skill) {
+        if(!hasSkill(skill)) return;
+        IPersistentSkillData skillData = null;
+        HashSet<ResourceLocation> modifiedForms = new HashSet<>();
+        for(ResourceLocation formKey : heldFormData.keySet()){
+            IEntityFormData formData = heldFormData.get(formKey);
+            if(!formData.getHeldSkills().hasSkill(skill)) continue;
+            skillData = formData.getHeldSkills().removeSkill(skill);
+            modifiedForms.add(formKey);
+        }
+        ISkill skillInstance = AscensionRegistries.Skills.SKILL_REGISTRY.get(skill);
+        skillInstance.onRemoved(this,skillData);
+        if(getAttachedEntity() instanceof ServerPlayer serverPlayer && serverPlayer.connection != null){
+            for(ResourceLocation modifiedForm : modifiedForms){
+                PacketDistributor.sendToPlayer(serverPlayer,new SyncHeldSkills(modifiedForm.toString(),heldFormData.get(modifiedForm).getHeldSkills()));
+            }
+
+        }
+    }
+
+    @Override
     public boolean hasSkill(ResourceLocation skill) {
         for(IEntityFormData formData : heldFormData.values()){
             if(formData.getHeldSkills() != null && formData.getHeldSkills().hasSkill(skill)) return true;
@@ -804,6 +850,46 @@ public class GenericEntityData implements IEntityData {
         if (((LivingEntity) attachedEntity).tickCount % 20 == 0) {
             entityQiContainer.tryRegenQi();
         }
+
+        Collection<IEntityDataSourceContainer> containers = sourceContainers.values();
+        for(IEntityDataSourceContainer container : containers){
+            container.getDataSource().tick(this,container);
+        }
+
+    }
+    //============================= ENTITY DATA SOURCES ===============================
+    @Override
+    public void addEntityDataSource(IEntityDataSourceContainer container) {
+        if(sourceContainers.containsKey(container.getInstanceIdentifier())){
+            IEntityDataSourceContainer other = sourceContainers.remove(container.getInstanceIdentifier());
+            other.getDataSource().onRemoved(this,other);
+        }
+        sourceContainers.put(container.getInstanceIdentifier(),container);
+        container.getDataSource().onAdded(this,container);
+    }
+
+    @Override
+    public IEntityDataSourceContainer getSourceContainer(ResourceLocation identifier) {
+        return sourceContainers.get(identifier);
+    }
+
+    @Override
+    public IEntityDataSourceContainer removeEntitySource(ResourceLocation identifier) {
+        if(sourceContainers.containsKey(identifier)){
+            IEntityDataSourceContainer container = sourceContainers.remove(identifier);
+            container.getDataSource().onRemoved(this,container);
+            return container;
+        }
+        return null;
+    }
+
+    @Override
+    public Collection<IEntityDataSourceContainer> getContainersOfType(IEntityDataSource source) {
+        ArrayList<IEntityDataSourceContainer> containers = new ArrayList<>();
+        for(ResourceLocation key : sourceContainers.keySet()){
+            if(sourceContainers.get(key).getDataSource() == source) containers.add(sourceContainers.get(key));
+        }
+        return containers;
     }
 
     //============================= ATTRIBUTES =======================================

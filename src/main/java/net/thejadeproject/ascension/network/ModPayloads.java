@@ -13,6 +13,7 @@ import net.thejadeproject.ascension.refactor_packages.network.client_bound.entit
 import net.thejadeproject.ascension.refactor_packages.network.client_bound.entity_data.path_data.SyncPathData;
 import net.thejadeproject.ascension.refactor_packages.network.client_bound.entity_data.physique.SyncPhysique;
 import net.thejadeproject.ascension.refactor_packages.network.client_bound.entity_data.techniques.ShowMergePromptPayload;
+import net.thejadeproject.ascension.refactor_packages.network.server_bound.supressors.UpdateSuppressionValue;
 import net.thejadeproject.ascension.refactor_packages.network.server_bound.techniques.MergeResponsePayload;
 import net.thejadeproject.ascension.refactor_packages.network.client_bound.entity_data.skills.casting.SyncCastingInstance;
 import net.thejadeproject.ascension.refactor_packages.network.client_bound.entity_data.skills.casting.SyncSlot;
@@ -106,6 +107,11 @@ public class ModPayloads {
                 ToggleTabletDropModePayload.TYPE,
                 ToggleTabletDropModePayload.STREAM_CODEC,
                 ToggleTabletDropModePayload::handlePayload
+        );
+        registrar.playToServer(
+                UpdateSuppressionValue.TYPE,
+                UpdateSuppressionValue.STREAM_CODEC,
+                UpdateSuppressionValue::handlePayload
         );
 
         registrar.playToServer(
