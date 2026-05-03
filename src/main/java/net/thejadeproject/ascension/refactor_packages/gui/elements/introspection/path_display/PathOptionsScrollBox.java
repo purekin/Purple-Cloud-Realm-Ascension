@@ -12,6 +12,18 @@ public class PathOptionsScrollBox extends ScrollBox {
     }
 
     @Override
+    public int getMaxYScroll() {
+        return Math.max(0,getChildren().size()*12-getHeight());
+    }
+
+    @Override
+    public void updateVisibility(RenderableElement element) {
+        boolean condition =
+                !(element.getPositioning().getY()+element.getHeight() <= 0) &&
+                        !(element.getPositioning().getY() > getHeight());
+        element.setVisible(condition);
+    }
+    @Override
     public void updatePos(RenderableElement element) {
         if(getChildren().isEmpty()) return;
         element.getPositioning().setFromRawY(getChildren().getLast().getPositioning().getRawY()+getChildren().getLast().getHeight()+2);

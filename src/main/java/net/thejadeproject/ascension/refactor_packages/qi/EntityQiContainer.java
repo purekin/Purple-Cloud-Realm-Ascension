@@ -1,6 +1,9 @@
 package net.thejadeproject.ascension.refactor_packages.qi;
 
+import net.minecraft.server.level.ServerPlayer;
+import net.neoforged.neoforge.network.PacketDistributor;
 import net.thejadeproject.ascension.refactor_packages.entity_data.IEntityData;
+import net.thejadeproject.ascension.refactor_packages.network.client_bound.entity_data.qi.SyncQi;
 import net.thejadeproject.ascension.util.ModAttributes;
 
 import java.util.HashMap;
@@ -48,23 +51,31 @@ public class EntityQiContainer {
 
     public void setCurrentQi(double amount) {
         currentQi = Math.clamp(amount, 0.0D, getMaxQi());
+        sync();
+
     }
 
     public void tryRegenQi(){
         double regenRate = attachedEntity.getAscensionAttributeHolder().getAttribute(ModAttributes.QI_REGEN_RATE).getValue();
 
         setCurrentQi(currentQi + regenRate);
+
     }
 
     public boolean tryConsumeQi(double amount){
         if (!hasQi(amount)) return false;
 
         setCurrentQi(currentQi - amount);
+
         return true;
     }
 
 
-
+    public void sync(){
+        if(attachedEntity.getAttachedEntity() instanceof ServerPlayer player){
+            PacketDistributor.sendToPlayer(player,new SyncQi(currentQi));
+        }
+    }
 
 
 

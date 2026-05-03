@@ -9,6 +9,8 @@ import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.thejadeproject.ascension.refactor_packages.attributes.AscensionAttributeHolder;
 import net.thejadeproject.ascension.refactor_packages.bloodlines.IBloodline;
 import net.thejadeproject.ascension.refactor_packages.bloodlines.IBloodlineData;
+import net.thejadeproject.ascension.refactor_packages.entity_data_source.IEntityDataSource;
+import net.thejadeproject.ascension.refactor_packages.entity_data_source.IEntityDataSourceContainer;
 import net.thejadeproject.ascension.refactor_packages.forms.IEntityForm;
 import net.thejadeproject.ascension.refactor_packages.forms.IEntityFormData;
 import net.thejadeproject.ascension.refactor_packages.forms.forms.ModForms;
@@ -23,6 +25,7 @@ import net.thejadeproject.ascension.refactor_packages.skills.IPersistentSkillDat
 import net.thejadeproject.ascension.refactor_packages.techniques.ITechniqueData;
 
 import java.util.Collection;
+import java.util.List;
 import java.util.Set;
 import java.util.UUID;
 //TODO implement properly
@@ -314,6 +317,11 @@ public class RemoteEntityData implements IEntityData{
     }
 
     @Override
+    public void removeSkill(ResourceLocation skill) {
+
+    }
+
+    @Override
     public boolean hasSkill(ResourceLocation skill) {
         return EntityDataManager.getEntityData(getWatchedEntityData()).hasSkill(skill);
     }
@@ -336,6 +344,28 @@ public class RemoteEntityData implements IEntityData{
     @Override
     public EntityQiContainer getQiContainer() {
         return EntityDataManager.getEntityData(getWatchedEntityData()).getQiContainer();
+    }
+
+    @Override
+    public void addEntityDataSource(IEntityDataSourceContainer container) {
+
+    }
+
+
+
+    @Override
+    public IEntityDataSourceContainer getSourceContainer(ResourceLocation identifier) {
+        return null;
+    }
+
+    @Override
+    public IEntityDataSourceContainer removeEntitySource(ResourceLocation identifier) {
+        return null;
+    }
+
+    @Override
+    public Collection<IEntityDataSourceContainer> getContainersOfType(IEntityDataSource source) {
+        return List.of();
     }
 
     @Override

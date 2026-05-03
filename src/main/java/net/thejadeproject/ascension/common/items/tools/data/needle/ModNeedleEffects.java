@@ -7,6 +7,7 @@ import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.projectile.Projectile;
 import net.thejadeproject.ascension.AscensionCraft;
+import net.thejadeproject.ascension.refactor_packages.forms.forms.ModForms;
 import net.thejadeproject.ascension.refactor_packages.skills.custom.passive.debuff.skill_data.DebuffSkillHelper;
 import net.thejadeproject.ascension.refactor_packages.skills.custom.ModSkills;
 
@@ -94,22 +95,25 @@ public class ModNeedleEffects {
             20 * 10 // lasts 10 seconds
     );
 
-    public static final INeedleEffect QI_DEVOURING_POISON = permanentPassive(
+    public static final INeedleEffect QI_DEVOURING_POISON = temporaryPassive(
             "needle_qi_devouring_poison",
-            ModSkills.QI_DEVOURING_POISON.getId()
+            ModSkills.QI_DEVOURING_POISON.getId(),
+            20 * 10
     );
-    public static final INeedleEffect CORROSIVE_POISON = permanentPassive(
+    public static final INeedleEffect CORROSIVE_POISON = temporaryPassive(
             "needle_corrosive_poison",
-            ModSkills.CORROSIVE_POISON_DEBUFF.getId()
+            ModSkills.CORROSIVE_POISON_DEBUFF.getId(),
+            20 * 10
     );
     public static final INeedleEffect FROST_SILKWORM_POISON_TEMP = temporaryPassive(
             "needle_frost_silkworm_poison_temp",
             ModSkills.FROST_SILKWORM_POISON_TEMP.getId(),
             20 * 45 // 45 seconds
     );
-    public static final INeedleEffect FROST_SILKWORM_POISON = permanentPassive(
+    public static final INeedleEffect FROST_SILKWORM_POISON = temporaryPassive(
             "needle_frost_silkworm_poison",
-            ModSkills.FROST_SILKWORM_POISON.getId()
+            ModSkills.FROST_SILKWORM_POISON.getId(),
+            20 * 10
     );
 
     private static INeedleEffect temporaryPassive(String path, ResourceLocation skillId, int durationTicks) {
@@ -124,11 +128,12 @@ public class ModNeedleEffects {
             @Override
             public void onHit(LivingEntity target, LivingEntity shooter, Projectile projectile) {
                 if (!(target instanceof ServerPlayer serverTarget)) return;
-
-                DebuffSkillHelper.giveTemporaryDebuff(
+                DebuffSkillHelper.giveTempDebuffSource(
                         serverTarget,
+                        id,
                         skillId,
-                        durationTicks
+                        durationTicks,
+                        ModForms.MORTAL_VESSEL.getId()
                 );
             }
         });

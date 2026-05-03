@@ -4,15 +4,46 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
 import net.thejadeproject.ascension.data_attachments.ModAttachments;
 import net.thejadeproject.ascension.refactor_packages.entity_data.IEntityData;
+import net.thejadeproject.ascension.refactor_packages.entity_data_source.custom.TemporarySkill;
+import net.thejadeproject.ascension.refactor_packages.entity_data_source.custom.TemporarySkillContainer;
 import net.thejadeproject.ascension.refactor_packages.forms.forms.ModForms;
 import net.thejadeproject.ascension.refactor_packages.skills.IPersistentSkillData;
 
 public final class DebuffSkillHelper {
 
     private DebuffSkillHelper() {}
+    public static void giveTempDebuffSource(ServerPlayer serverPlayer,ResourceLocation debuffId,ResourceLocation skillId,int ticks,ResourceLocation form){
+        TemporarySkillContainer temporarySkillContainer = TemporarySkill.create(skillId,ticks,debuffId);
+        long gameTime = serverPlayer.serverLevel().getGameTime();
+        long expiresAt = gameTime + ticks;
+        DebuffSkillData debuffSkillData = DebuffSkillData.temporary(expiresAt, gameTime);
 
+        IEntityData entityData = serverPlayer.getData(ModAttachments.ENTITY_DATA);
+
+        if (!entityData.hasSkill(skillId)) {
+            entityData.giveSkill(skillId, debuffSkillData, form);
+            System.out.println("adding entity source : "+debuffId);
+            entityData.addEntityDataSource(temporarySkillContainer);
+            return;
+        }
+
+        IPersistentSkillData existingRawData = entityData.getSkillData(skillId);
+
+        DebuffSkillData finalData = debuffSkillData;
+
+        if (existingRawData instanceof DebuffSkillData existingData) {
+            finalData = existingData.mergeWith(debuffSkillData);
+        }
+
+
+        entityData.removeSkill(skillId, form);
+        entityData.giveSkill(skillId, finalData, form);
+
+
+    }
     public static void giveTemporaryDebuff(ServerPlayer player, ResourceLocation skillId, int durationTicks) {
         giveTemporaryDebuff(player, skillId, durationTicks, ModForms.MORTAL_VESSEL.getId());
+
     }
 
     public static void giveTemporaryDebuff(ServerPlayer player, ResourceLocation skillId, int durationTicks, ResourceLocation formId) {
@@ -65,6 +96,8 @@ public final class DebuffSkillHelper {
 
         entityData.removeSkill(skillId, formId);
         entityData.giveSkill(skillId, finalData, formId);
+
+
     }
 
     public static boolean removeIfExpired(ServerPlayer player, IEntityData entityData, ResourceLocation skillId) {

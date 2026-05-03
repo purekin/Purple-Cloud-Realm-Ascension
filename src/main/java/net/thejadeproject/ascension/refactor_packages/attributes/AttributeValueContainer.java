@@ -98,7 +98,9 @@ public class AttributeValueContainer extends ValueContainer {
         validateAttributeValue();
         return isSuppressed()?getSuppressedValue():super.getValue();
     }
-
+    public double getUnsuppressedValue(){
+        return super.getValue();
+    }
     @Override
     public double getBaseValue() {
         validateAttributeValue();
@@ -110,7 +112,7 @@ public class AttributeValueContainer extends ValueContainer {
     }
     public void setSuppressedValue(double value){
         this.suppressedValue = value;
-        setSuppressed(getValue()>getSuppressedValue());
+        setSuppressed(getUnsuppressedValue()>getSuppressedValue());
     }
     public void setSuppressed(boolean suppressed){
         this.suppressed = suppressed;

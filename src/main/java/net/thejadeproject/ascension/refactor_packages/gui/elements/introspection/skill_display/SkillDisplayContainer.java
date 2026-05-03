@@ -9,6 +9,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.thejadeproject.ascension.AscensionCraft;
 import net.thejadeproject.ascension.refactor_packages.gui.elements.general.Container;
 import net.thejadeproject.ascension.refactor_packages.gui.elements.general.EasyImage;
+import net.thejadeproject.ascension.refactor_packages.gui.elements.info_elements.IInformationContainer;
 import net.thejadeproject.ascension.refactor_packages.gui.elements.introspection.BackButton;
 import net.thejadeproject.ascension.refactor_packages.registries.AscensionRegistries;
 import net.thejadeproject.ascension.refactor_packages.skills.ISkill;
@@ -91,7 +92,9 @@ public class SkillDisplayContainer extends RenderableElement {
         if(selectedSkill != null){
             ISkill skill = AscensionRegistries.Skills.SKILL_REGISTRY.get(selectedSkill);
             selectedSkillIcon.setTextureData(skill.getIcon());
-            selectedSkillContainer.addChild(skill.getInformationContainer(getUiFrame()));
+            RenderableElement element = skill.getInformationContainer(getUiFrame());
+            selectedSkillContainer.addChild(element);
+            if(element instanceof IInformationContainer informationContainer)informationContainer.refresh();
         }
     }
     public ResourceLocation getSelectedSkill(){

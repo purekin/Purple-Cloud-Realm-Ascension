@@ -63,6 +63,7 @@ import net.thejadeproject.ascension.menus.ModMenuTypes;
 
 import net.thejadeproject.ascension.refactor_packages.alchemy.ModPillEffects;
 import net.thejadeproject.ascension.refactor_packages.entity_data.GenericEntityData;
+import net.thejadeproject.ascension.refactor_packages.entity_data_source.ModDataSources;
 import net.thejadeproject.ascension.refactor_packages.forms.IEntityFormData;
 import net.thejadeproject.ascension.refactor_packages.forms.forms.ModForms;
 import net.thejadeproject.ascension.refactor_packages.network.client_bound.entity_data.attributes.SyncAttributeHolder;
@@ -159,7 +160,7 @@ public class AscensionCraft {
         NeoForge.EVENT_BUS.addListener(this::registerCommands);
 
         ModTechniques.register(modEventBus);
-
+        ModDataSources.register(modEventBus);
         ModDataComponents.register(modEventBus);
         CreativeTabHandler.register(modEventBus);
 

@@ -30,6 +30,7 @@ public interface IPath {
     int getMaxMajorRealm();
     int getMaxMinorRealm(int majorRealm);
     double getMaxQiForRealm(int majorRealm,int minorRealm);
+
     double getQiConversionRatio(); // return value is what the path qi needs to be multiplied by
     double tryRegenQi(double amount,IEntityData heldEntity);// pass the amount of qi we WANT to regen and return HOW MUCH to regen
     void qiConsumed(double amount,IEntityData heldEntity);
