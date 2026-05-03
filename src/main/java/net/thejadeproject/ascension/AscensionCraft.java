@@ -17,10 +17,14 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.attributes.RangedAttribute;
+import net.minecraft.world.entity.npc.VillagerTrades;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.RecipeSerializer;
+import net.minecraft.world.item.trading.ItemCost;
+import net.minecraft.world.item.trading.MerchantOffer;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.DispenserBlock;
 import net.neoforged.fml.event.lifecycle.FMLLoadCompleteEvent;
@@ -31,6 +35,7 @@ import net.neoforged.neoforge.event.entity.living.LivingDeathEvent;
 import net.neoforged.neoforge.event.entity.living.LivingDropsEvent;
 import net.neoforged.neoforge.event.entity.player.PlayerEvent;
 import net.neoforged.neoforge.event.tick.PlayerTickEvent;
+import net.neoforged.neoforge.event.village.WandererTradesEvent;
 import net.neoforged.neoforge.network.PacketDistributor;
 import net.neoforged.neoforge.network.event.RegisterPayloadHandlersEvent;
 import net.neoforged.neoforge.registries.DeferredHolder;
@@ -42,6 +47,8 @@ import net.thejadeproject.ascension.common.command.AscensionCommand;
 
 import net.thejadeproject.ascension.common.items.artifacts.talismans.SoulAnchorTalisman;
 import net.thejadeproject.ascension.common.items.data_components.ModDataComponents;
+import net.thejadeproject.ascension.common.items.techniques.TechniquePageItem;
+import net.thejadeproject.ascension.common.items.techniques.TechniqueTransferItem;
 import net.thejadeproject.ascension.entity.custom.NeedleProjectile;
 import net.thejadeproject.ascension.events.TeleportationEventHandler;
 
@@ -95,6 +102,7 @@ import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
@@ -385,6 +393,93 @@ public class AscensionCraft {
             event.add(EntityType.PLAYER, ModAttributes.QI_REGEN_RATE);
 
         }
+
+
+
+
+
+
+        @SubscribeEvent
+        public static void addWanderingTraderTrades(WandererTradesEvent event) {
+            List<VillagerTrades.ItemListing> rareTrades = event.getRareTrades();
+            List<VillagerTrades.ItemListing> genericTrades = event.getGenericTrades();
+
+            rareTrades.add((entity, randomSource) -> new MerchantOffer(
+                    new ItemCost(ModItems.SPIRITUAL_STONE.get(), 64),
+                    makePageStack(AscensionCraft.MOD_ID + ":white_lightning_ten_stage_technique", 0),
+                    1, 10, 0f
+            ));
+            rareTrades.add((entity, randomSource) -> new MerchantOffer(
+                    new ItemCost(ModItems.SPIRITUAL_STONE.get(), 64),
+                    makePageStack(AscensionCraft.MOD_ID + ":white_lightning_ten_stage_technique", 1),
+                    1, 10, 0f
+            ));
+            rareTrades.add((entity, randomSource) -> new MerchantOffer(
+                    new ItemCost(ModItems.SPIRITUAL_STONE.get(), 64),
+                    makePageStack(AscensionCraft.MOD_ID + ":white_lightning_ten_stage_technique", 3),
+                    1, 10, 0f
+            ));
+            rareTrades.add((entity, randomSource) -> new MerchantOffer(
+                    new ItemCost(ModItems.SPIRITUAL_STONE.get(), 64),
+                    makePageStack(AscensionCraft.MOD_ID + ":white_lightning_ten_stage_technique", 4),
+                    1, 10, 0f
+            ));
+            rareTrades.add((entity, randomSource) -> new MerchantOffer(
+                    new ItemCost(ModItems.SPIRITUAL_STONE.get(), 64),
+                    makePageStack(AscensionCraft.MOD_ID + ":white_lightning_ten_stage_technique", 6),
+                    1, 10, 0f
+            ));
+            rareTrades.add((entity, randomSource) -> new MerchantOffer(
+                    new ItemCost(ModItems.SPIRITUAL_STONE.get(), 64),
+                    makePageStack(AscensionCraft.MOD_ID + ":white_lightning_ten_stage_technique", 7),
+                    1, 10, 0f
+            ));
+            rareTrades.add((entity, randomSource) -> new MerchantOffer(
+                    new ItemCost(ModItems.SPIRITUAL_STONE.get(), 64),
+                    makePageStack(AscensionCraft.MOD_ID + ":white_lightning_ten_stage_technique", 8),
+                    1, 10, 0f
+            ));
+            rareTrades.add((entity, randomSource) -> new MerchantOffer(
+                    new ItemCost(ModItems.SPIRITUAL_STONE.get(), 64),
+                    makePageStack(AscensionCraft.MOD_ID + ":white_lightning_ten_stage_technique", 9),
+                    1, 10, 0f
+            ));
+            rareTrades.add((entity, randomSource) -> new MerchantOffer(
+                    new ItemCost(ModItems.SPIRITUAL_STONE.get(), 64),
+                    makePageStack(AscensionCraft.MOD_ID + ":bloodfeast_soul_refining_scripture", 0),
+                    1, 10, 0f
+            ));
+            rareTrades.add((entity, randomSource) -> new MerchantOffer(
+                    new ItemCost(ModItems.SPIRITUAL_STONE.get(), 64),
+                    makePageStack(AscensionCraft.MOD_ID + ":bloodfeast_soul_refining_scripture", 1),
+                    1, 10, 0f
+            ));
+            rareTrades.add((entity, randomSource) -> new MerchantOffer(
+                    new ItemCost(ModItems.SPIRITUAL_STONE.get(), 64),
+                    makePageStack(AscensionCraft.MOD_ID + ":bloodfeast_soul_refining_scripture", 2),
+                    1, 10, 0f
+            ));
+            rareTrades.add((entity, randomSource) -> new MerchantOffer(
+                    new ItemCost(ModItems.SPIRITUAL_STONE.get(), 64),
+                    makePageStack(AscensionCraft.MOD_ID + ":bloodfeast_soul_refining_scripture", 3),
+                    1, 10, 0f
+            ));
+            rareTrades.add((entity, randomSource) -> new MerchantOffer(
+                    new ItemCost(ModItems.SPIRITUAL_STONE.get(), 64),
+                    makePageStack(AscensionCraft.MOD_ID + ":bloodfeast_soul_refining_scripture", 5),
+                    1, 10, 0f
+            ));
+        }
+
+        private static ItemStack makePageStack(String techniqueId, int pageIndex) {
+            ItemStack stack = new ItemStack(ModItems.TECHNIQUE_PAGE.get());
+            stack.set(ModDataComponents.TECHNIQUE_ID.get(), techniqueId);
+            stack.set(ModDataComponents.PAGE_INDEX.get(), pageIndex);
+            return stack;
+        }
+
+
+
 
         @SubscribeEvent
         public static void registerPayloads(RegisterPayloadHandlersEvent event) {
