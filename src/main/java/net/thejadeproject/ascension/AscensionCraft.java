@@ -35,6 +35,7 @@ import net.neoforged.neoforge.network.PacketDistributor;
 import net.neoforged.neoforge.network.event.RegisterPayloadHandlersEvent;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
+import net.thejadeproject.ascension.clients.renderer.skills.BloodfeastAoeRenderer;
 import net.thejadeproject.ascension.common.blocks.ModBlocks;
 import net.thejadeproject.ascension.common.blocks.custom.functions.FreezingEffectItems;
 import net.thejadeproject.ascension.common.blocks.entity.ModBlockEntities;
@@ -71,6 +72,7 @@ import net.thejadeproject.ascension.refactor_packages.physiques.ModPhysiques;
 import net.thejadeproject.ascension.refactor_packages.skills.custom.ModSkills;
 import net.thejadeproject.ascension.refactor_packages.stats.custom.ModStats;
 import net.thejadeproject.ascension.refactor_packages.techniques.ModTechniques;
+import net.thejadeproject.ascension.refactor_packages.techniques.custom.handlers.BloodfeastKillHandler;
 import net.thejadeproject.ascension.util.KeyBindHandler;
 
 import net.thejadeproject.ascension.data_attachments.ModAttachments;
@@ -163,6 +165,9 @@ public class AscensionCraft {
         CreativeTabHandler.register(modEventBus);
 
         ModFeatureRegistration.register(modEventBus);
+
+        NeoForge.EVENT_BUS.register(new BloodfeastKillHandler());
+        NeoForge.EVENT_BUS.register(new BloodfeastAoeRenderer());
 
     }
 

@@ -55,14 +55,14 @@ public class PathSelectionButton extends EasyButton {
     }
     public void globalMouseMoveEvent(EasyEvent event){
         if(!(event instanceof EasyMouseEvent easyMouseEvent)) return;
-        System.out.println("global mouse moved");
+
         if(isHovered() && !isPointBounded(easyMouseEvent.getMouseX(),easyMouseEvent.getMouseY())) setHovered(false);
     }
     @Override
     public void mouseMoveEvent(EasyEvent event){
-        System.out.println("hovered");
+
         if(!(event instanceof EasyMouseEvent easyMouseEvent)) return; //make sure the right event was called (should always be this but double check)
-        System.out.println("hovered");
+
         setHovered(true);
         if(isPressed() && !isHovered()) setPressed(false); //if mouse moves away and was being pressed unPress
         event.setCanceled(true);

@@ -4,6 +4,7 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.neoforged.bus.api.IEventBus;
+import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import net.thejadeproject.ascension.AscensionCraft;
@@ -21,9 +22,11 @@ import net.thejadeproject.ascension.refactor_packages.techniques.custom.soul.Sch
 import net.thejadeproject.ascension.refactor_packages.techniques.custom.body.WhiteLightningTenStageTechnique;
 import net.thejadeproject.ascension.refactor_packages.techniques.custom.essence.*;
 import net.thejadeproject.ascension.refactor_packages.techniques.custom.stat_change_handlers.BasicStatChangeHandler;
+import net.thejadeproject.ascension.refactor_packages.techniques.helpers.TechniqueManualRegistry;
 import net.thejadeproject.ascension.refactor_packages.util.value_modifiers.ModifierOperation;
 import net.thejadeproject.ascension.refactor_packages.util.value_modifiers.ValueContainerModifier;
 
+import java.util.List;
 import java.util.Set;
 
 public class ModTechniques {
@@ -40,6 +43,7 @@ public class ModTechniques {
     public static final ResourceLocation TIER3_BODY_KEY  = ResourceLocation.fromNamespaceAndPath(AscensionCraft.MOD_ID, "tier3_body_tech");
     public static final ResourceLocation TIER4_BODY_KEY  = ResourceLocation.fromNamespaceAndPath(AscensionCraft.MOD_ID, "tier4_body_tech");
     public static final ResourceLocation TIER5_BODY_KEY  = ResourceLocation.fromNamespaceAndPath(AscensionCraft.MOD_ID, "tier5_body_tech");
+    public static final ResourceLocation BLOODFEAST_KEY = ResourceLocation.fromNamespaceAndPath(AscensionCraft.MOD_ID, "bloodfeast_soul_refining");
 
     // --- Placeholder handler ---
     public static BasicStatChangeHandler testHandler = new BasicStatChangeHandler()
@@ -121,6 +125,27 @@ public class ModTechniques {
     public static final DeferredHolder<ITechnique, ? extends GenericTechnique> ADVANCED_CULTIVATION_TECHNIQUE = TECHNIQUES.register("advanced_cultivation_technique",()->
             new GenericTechnique(ModPaths.ESSENCE.getId(),Component.translatable("ascension.technique.advanced_cultivation_technique"),10.0,Set.of())
                     .setStatChangeHandler(testHandler));
+
+
+
+
+    public static final DeferredHolder<ITechnique, ? extends BloodfeastSoulRefiningTechnique>
+            BLOODFEAST_SOUL_REFINING_SCRIPTURE = TECHNIQUES.register(
+            "bloodfeast_soul_refining_scripture",
+            () -> new BloodfeastSoulRefiningTechnique(new BasicStatChangeHandler())
+                    // ── Minor realm gains (per minor realm advance) ───────────────
+                    .addMinorRealmStatModifier(ModStats.VITALITY.getId(),
+                            new ValueContainerModifier(10, ModifierOperation.ADD_BASE, BLOODFEAST_KEY))
+                    .addMinorRealmStatModifier(ModStats.STRENGTH.getId(),
+                            new ValueContainerModifier(5,  ModifierOperation.ADD_BASE, BLOODFEAST_KEY))
+                    .addMinorRealmStatModifier(ModStats.AGILITY.getId(),
+                            new ValueContainerModifier(3,  ModifierOperation.ADD_BASE, BLOODFEAST_KEY))
+                    .addMinorRealmAttributeModifier(Attributes.MAX_HEALTH,
+                            new ValueContainerModifier(7,  ModifierOperation.ADD_BASE, BLOODFEAST_KEY))
+                    // ── Major realm gains (per major realm advance) ───────────────
+                    .addMajorRealmStatModifier(ModStats.VITALITY.getId(),
+                            new ValueContainerModifier(0.20, ModifierOperation.MULTIPLY_FINAL, BLOODFEAST_KEY))
+    );
 
 
 
@@ -289,7 +314,6 @@ public class ModTechniques {
 
         public static final DeferredHolder<ITechnique, ? extends SoulThreadTechnique> SOUL_THREAD_TECHNIQUE
         public static final DeferredHolder<ITechnique, ? extends MirrorSoulTechnique> MIRROR_SOUL_TECHNIQUE
-
         public static final DeferredHolder<ITechnique, ? extends NineEchoSoulTechnique> NINE_ECHOS_SOUL_ART
         public static final DeferredHolder<ITechnique, ? extends JadeSpiritTechnique> JADE_SPIRIT_SCRIPTURE
         public static final DeferredHolder<ITechnique, ? extends GhostLanternTechnique> GHOST_LANTERN_METHOD
@@ -307,5 +331,37 @@ public class ModTechniques {
 
     public static void register(IEventBus modEventBus){
         TECHNIQUES.register(modEventBus);
+
+        modEventBus.addListener(FMLCommonSetupEvent.class, event -> event.enqueueWork(() -> {
+            TechniqueManualRegistry.register(
+                    BLOODFEAST_SOUL_REFINING_SCRIPTURE.getId(),
+                    6,
+                    List.of(
+                            "ascension.chapter.bloodfeast_soul_refining_scripture.1",
+                            "ascension.chapter.bloodfeast_soul_refining_scripture.2",
+                            "ascension.chapter.bloodfeast_soul_refining_scripture.3",
+                            "ascension.chapter.bloodfeast_soul_refining_scripture.4",
+                            "ascension.chapter.bloodfeast_soul_refining_scripture.5",
+                            "ascension.chapter.bloodfeast_soul_refining_scripture.6"
+                    )
+            );
+            TechniqueManualRegistry.register(
+                    WHITE_LIGHTNING_TEN_STAGE_TECHNIQUE.getId(),
+                    10,
+                    List.of(
+                            "ascension.chapter.white_lightning_ten_stage_technique.1",
+                            "ascension.chapter.white_lightning_ten_stage_technique.2",
+                            "ascension.chapter.white_lightning_ten_stage_technique.3",
+                            "ascension.chapter.white_lightning_ten_stage_technique.4",
+                            "ascension.chapter.white_lightning_ten_stage_technique.5",
+                            "ascension.chapter.white_lightning_ten_stage_technique.6",
+                            "ascension.chapter.white_lightning_ten_stage_technique.7",
+                            "ascension.chapter.white_lightning_ten_stage_technique.8",
+                            "ascension.chapter.white_lightning_ten_stage_technique.9",
+                            "ascension.chapter.white_lightning_ten_stage_technique.10"
+                    )
+            );
+
+        }));
     }
 }
