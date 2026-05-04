@@ -41,7 +41,7 @@ public class InputHandler {
     //maps a keyMapping->handler
     private final static HashMap<KeyMapping, ActionHandler> actionHandlerMapping = new HashMap<>(){{
         put(CAST_SKILL_KEY,new ActionHandler("skill_cast").setOnDown((mod)-> {
-            System.out.println("pressed skill cast key");
+            //System.out.println("pressed skill cast key");
 
         }));
         put(OPEN_SKILL_MENU,new ActionHandler("skill_menu_opening").setOnRelease((mod)->{

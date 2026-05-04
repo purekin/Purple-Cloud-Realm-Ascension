@@ -74,11 +74,11 @@ public class PhysiqueTransferItem extends Item {
                 stack.shrink(1);
             }
 
-            player.sendSystemMessage(
-                    Component.literal("Physique replaced with ")
-                            .append(getPhysiqueDisplayName(targetPhysiqueId))
-                            .append(Component.literal("!"))
-            );
+//            player.sendSystemMessage(
+//                    Component.literal("Physique replaced with ")
+//                            .append(getPhysiqueDisplayName(targetPhysiqueId))
+//                            .append(Component.literal("!"))
+//            );
 
             if (player instanceof ServerPlayer serverPlayer) {
                 PacketDistributor.sendToPlayer(

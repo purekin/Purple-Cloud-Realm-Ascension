@@ -29,13 +29,13 @@ public class TechniqueTransferItem extends Item {
     public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand hand) {
         ItemStack stack = player.getItemInHand(hand);
 
-        System.out.println("trying to learn technique");
+        //System.out.println("trying to learn technique");
 
         if (!level.isClientSide() && player.isShiftKeyDown()) {
             String techniqueId = stack.get(ModDataComponents.TECHNIQUE_ID.get());
 
             if (techniqueId == null) {
-                System.out.println("no held technique");
+                //System.out.println("no held technique");
                 return InteractionResultHolder.fail(stack);
             }
 
@@ -45,7 +45,7 @@ public class TechniqueTransferItem extends Item {
             toastIcon.setCount(1);
 
             if (player.getData(ModAttachments.ENTITY_DATA).setTechnique(ResourceLocation.parse(techniqueId))) {
-                System.out.println("technique learned");
+                //System.out.println("technique learned");
 
                 if (!player.getAbilities().instabuild) {
                     stack.shrink(1);
@@ -69,7 +69,7 @@ public class TechniqueTransferItem extends Item {
                     );
                 }
             } else {
-                System.out.println("failed to learn");
+                //System.out.println("failed to learn");
 
                 player.sendSystemMessage(
                         Component.literal("unable to learn ")

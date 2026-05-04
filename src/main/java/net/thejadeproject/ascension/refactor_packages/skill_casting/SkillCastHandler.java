@@ -90,7 +90,7 @@ public class SkillCastHandler {
         CastResult result = castableSkill.canCast(entity,preCastData);
         if(!result.isSuccess()){
             //TODO send message to client
-            System.out.println(result.message.getString());
+            //System.out.println(result.message.getString());
             return;
         }
 

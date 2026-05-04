@@ -104,8 +104,8 @@ public class GenericTechnique implements ITechnique {
 
     @Override
     public void onRealmChange(IEntityData entityData, int oldMajorRealm, int oldMinorRealm, int newMajorRealm, int newMinorRealm) {
-        System.out.println("technique: "+AscensionRegistries.Techniques.TECHNIQUES_REGISTRY.getKey(this).toString());
-        System.out.println("realm: ("+oldMajorRealm+","+oldMinorRealm+") -> ("+newMajorRealm+","+newMinorRealm+")");
+        //System.out.println("technique: "+AscensionRegistries.Techniques.TECHNIQUES_REGISTRY.getKey(this).toString());
+        //System.out.println("realm: ("+oldMajorRealm+","+oldMinorRealm+") -> ("+newMajorRealm+","+newMinorRealm+")");
         statChangeHandler.applyChanges(entityData,this,oldMajorRealm,oldMinorRealm,newMajorRealm,newMinorRealm);
 
         UniversalTechniqueSkillHelper.refresh(entityData, newMajorRealm);
@@ -117,7 +117,7 @@ public class GenericTechnique implements ITechnique {
         if(entityData.getAttachedEntity().level().isClientSide()) return;
         if(!(entityData.getAttachedEntity() instanceof  ServerPlayer serverPlayer)) return;
         if(serverPlayer.connection == null) return;
-        System.out.println("sending out sync packets");
+        //System.out.println("sending out sync packets");
         PacketDistributor.sendToPlayer(serverPlayer,new SyncAttributeHolder(entityData.getAscensionAttributeHolder()));
         for (IEntityFormData formData : entityData.getFormData()){
             formData.getStatSheet().sync(serverPlayer,formData.getEntityFormId());
