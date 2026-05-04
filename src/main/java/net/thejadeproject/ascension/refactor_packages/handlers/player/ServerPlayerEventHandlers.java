@@ -43,6 +43,24 @@ public class ServerPlayerEventHandlers {
         }
     }
     @SubscribeEvent
+    public static void onDimensionChange(PlayerEvent.PlayerChangedDimensionEvent event){
+        Player player = event.getEntity();
+        player.getData(ModAttachments.ENTITY_DATA).setHealth(player.getData(ModAttachments.ENTITY_DATA).getAscensionAttributeHolder().getAttribute(Attributes.MAX_HEALTH).getValue());
+
+        if(!event.getEntity().level().isClientSide()){
+            if(player.getData(ModAttachments.ENTITY_DATA) instanceof GenericEntityData genericEntityData){
+                genericEntityData.sync(player);
+                genericEntityData.getAscensionAttributeHolder().log();
+            }
+            player.getData(ModAttachments.ENTITY_DATA).getSkillCastHandler().sync(player);
+            PacketDistributor.sendToPlayer((ServerPlayer) player,new SyncAttributeHolder(player.getData(ModAttachments.ENTITY_DATA).getAscensionAttributeHolder()));
+
+            for(IEntityFormData formData:player.getData(ModAttachments.ENTITY_DATA).getFormData()){
+                formData.getStatSheet().sync((ServerPlayer) player,formData.getEntityFormId());
+            }
+        }
+    }
+    @SubscribeEvent
     public static void onPlayerRespawn(PlayerEvent.PlayerRespawnEvent event){
         Player player = event.getEntity();
         player.getData(ModAttachments.ENTITY_DATA).setHealth(player.getData(ModAttachments.ENTITY_DATA).getAscensionAttributeHolder().getAttribute(Attributes.MAX_HEALTH).getValue());

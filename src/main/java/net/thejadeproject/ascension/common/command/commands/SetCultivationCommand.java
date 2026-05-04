@@ -13,8 +13,10 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
+import net.neoforged.neoforge.network.PacketDistributor;
 import net.thejadeproject.ascension.data_attachments.ModAttachments;
 import net.thejadeproject.ascension.refactor_packages.entity_data.IEntityData;
+import net.thejadeproject.ascension.refactor_packages.network.client_bound.entity_data.path_data.SyncPathData;
 import net.thejadeproject.ascension.refactor_packages.paths.PathData;
 import net.thejadeproject.ascension.refactor_packages.qi.EntityQiContainer;
 import net.thejadeproject.ascension.refactor_packages.physiques.IPhysique;
@@ -272,7 +274,7 @@ public class SetCultivationCommand {
                 double maxQi = technique.getMaxQiForRealm(data.getMajorRealm(), data.getMinorRealm());
                 data.setCurrentRealmProgress(maxQi * (progressPercent / 100.0));
             }
-
+            data.sync(player);
             String progressStr = (progressPercent >= 0)
                     ? String.format(" with %d%% progress", progressPercent) : "";
 
