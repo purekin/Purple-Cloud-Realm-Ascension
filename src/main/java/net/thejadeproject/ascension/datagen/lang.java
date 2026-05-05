@@ -183,30 +183,61 @@ public class lang extends LanguageProvider {
         // Physiques
         add("ascension.physiques.mortal", "Mortal Physique");
         add("ascension.physiques.mortal.description","so fragile yet... full of potential"); //i know cringe but needed smth
+        add("ascension.physiques.mortal.description.short","full of potential");
         add("ascension.physiques.cripple", "Cripple");
         add("ascension.physiques.cripple.desc", "You are unable to Cultivate");
         add("ascension.physiques.cripple.desc.short", "Blocked Meridians, Shattered Marrow, and many other ailments destroyed your talent, stripping you of your ability to cultivate.");
         add("ascension.physiques.severed_meridians", "Severed Meridians");
+        add("ascension.physiques.severed_meridians.desc", "Your meridians have been torn apart, leaving your Qi unable to flow freely. Yet through pain, the body may still crawl toward power.");
+        add("ascension.physiques.severed_meridians.desc.short", "Your meridians are damaged, but your body still endures.");
         add("ascension.physiques.sword_bone", "Sword Bone");
+        add("ascension.physiques.sword_bone.desc", "Sword intent has settled into your bones, making every movement feel one breath closer to the blade.");
+        add("ascension.physiques.sword_bone.desc.short", "Your bones resonate with Sword Qi.");
         add("ascension.physiques.flame_touched", "Flame Touched");
+        add("ascension.physiques.flame_touched.desc", "A faint ember sleeps beneath your skin, warming your flesh and drawing Fire Qi toward you like sparks to dry wood.");
+        add("ascension.physiques.flame_touched.desc.short", "Your body carries a small ember of Fire Qi.");
         add("ascension.physiques.tyrant_body", "Tyrant Body");
         add("ascension.physiques.tyrant_body.desc", "Strong as an Ox, domineering as Liu Bu. You are tyranny incarnate.");
+        add("ascension.physiques.tyrant_body.desc.short", "You are tyranny incarnate.");
         add("ascension.physiques.academic_spirit", "Academic Soul");
         add("ascension.physiques.academic_spirit.desc", "Knowledge occupies your Soul, a library resonating within your Mind");
+        add("ascension.physiques.academic_spirit.desc.short", "A library resonates within your soul.");
         add("ascension.physiques.stone_monkey", "Stone Monkey");
         add("ascension.physiques.stone_monkey.desc", "Born from the Universe and Stone, you are as strong as the Earth and as limber as a Monkey.");
         add("ascension.physiques.stone_monkey.desc.short", "You are born from Stone and Universe");
         add("ascension.physiques.blood_fiend", "Blood Fiend");
+        add("ascension.physiques.blood_fiend.desc", "Blood whispers to your soul, promising strength through hunger, violence, and the red road beneath morality.");
+        add("ascension.physiques.blood_fiend.desc.short", "Your soul hungers for blood.");
         add("ascension.physiques.blood_wraith", "Blood Wraith");
+        add("ascension.physiques.blood_wraith.desc", "You have become a thing of blood and malice, your soul drifting between slaughter, hunger, and demonic power.");
+        add("ascension.physiques.blood_wraith.desc.short", "Your soul has become blood-soaked and demonic.");
         add("ascension.physiques.virtuoso_buddha", "Virtuoso Buddha");
+        add("ascension.physiques.virtuoso_buddha.desc", "Your body has become a vessel of serene power, its strength guided by mercy, discipline, and radiant virtue.");
+        add("ascension.physiques.virtuoso_buddha.desc.short", "Your body radiates disciplined virtue.");
         add("ascension.physiques.wrathful_vajra", "Wrathful Vajra");
+        add("ascension.physiques.wrathful_vajra.desc", "Your compassion has teeth. Like a vajra in motion, your body crushes evil with sacred wrath.");
+        add("ascension.physiques.wrathful_vajra.desc.short", "Sacred wrath strengthens your body.");
         add("ascension.physiques.pointed_eyes", "Pointed Eyes");
+        add("ascension.physiques.pointed_eyes.desc", "Your gaze narrows like a spear tip, fixing on weakness with cold and piercing focus.");
+        add("ascension.physiques.pointed_eyes.desc.short", "Your eyes seek the perfect thrust.");
         add("ascension.physiques.bruised_knuckle_body", "Bruised Knuckle Body");
+        add("ascension.physiques.bruised_knuckle_body.desc", "Your fists have learned through pain. Every bruise has hardened into another lesson carved into the body.");
+        add("ascension.physiques.bruised_knuckle_body.desc.short", "Your fists grow stronger through pain.");
         add("ascension.physiques.iron_bulwark_spine", "Iron Bulwark Spine");
+        add("ascension.physiques.iron_bulwark_spine.desc", "Your spine carries the weight of a fortress, letting you stand firm where others would break.");
+        add("ascension.physiques.iron_bulwark_spine.desc.short", "Your spine is like an iron bulwark.");
         add("ascension.physiques.arrow_blessed", "Arrow Blessed");
+        add("ascension.physiques.arrow_blessed.desc", "Your breath stills before release, and your Qi gathers naturally along the path of the arrow.");
+        add("ascension.physiques.arrow_blessed.desc.short", "Your Qi favors the bow.");
         add("ascension.physiques.wild_cleaver_veteran", "Wild Cleaver Veteran");
+        add("ascension.physiques.wild_cleaver_veteran.desc", "Your body remembers brutal battles and heavy blades, favoring savage cuts over graceful form.");
+        add("ascension.physiques.wild_cleaver_veteran.desc.short", "Your body favors wild blade arts.");
         add("ascension.physiques.thin_sword_pulse", "Thin Sword Pulse");
+        add("ascension.physiques.thin_sword_pulse.desc", "A narrow pulse of sword intent beats through your meridians, subtle but dangerously precise.");
+        add("ascension.physiques.thin_sword_pulse.desc.short", "Sword intent pulses within you.");
         add("ascension.physiques.flow_severing_eyes", "Flow Severing Eyes");
+        add("ascension.physiques.flow_severing_eyes.desc", "Your eyes trace the hidden flow of battle, finding the thin lines where movement, Qi, and flesh may be severed.");
+        add("ascension.physiques.flow_severing_eyes.desc.short", "Your eyes perceive the flow of combat.");
         add("ascension.physiques.divine_essence_bone", "Divine Essence Bone");
         add("ascension.physiques.divine_essence_bone.desc", "You possess a Divine Essence Bone, wielding endless talent and an absolute attraction to Essence.");
         add("ascension.physiques.divine_essence_bone.desc.short", "You possess a Divine Essence Bone");
@@ -220,27 +251,29 @@ public class lang extends LanguageProvider {
         add("ascension.physiques.mortal_essence_bone.desc", "You possess a mortal Essence Bone, wielding average talent and a minor attraction to Essence.");
         add("ascension.physiques.mortal_essence_bone.desc.short", "Mortal Essence Bone");
         add("ascension.physiques.wind_attuned", "Wind Attuned");
-        add("ascension.physiques.wind_attuned.des", "Innately, you feel a deep connection to wind, its very presence opening your pores and drawing in more Qi.");
-        add("ascension.physiques.wind_attuned.des.short", "You are connected with Wind.");
+        add("ascension.physiques.wind_attuned.desc", "Innately, you feel a deep connection to wind, its very presence opening your pores and drawing in more Qi.");
+        add("ascension.physiques.wind_attuned.desc.short", "You are connected with Wind.");
         add("ascension.physiques.lightning_attuned", "Lightning Attuned");
-        add("ascension.physiques.lightning_attuned.des", "Innately, you feel a deep connection to lightning, its very presence opening your pores and drawing in more Qi.");
-        add("ascension.physiques.lightning_attuned.des.short", "You are connected with Lightning.");
+        add("ascension.physiques.lightning_attuned.desc", "Innately, you feel a deep connection to lightning, its very presence opening your pores and drawing in more Qi.");
+        add("ascension.physiques.lightning_attuned.desc.short", "You are connected with Lightning.");
         add("ascension.physiques.metal_attuned", "Metal Attuned");
-        add("ascension.physiques.metal_attuned.des", "Innately, you feel a deep connection to metals, its very presence opening your pores and drawing in more Qi.");
-        add("ascension.physiques.metal_attuned.des.short", "You are connected with Metal.");
+        add("ascension.physiques.metal_attuned.desc", "Innately, you feel a deep connection to metals, its very presence opening your pores and drawing in more Qi.");
+        add("ascension.physiques.metal_attuned.desc.short", "You are connected with Metal.");
         add("ascension.physiques.wood_attuned", "Wood Attuned");
-        add("ascension.physiques.wood_attuned.des", "Innately, you feel a deep connection to nature, its very presence opening your pores and drawing in more Qi.");
-        add("ascension.physiques.wood_attuned.des.short", "You are connected with Wood.");
+        add("ascension.physiques.wood_attuned.desc", "Innately, you feel a deep connection to nature, its very presence opening your pores and drawing in more Qi.");
+        add("ascension.physiques.wood_attuned.desc.short", "You are connected with Wood.");
         add("ascension.physiques.earth_attuned", "Earth Attuned");
-        add("ascension.physiques.earth_attuned.des", "Innately, you feel a deep connection to earth, its very presence opening your pores and drawing in more Qi.");
-        add("ascension.physiques.earth_attuned.des.short", "You are connected with Earth.");
+        add("ascension.physiques.earth_attuned.desc", "Innately, you feel a deep connection to earth, its very presence opening your pores and drawing in more Qi.");
+        add("ascension.physiques.earth_attuned.desc.short", "You are connected with Earth.");
         add("ascension.physiques.water_attuned", "Water Attuned");
-        add("ascension.physiques.water_attuned.des", "Innately, you feel a deep connection to water, its very presence opening your pores and drawing in more Qi.");
-        add("ascension.physiques.water_attuned.des.short", "You are connected with Water.");
+        add("ascension.physiques.water_attuned.desc", "Innately, you feel a deep connection to water, its very presence opening your pores and drawing in more Qi.");
+        add("ascension.physiques.water_attuned.desc.short", "You are connected with Water.");
         add("ascension.physiques.fire_attuned", "Fire Attuned");
-        add("ascension.physiques.fire_attuned.des", "Innately, you feel a deep connection to fire, its very presence opening your pores and drawing in more Qi.");
-        add("ascension.physiques.fire_attuned.des.short", "You are connected with Fire.");
+        add("ascension.physiques.fire_attuned.desc", "Innately, you feel a deep connection to fire, its very presence opening your pores and drawing in more Qi.");
+        add("ascension.physiques.fire_attuned.desc.short", "You are connected with Fire.");
         add("ascension.physiques.blessed", "Blessed One");
+        add("ascension.physiques.blessed.desc", "Virtue clings to your body like morning light, marking you as one who may walk a higher path.");
+        add("ascension.physiques.blessed.desc.short", "You are touched by virtue.");
 
         add("ascension.physiques.metal_body", "Metal Body");
         add("ascension.physiques.water_body", "Water Body");
@@ -248,13 +281,28 @@ public class lang extends LanguageProvider {
         add("ascension.physiques.wood_body", "Wood Body");
         add("ascension.physiques.earth_body", "Earth Body");
 
+
         add("ascension.physiques.clear_spirit", "Clear Spirit");
+        add("ascension.physiques.clear_spirit.desc", "Your soul is unusually clear, untouched by much of the noise that clouds lesser minds.");
+        add("ascension.physiques.clear_spirit.desc.short", "Your soul is clear and steady.");
         add("ascension.physiques.dreaming_soul", "Dreaming Soul");
+        add("ascension.physiques.dreaming_soul.desc", "Your soul drifts close to the border of dream and waking, sensing truths that conscious minds often miss.");
+        add("ascension.physiques.dreaming_soul.desc.short", "Your soul wanders through dreams.");
         add("ascension.physiques.soul_gaze", "Soul Gazing Eyes");
+        add("ascension.physiques.soul_gaze.desc", "Your eyes do not merely see flesh and movement. They peer toward the flicker of the soul beneath.");
+        add("ascension.physiques.soul_gaze.desc.short", "Your gaze touches the soul.");
         add("ascension.physiques.ashen_soul_flame", "Ashen Soul Flame");
+        add("ascension.physiques.ashen_soul_flame.desc", "A pale flame burns within your soul, neither warm nor kind, feeding on impurities until only ash remains.");
+        add("ascension.physiques.ashen_soul_flame.desc.short", "Ashen flame burns within your soul.");
         add("ascension.physiques.thundering_soul_core", "Thundering Soul Core");
+        add("ascension.physiques.thundering_soul_core.desc", "Thunder coils around the core of your soul, shaking loose fear, doubt, and the fragile wills of others.");
+        add("ascension.physiques.thundering_soul_core.desc.short", "Thunder roars within your soul.");
         add("ascension.physiques.soul_sword_heart", "Sword Heart Soul");
+        add("ascension.physiques.soul_sword_heart.desc", "Your soul has taken the shape of a sword, straight, sharp, and unwilling to bend before heaven or man.");
+        add("ascension.physiques.soul_sword_heart.desc.short", "Your soul carries a sword heart.");
         add("ascension.physiques.spear_soul_mark", "Spear Marked Soul");
+        add("ascension.physiques.spear_soul_mark.desc", "A spear mark is branded upon your soul, urging your will forward with piercing, relentless purpose.");
+        add("ascension.physiques.spear_soul_mark.desc.short", "Your soul bears a spear mark.");
 
         // Elemental body merged physiques (2-element)
         add("ascension.physiques.liver_heart_awakening", "Liver-Heart Awakening Physique");
@@ -279,6 +327,7 @@ public class lang extends LanguageProvider {
 
         // Elemental body merged physiques (5-element)
         add("ascension.physiques.five_palace_immortal", "Five Palace Immortal Physique");
+
 
         add("ascension.physiques.world_dominator", "World Dominator");
         add("ascension.physiques.world_dominator.desc", "You are the Dominator of Worlds, the Lord of all Flesh and Blood. Feel the earth quake under Your might.");
