@@ -109,4 +109,40 @@ public final class MobRankResolver {
         return MobCategoryResolver.resolve(entity);
     }
 
+    // relative realm gap
+    public static int resolveCombatPower(LivingEntity entity) {
+        if (entity instanceof Player player) {
+            return resolvePlayerCombatPower(player);
+        }
+
+        MobRankData data = entity.getData(ModAttachments.MOB_RANK);
+        if (data == null || !data.isInitialized() || data.isUnranked()) {
+            return 0;
+        }
+
+        return getRankPower(data.getRealmId(), data.getStage());
+    }
+
+    public static int resolvePlayerCombatPower(Player player) {
+        PathData strongest = getStrongestPath(player);
+        if (strongest == null) {
+            return 0;
+        }
+
+        String realmId = mapPathMajorRealmToMobRealm(strongest.getMajorRealm());
+        int stage = mapPathMinorRealmToMobStage(strongest.getMinorRealm());
+
+        return getRankPower(realmId, stage);
+    }
+
+    public static int getRankPower(String realmId, int stage) {
+        int realmIndex = MobRankList.getRealmIndex(realmId);
+        if (realmIndex < 0) {
+            return 0;
+        }
+
+        int clampedStage = Math.max(1, Math.min(3, stage));
+        return realmIndex * 3 + (clampedStage - 1);
+    }
+
 }
