@@ -107,6 +107,11 @@ public class ModItemTagProvider extends ItemTagsProvider {
                 .add(ModItems.NETHERITE_SPEAR.get());
 
 
+        tag(ModTags.Items.FLAMES)
+                .add(ModItems.FLAME.get())
+                .add(ModItems.SOUL_FLAME.get())
+                .add(ModItems.CRIMSON_LOTUS_FLAME.get());
+
         tag(ModTags.Items.SPEAR_ENCHANTABLE)
                 .addTag(ModTags.Items.SPEAR);
         tag(Tags.Items.ENCHANTABLES)

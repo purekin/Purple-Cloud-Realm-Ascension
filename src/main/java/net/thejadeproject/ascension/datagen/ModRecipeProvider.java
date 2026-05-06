@@ -73,6 +73,7 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
 
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.TECHNIQUE_BINDER.get())
                 .pattern("PPP")
+
                 .pattern("PSP")
                 .pattern("PPP")
                 .define('S', ModItems.TECHNIQUE_PAGE.get())
@@ -373,6 +374,26 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .pattern("BBB")
                 .define('B', ModItems.BLACK_IRON_INGOT.get())
                 .unlockedBy("has_black_iron_ingot", has(ModItems.BLACK_IRON_INGOT)).save(recipeOutput, "ascension:shaped/pill_cauldron_from_black_iron");
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModBlocks.FLAME_STAND_BLOCK.get())
+                .pattern("B B")
+                .pattern("BFB")
+                .pattern("BBB")
+                .define('B', ModItems.BLACK_IRON_INGOT.get())
+                .define('F', ModTags.Items.FLAMES)
+                .unlockedBy("has_black_iron_ingot", has(ModItems.BLACK_IRON_INGOT)).save(recipeOutput, "ascension:shaped/flamestand_from_black_iron");
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModBlocks.CAULDRON_PEDESTAL_BLOCK.get())
+                .pattern("BBB")
+                .pattern("B B")
+                .pattern("B B")
+                .define('B', ModItems.BLACK_IRON_INGOT.get())
+                .unlockedBy("has_black_iron_ingot", has(ModItems.BLACK_IRON_INGOT)).save(recipeOutput, "ascension:shaped/pedestal_from_black_iron");
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.FAN.get())
+                .pattern(" WW")
+                .pattern(" WW")
+                .pattern("S  ")
+                .define('S', Items.STICK)
+                .define('W', ItemTags.WOOL)
+                .unlockedBy("has_black_iron_ingot", has(ModItems.BLACK_IRON_INGOT)).save(recipeOutput, "ascension:shaped/fan");
 
         ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ModBlocks.GOLDEN_PALM_PLANKS.get(), 4)
                 .requires(ModBlocks.GOLDEN_PALM_LOG)
