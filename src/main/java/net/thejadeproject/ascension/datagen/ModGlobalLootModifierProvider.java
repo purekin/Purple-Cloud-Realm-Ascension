@@ -414,6 +414,108 @@ public class ModGlobalLootModifierProvider extends GlobalLootModifierProvider {
 
         //Physiques
 
+        // Elemental Bodies
+
+        add("fire_body_from_blaze", new AddPhysiqueRandomPurityModifier(
+                new LootItemCondition[] {
+                        LootTableIdCondition.builder(ResourceLocation.withDefaultNamespace("entities/blaze")).build(),
+                        LootItemRandomChanceCondition.randomChance(0.08f).build()
+                },
+                ResourceLocation.fromNamespaceAndPath(AscensionCraft.MOD_ID, "fire_body"),
+                8,
+                18
+        ));
+
+        add("fire_body_from_nether_fortress", new AddPhysiqueRandomPurityModifier(
+                new LootItemCondition[] {
+                        LootTableIdCondition.builder(ResourceLocation.withDefaultNamespace("chests/nether_bridge")).build(),
+                        LootItemRandomChanceCondition.randomChance(0.05f).build()
+                },
+                ResourceLocation.fromNamespaceAndPath(AscensionCraft.MOD_ID, "fire_body"),
+                10,
+                20
+        ));
+
+        add("water_body_from_elder_guardian", new AddPhysiqueRandomPurityModifier(
+                new LootItemCondition[] {
+                        LootTableIdCondition.builder(ResourceLocation.withDefaultNamespace("entities/elder_guardian")).build(),
+                        LootItemRandomChanceCondition.randomChance(0.07f).build()
+                },
+                ResourceLocation.fromNamespaceAndPath(AscensionCraft.MOD_ID, "water_body"),
+                8,
+                18
+        ));
+
+        add("water_body_from_ocean_ruin", new AddPhysiqueRandomPurityModifier(
+                new LootItemCondition[] {
+                        LootTableIdCondition.builder(ResourceLocation.withDefaultNamespace("chests/underwater_ruin_big")).build(),
+                        LootItemRandomChanceCondition.randomChance(0.05f).build()
+                },
+                ResourceLocation.fromNamespaceAndPath(AscensionCraft.MOD_ID, "water_body"),
+                10,
+                20
+        ));
+
+        add("wood_body_from_jungle_temple", new AddPhysiqueRandomPurityModifier(
+                new LootItemCondition[] {
+                        LootTableIdCondition.builder(ResourceLocation.withDefaultNamespace("chests/jungle_temple")).build(),
+                        LootItemRandomChanceCondition.randomChance(0.05f).build()
+                },
+                ResourceLocation.fromNamespaceAndPath(AscensionCraft.MOD_ID, "wood_body"),
+                10,
+                20
+        ));
+
+        add("wood_body_from_woodland_mansion", new AddPhysiqueRandomPurityModifier(
+                new LootItemCondition[] {
+                        LootTableIdCondition.builder(ResourceLocation.withDefaultNamespace("chests/woodland_mansion")).build(),
+                        LootItemRandomChanceCondition.randomChance(0.04f).build()
+                },
+                ResourceLocation.fromNamespaceAndPath(AscensionCraft.MOD_ID, "wood_body"),
+                10,
+                20
+        ));
+
+        add("earth_body_from_desert_pyramid", new AddPhysiqueRandomPurityModifier(
+                new LootItemCondition[] {
+                        LootTableIdCondition.builder(ResourceLocation.withDefaultNamespace("chests/desert_pyramid")).build(),
+                        LootItemRandomChanceCondition.randomChance(0.05f).build()
+                },
+                ResourceLocation.fromNamespaceAndPath(AscensionCraft.MOD_ID, "earth_body"),
+                10,
+                20
+        ));
+
+        add("earth_body_from_ancient_city", new AddPhysiqueRandomPurityModifier(
+                new LootItemCondition[] {
+                        LootTableIdCondition.builder(ResourceLocation.withDefaultNamespace("chests/ancient_city")).build(),
+                        LootItemRandomChanceCondition.randomChance(0.04f).build()
+                },
+                ResourceLocation.fromNamespaceAndPath(AscensionCraft.MOD_ID, "earth_body"),
+                12,
+                22
+        ));
+
+        add("metal_body_from_iron_golem", new AddPhysiqueRandomPurityModifier(
+                new LootItemCondition[] {
+                        LootTableIdCondition.builder(ResourceLocation.withDefaultNamespace("entities/iron_golem")).build(),
+                        LootItemRandomChanceCondition.randomChance(0.06f).build()
+                },
+                ResourceLocation.fromNamespaceAndPath(AscensionCraft.MOD_ID, "metal_body"),
+                8,
+                18
+        ));
+
+        add("metal_body_from_mineshaft", new AddPhysiqueRandomPurityModifier(
+                new LootItemCondition[] {
+                        LootTableIdCondition.builder(ResourceLocation.withDefaultNamespace("chests/abandoned_mineshaft")).build(),
+                        LootItemRandomChanceCondition.randomChance(0.05f).build()
+                },
+                ResourceLocation.fromNamespaceAndPath(AscensionCraft.MOD_ID, "metal_body"),
+                10,
+                20
+        ));
+
         add("severed_meridians_from_witch", new AddPhysiqueRandomPurityModifier(
                 new LootItemCondition[] {
                         LootTableIdCondition.builder(ResourceLocation.parse("minecraft:entities/witch")).build(),
