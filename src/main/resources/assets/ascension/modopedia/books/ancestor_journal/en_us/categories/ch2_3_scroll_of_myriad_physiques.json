@@ -1,6 +1,7 @@
 {
   "title": "Scroll of Myriad Physiques",
   "icon": { "id": "ascension:physique_essence" },
+  "landing_text": "Physiques gathered from the ancient study — organized by Path, from those many carry unknowingly, to those confirmed only a handful of times in recorded history.\n\n Yours is already decided — but not permanent. What you were born with can be changed, if you know how.\n\nKnowing what you carry is where that begins.",
   "children": [
     "physiques_body_path",
     "physiques_essence_path",
@@ -9,7 +10,7 @@
     "physiques_weapon_path",
     "physiques_deviant_path"
   ],
-  "entries": ["ch2/ch2_3_scroll_intro"],
+  "entries": [],
   "sort_num": 3,
   "display_on_front_page": false
 }
