@@ -71,11 +71,11 @@ public class ModBloodlines {
     /**
      * Mortal Bloodline nothing special just regular
      */
-    public static final DeferredHolder<IBloodline, GenericBloodline> MORTAL_BLOODLINE =
-            BLOODLINES.register("mortal_bloodline", () ->
-                    new GenericBloodline(Component.translatable("ascension.bloodline.mortal_bloodline"))
-                            .setShortDescription(Component.translatable("ascension.bloodline.mortal_bloodline.short"))
-                            .setDescription(Component.translatable("ascension.bloodline.mortal_bloodline.desc"))
+    public static final DeferredHolder<IBloodline, GenericBloodline> HUMAN_BLOODLINE =
+            BLOODLINES.register("human_bloodline", () ->
+                    new GenericBloodline(Component.translatable("ascension.bloodline.human_bloodline"))
+                            .setShortDescription(Component.translatable("ascension.bloodline.human_bloodline.short"))
+                            .setDescription(Component.translatable("ascension.bloodline.human_bloodline.desc"))
             );
 
 
