@@ -1,7 +1,6 @@
 package net.thejadeproject.ascension.refactor_packages.entity_data;
 
 import com.mojang.datafixers.util.Pair;
-import it.unimi.dsi.fastutil.Hash;
 import net.minecraft.core.Holder;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.nbt.CompoundTag;
@@ -676,7 +675,7 @@ public class GenericEntityData implements IEntityData {
     @Override
     public IBloodlineData removeBloodline() {
         IBloodlineData data = getBloodlineData();
-        setBloodline(ModBloodlines.MORTAL_BLOODLINE.getId());
+        setBloodline(ModBloodlines.HUMAN_BLOODLINE.getId());
         return data;
     }
 
