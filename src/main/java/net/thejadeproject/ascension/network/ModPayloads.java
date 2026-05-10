@@ -4,10 +4,11 @@ import net.neoforged.neoforge.network.event.RegisterPayloadHandlersEvent;
 import net.neoforged.neoforge.network.registration.PayloadRegistrar;
 import net.thejadeproject.ascension.AscensionCraft;
 
+import net.thejadeproject.ascension.network.serverBound.ToggleTabletDropModePayload;
 import net.thejadeproject.ascension.refactor_packages.network.client_bound.entity_data.bloodline.SyncBloodline;
 import net.thejadeproject.ascension.refactor_packages.network.client_bound.entity_data.qi.SyncQi;
+import net.thejadeproject.ascension.refactor_packages.network.client_bound.herb_pouch.SyncHerbPouchPayload;
 import net.thejadeproject.ascension.refactor_packages.network.client_bound.mob_ranks.SyncMobRank;
-import net.thejadeproject.ascension.network.serverBound.*;
 import net.thejadeproject.ascension.network.serverBound.UnlockChapterPayload;
 import net.thejadeproject.ascension.network.serverBound.input.ChangePlayerInputState;
 import net.thejadeproject.ascension.refactor_packages.network.client_bound.entity_data.SyncEntityForm;
@@ -16,6 +17,7 @@ import net.thejadeproject.ascension.refactor_packages.network.client_bound.entit
 import net.thejadeproject.ascension.refactor_packages.network.client_bound.entity_data.path_data.SyncPathData;
 import net.thejadeproject.ascension.refactor_packages.network.client_bound.entity_data.physique.SyncPhysique;
 import net.thejadeproject.ascension.refactor_packages.network.client_bound.entity_data.techniques.ShowMergePromptPayload;
+import net.thejadeproject.ascension.refactor_packages.network.server_bound.herb_pouch.ExtractHerbFromPouchPayload;
 import net.thejadeproject.ascension.refactor_packages.network.server_bound.supressors.UpdateSuppressionValue;
 import net.thejadeproject.ascension.refactor_packages.network.server_bound.techniques.MergeResponsePayload;
 import net.thejadeproject.ascension.refactor_packages.network.client_bound.entity_data.skills.casting.SyncCastingInstance;
@@ -113,6 +115,12 @@ public class ModPayloads {
                 ShowMergePromptPayload::handlePayload
         );
 
+        registrar.playToClient(
+                SyncHerbPouchPayload.TYPE,
+                SyncHerbPouchPayload.STREAM_CODEC,
+                SyncHerbPouchPayload::handlePayload
+        );
+
         //===================================== SERVER ==================================
 
 
@@ -161,6 +169,12 @@ public class ModPayloads {
                 UnlockChapterPayload.TYPE,
                 UnlockChapterPayload.STREAM_CODEC,
                 UnlockChapterPayload::handlePayload
+        );
+
+        registrar.playToServer(
+                ExtractHerbFromPouchPayload.TYPE,
+                ExtractHerbFromPouchPayload.STREAM_CODEC,
+                ExtractHerbFromPouchPayload::handlePayload
         );
     }
 }
