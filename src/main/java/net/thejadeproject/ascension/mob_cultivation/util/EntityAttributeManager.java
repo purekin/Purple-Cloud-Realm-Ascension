@@ -1,4 +1,4 @@
-package net.thejadeproject.ascension.mob_ranks.util;
+package net.thejadeproject.ascension.mob_cultivation.util;
 
 import net.minecraft.world.entity.ai.attributes.RangedAttribute;
 

@@ -1,4 +1,4 @@
-package net.thejadeproject.ascension.mob_ranks;
+package net.thejadeproject.ascension.mob_cultivation;
 
 public record MobBodyStatBias(
         double vitality,
@@ -7,7 +7,7 @@ public record MobBodyStatBias(
 ) {
     public static final MobBodyStatBias NONE = new MobBodyStatBias(0, 0, 0);
 
-    public MobRankStatProfile asProfile() {
-        return new MobRankStatProfile(vitality, strength, agility);
+    public MobCultivationStatProfile asProfile() {
+        return new MobCultivationStatProfile(vitality, strength, agility);
     }
 }

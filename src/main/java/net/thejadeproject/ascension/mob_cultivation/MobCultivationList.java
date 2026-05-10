@@ -1,12 +1,12 @@
-package net.thejadeproject.ascension.mob_ranks;
+package net.thejadeproject.ascension.mob_cultivation;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.HashMap;
 import java.util.Map;
 
-public final class MobRankList {
-    private MobRankList() {
+public final class MobCultivationList {
+    private MobCultivationList() {
     }
 
     private static final String[] REALMS = {
@@ -28,8 +28,8 @@ public final class MobRankList {
 
 
 
-    private static MobRankDefinition rank(String realmId, int stage, MobRankStatProfile stats) {
-        return new MobRankDefinition(realmId, stage, stats);
+    private static MobCultivationDefinition rank(String realmId, int stage, MobCultivationStatProfile stats) {
+        return new MobCultivationDefinition(realmId, stage, stats);
     }
 
     // Helpers for command
@@ -46,8 +46,8 @@ public final class MobRankList {
     }
 
     // Like the cultivators i hope? adds all previous minor and major realms stats with the current realms gains.
-    private static MobRankStatProfile buildStats(int majorRealmIndex, int stage) {
-        MobRankStatProfile stats = new MobRankStatProfile(0, 0, 0);
+    private static MobCultivationStatProfile buildStats(int majorRealmIndex, int stage) {
+        MobCultivationStatProfile stats = new MobCultivationStatProfile(0, 0, 0);
 
         for (int major = 0; major <= majorRealmIndex; major++) {
             stats = stats.add(getMajorGain(major));
@@ -62,38 +62,38 @@ public final class MobRankList {
     }
 
     // How much is added each major realm increase
-    private static MobRankStatProfile getMajorGain(int majorRealmIndex) {
+    private static MobCultivationStatProfile getMajorGain(int majorRealmIndex) {
         return switch (majorRealmIndex) {
-            case 0 -> new MobRankStatProfile(0, 0, 0);
-            case 1 -> new MobRankStatProfile(6, 4, 2);
-            case 2 -> new MobRankStatProfile(10, 7, 3);
-            case 3 -> new MobRankStatProfile(18, 13, 5);
-            case 4 -> new MobRankStatProfile(35, 22, 8);
-            case 5 -> new MobRankStatProfile(50, 30, 10);
-            case 6 -> new MobRankStatProfile(65, 40, 13);
-            case 7 -> new MobRankStatProfile(85, 52, 17);
-            case 8 -> new MobRankStatProfile(110, 68, 22);
-            case 9 -> new MobRankStatProfile(140, 86, 28);
-            case 10 -> new MobRankStatProfile(180, 110, 35);
-            default -> new MobRankStatProfile(0, 0, 0);
+            case 0 -> new MobCultivationStatProfile(0, 0, 0);
+            case 1 -> new MobCultivationStatProfile(6, 4, 2);
+            case 2 -> new MobCultivationStatProfile(10, 7, 3);
+            case 3 -> new MobCultivationStatProfile(18, 13, 5);
+            case 4 -> new MobCultivationStatProfile(35, 22, 8);
+            case 5 -> new MobCultivationStatProfile(50, 30, 10);
+            case 6 -> new MobCultivationStatProfile(65, 40, 13);
+            case 7 -> new MobCultivationStatProfile(85, 52, 17);
+            case 8 -> new MobCultivationStatProfile(110, 68, 22);
+            case 9 -> new MobCultivationStatProfile(140, 86, 28);
+            case 10 -> new MobCultivationStatProfile(180, 110, 35);
+            default -> new MobCultivationStatProfile(0, 0, 0);
         };
     }
 
     // How much is added each minor realm per major realm
-    private static MobRankStatProfile getMinorGain(int majorRealmIndex, int stage) {
-        MobRankStatProfile base = switch (majorRealmIndex) {
-            case 0 -> new MobRankStatProfile(3, 2, 1);
-            case 1 -> new MobRankStatProfile(5, 3, 1.5);
-            case 2 -> new MobRankStatProfile(7, 5, 2);
-            case 3 -> new MobRankStatProfile(12, 9, 3);
-            case 4 -> new MobRankStatProfile(20, 12, 5);
-            case 5 -> new MobRankStatProfile(28, 16, 7);
-            case 6 -> new MobRankStatProfile(36, 20, 9);
-            case 7 -> new MobRankStatProfile(48, 27, 11);
-            case 8 -> new MobRankStatProfile(62, 35, 14);
-            case 9 -> new MobRankStatProfile(80, 45, 18);
-            case 10 -> new MobRankStatProfile(105, 60, 24);
-            default -> new MobRankStatProfile(0, 0, 0);
+    private static MobCultivationStatProfile getMinorGain(int majorRealmIndex, int stage) {
+        MobCultivationStatProfile base = switch (majorRealmIndex) {
+            case 0 -> new MobCultivationStatProfile(3, 2, 1);
+            case 1 -> new MobCultivationStatProfile(5, 3, 1.5);
+            case 2 -> new MobCultivationStatProfile(7, 5, 2);
+            case 3 -> new MobCultivationStatProfile(12, 9, 3);
+            case 4 -> new MobCultivationStatProfile(20, 12, 5);
+            case 5 -> new MobCultivationStatProfile(28, 16, 7);
+            case 6 -> new MobCultivationStatProfile(36, 20, 9);
+            case 7 -> new MobCultivationStatProfile(48, 27, 11);
+            case 8 -> new MobCultivationStatProfile(62, 35, 14);
+            case 9 -> new MobCultivationStatProfile(80, 45, 18);
+            case 10 -> new MobCultivationStatProfile(105, 60, 24);
+            default -> new MobCultivationStatProfile(0, 0, 0);
         };
 
         return switch (stage) {
@@ -105,8 +105,8 @@ public final class MobRankList {
     }
 
 
-    private static List<MobRankDefinition> buildAll() {
-        List<MobRankDefinition> ranks = new ArrayList<>();
+    private static List<MobCultivationDefinition> buildAll() {
+        List<MobCultivationDefinition> ranks = new ArrayList<>();
 
         for (int major = 0; major < REALMS.length; major++) {
             for (int stage = 1; stage <= STAGES_PER_REALM; stage++) {
@@ -117,13 +117,13 @@ public final class MobRankList {
         return List.copyOf(ranks);
     }
 
-    public static final List<MobRankDefinition> ALL = buildAll();
+    public static final List<MobCultivationDefinition> ALL = buildAll();
 
-    private static final Map<String, MobRankDefinition> LOOKUP = buildLookup();
+    private static final Map<String, MobCultivationDefinition> LOOKUP = buildLookup();
 
-    private static Map<String, MobRankDefinition> buildLookup() {
-        Map<String, MobRankDefinition> map = new HashMap<>();
-        for (MobRankDefinition def : ALL) {
+    private static Map<String, MobCultivationDefinition> buildLookup() {
+        Map<String, MobCultivationDefinition> map = new HashMap<>();
+        for (MobCultivationDefinition def : ALL) {
             map.put(key(def.realmId(), def.stage()), def);
         }
         return Map.copyOf(map);
@@ -133,12 +133,12 @@ public final class MobRankList {
         return realmId + ":" + stage;
     }
 
-    public static MobRankDefinition get(String realmId, int stage) {
+    public static MobCultivationDefinition get(String realmId, int stage) {
         return LOOKUP.getOrDefault(key(realmId, stage), getFirst());
     }
 
-    public static MobRankDefinition getFirst() {
-        return new MobRankDefinition("mortal", 1, buildStats(0, 1));
+    public static MobCultivationDefinition getFirst() {
+        return new MobCultivationDefinition("mortal", 1, buildStats(0, 1));
     }
 
     // Drop Rule Helpers

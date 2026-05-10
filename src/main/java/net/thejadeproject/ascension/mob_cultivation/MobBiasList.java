@@ -1,4 +1,4 @@
-package net.thejadeproject.ascension.mob_ranks;
+package net.thejadeproject.ascension.mob_cultivation;
 
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.animal.Animal;

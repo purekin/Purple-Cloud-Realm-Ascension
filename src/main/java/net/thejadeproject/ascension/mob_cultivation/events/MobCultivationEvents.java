@@ -1,30 +1,19 @@
-package net.thejadeproject.ascension.mob_ranks;
+package net.thejadeproject.ascension.mob_cultivation.events;
 
-import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.world.InteractionHand;
-import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.ai.attributes.Attributes;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.Items;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.event.entity.EntityJoinLevelEvent;
-import net.neoforged.neoforge.event.entity.living.LivingIncomingDamageEvent;
 import net.neoforged.neoforge.event.entity.player.PlayerEvent;
-import net.neoforged.neoforge.event.entity.player.PlayerInteractEvent;
 import net.neoforged.neoforge.network.PacketDistributor;
 import net.thejadeproject.ascension.AscensionCraft;
 import net.thejadeproject.ascension.data_attachments.ModAttachments;
-import net.thejadeproject.ascension.refactor_packages.network.client_bound.mob_ranks.SyncMobRank;
+import net.thejadeproject.ascension.mob_cultivation.*;
+import net.thejadeproject.ascension.refactor_packages.network.client_bound.mob_culti.SyncMobCultivation;
 
 @EventBusSubscriber(modid = AscensionCraft.MOD_ID)
-public class MobRankEvents {
-
-    private static final double REALM_DAMAGE_STEP = 1.25D;
-    private static final double MIN_REALM_DAMAGE_MULTIPLIER = 0.08D;
-    private static final double MAX_REALM_DAMAGE_MULTIPLIER = 2.5D;
+public class MobCultivationEvents {
 
     @SubscribeEvent
     public static void onEntityJoinLevel(EntityJoinLevelEvent event) {
@@ -39,12 +28,12 @@ public class MobRankEvents {
         if (!(event.getTarget() instanceof LivingEntity living)) return;
         if (!(event.getEntity() instanceof ServerPlayer player)) return;
 
-        MobRankData data = living.getData(ModAttachments.MOB_RANK);
+        MobCultivationData data = living.getData(ModAttachments.MOB_RANK);
         if (data == null) return;
 
         PacketDistributor.sendToPlayer(
                 player,
-                new SyncMobRank(
+                new SyncMobCultivation(
                         living.getId(),
                         data.getRealmId(),
                         data.getStage(),
@@ -103,31 +92,31 @@ public class MobRankEvents {
 //    }
 
     public static void initializeRank(LivingEntity entity) {
-        if (!MobRankRoller.canHaveRank(entity)) return;
+        if (!MobCultivationRoller.canHaveRank(entity)) return;
 
-        MobRankData data = entity.getData(ModAttachments.MOB_RANK);
+        MobCultivationData data = entity.getData(ModAttachments.MOB_RANK);
         if (data == null || data.isInitialized()) return;
 
-        MobRankDefinition definition = MobRankResolver.resolveFromNearbyPlayer(entity);
+        MobCultivationDefinition definition = MobCultivationResolver.resolveFromNearbyPlayer(entity);
         if (definition == null) {
-            definition = MobRankRoller.rollRank(entity);
+            definition = MobCultivationRoller.rollRank(entity);
         }
 
         data.setRealmId(definition.realmId());
         data.setStage(definition.stage());
         data.setInitialized(true);
 
-        MobRankApplier.applyRank(entity, definition);
+        MobCultivationApplier.applyRank(entity, definition);
         syncMobRanks(entity);
     }
 
     public static void reapplyRank(LivingEntity entity) {
-        if (!MobRankRoller.canHaveRank(entity)) return;
+        if (!MobCultivationRoller.canHaveRank(entity)) return;
 
-        MobRankData data = entity.getData(ModAttachments.MOB_RANK);
+        MobCultivationData data = entity.getData(ModAttachments.MOB_RANK);
         if (data == null || !data.isInitialized()) return;
 
-        MobRankApplier.applyFromData(entity, data);
+        MobCultivationApplier.applyFromData(entity, data);
         syncMobRanks(entity);
     }
 
@@ -193,12 +182,12 @@ public class MobRankEvents {
     private static void syncMobRanks(LivingEntity entity) {
         if (entity.level().isClientSide()) return;
 
-        MobRankData data = entity.getData(ModAttachments.MOB_RANK);
+        MobCultivationData data = entity.getData(ModAttachments.MOB_RANK);
         if (data == null) return;
 
         PacketDistributor.sendToPlayersTrackingEntity(
                 entity,
-                new SyncMobRank(
+                new SyncMobCultivation(
                         entity.getId(),
                         data.getRealmId(),
                         data.getStage(),
@@ -206,47 +195,5 @@ public class MobRankEvents {
                 )
         );
     }
-
-    @SubscribeEvent
-    public static void onIncomingDamage(LivingIncomingDamageEvent event) {
-        LivingEntity target = event.getEntity();
-
-        if (target.level().isClientSide()) {
-            return;
-        }
-
-        Entity sourceEntity = event.getSource().getEntity();
-        if (!(sourceEntity instanceof LivingEntity attacker)) {
-            return;
-        }
-
-        if (attacker == target) {
-            return;
-        }
-
-        float originalDamage = event.getAmount();
-        if (originalDamage <= 0) {
-            return;
-        }
-
-        int attackerPower = MobRankResolver.resolveCombatPower(attacker);
-        int targetPower = MobRankResolver.resolveCombatPower(target);
-
-        int realmGap = attackerPower - targetPower;
-
-        if (realmGap == 0) {
-            return;
-        }
-
-        double multiplier = Math.pow(REALM_DAMAGE_STEP, realmGap);
-        multiplier = clamp(multiplier, MIN_REALM_DAMAGE_MULTIPLIER, MAX_REALM_DAMAGE_MULTIPLIER);
-
-        event.setAmount((float) (originalDamage * multiplier));
-    }
-
-    private static double clamp(double value, double min, double max) {
-        return Math.max(min, Math.min(max, value));
-    }
-
 
 }

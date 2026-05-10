@@ -1,24 +1,24 @@
-package net.thejadeproject.ascension.mob_ranks;
+package net.thejadeproject.ascension.mob_cultivation;
 
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 
-public class MobRankData {
-    public static final Codec<MobRankData> CODEC = RecordCodecBuilder.create(instance -> instance.group(
-            Codec.STRING.fieldOf("realm_id").forGetter(MobRankData::getRealmId),
-            Codec.INT.fieldOf("stage").forGetter(MobRankData::getStage),
-            Codec.BOOL.fieldOf("initialized").forGetter(MobRankData::isInitialized)
-    ).apply(instance, MobRankData::new));
+public class MobCultivationData {
+    public static final Codec<MobCultivationData> CODEC = RecordCodecBuilder.create(instance -> instance.group(
+            Codec.STRING.fieldOf("realm_id").forGetter(MobCultivationData::getRealmId),
+            Codec.INT.fieldOf("stage").forGetter(MobCultivationData::getStage),
+            Codec.BOOL.fieldOf("initialized").forGetter(MobCultivationData::isInitialized)
+    ).apply(instance, MobCultivationData::new));
 
     private String realmId;
     private int stage;
     private boolean initialized;
 
-    public MobRankData() {
+    public MobCultivationData() {
         this("unranked", 0, false);
     }
 
-    public MobRankData(String realmId, int stage, boolean initialized) {
+    public MobCultivationData(String realmId, int stage, boolean initialized) {
         this.realmId = realmId;
         this.stage = stage;
         this.initialized = initialized;

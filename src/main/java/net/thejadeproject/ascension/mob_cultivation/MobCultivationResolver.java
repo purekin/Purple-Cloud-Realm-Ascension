@@ -1,4 +1,4 @@
-package net.thejadeproject.ascension.mob_ranks;
+package net.thejadeproject.ascension.mob_cultivation;
 
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
@@ -6,7 +6,7 @@ import net.thejadeproject.ascension.data_attachments.ModAttachments;
 import net.thejadeproject.ascension.refactor_packages.entity_data.IEntityData;
 import net.thejadeproject.ascension.refactor_packages.paths.PathData;
 
-public final class MobRankResolver {
+public final class MobCultivationResolver {
 
     /*
     Fix Armor Stands having Cultivation.
@@ -16,39 +16,39 @@ public final class MobRankResolver {
 
     private static final double DEFAULT_PLAYER_SEARCH_RANGE = 32.0;
 
-    private MobRankResolver() {
+    private MobCultivationResolver() {
     }
 
-    public static MobRankDefinition resolveDefinition(MobRankData data) {
-        return MobRankList.get(data.getRealmId(), data.getStage());
+    public static MobCultivationDefinition resolveDefinition(MobCultivationData data) {
+        return MobCultivationList.get(data.getRealmId(), data.getStage());
     }
 
     public static MobBodyStatBias resolveBodyBias(LivingEntity entity) {
         return MobBiasList.getFor(entity);
     }
 
-    public static MobRankStatProfile resolveFinalStats(LivingEntity entity, MobRankDefinition definition) {
+    public static MobCultivationStatProfile resolveFinalStats(LivingEntity entity, MobCultivationDefinition definition) {
         return definition.baseStats().add(resolveBodyBias(entity).asProfile());
     }
 
 
-    public static MobRankDefinition resolveFromNearbyPlayer(LivingEntity entity) {
+    public static MobCultivationDefinition resolveFromNearbyPlayer(LivingEntity entity) {
         Player player = findNearestRelevantPlayer(entity, DEFAULT_PLAYER_SEARCH_RANGE);
         if (player == null) return null;
 
         return resolveFromPlayer(player);
     }
 
-    public static MobRankDefinition resolveFromPlayer(Player player) {
+    public static MobCultivationDefinition resolveFromPlayer(Player player) {
         PathData strongest = getStrongestPath(player);
         if (strongest == null) {
-            return MobRankList.getFirst();
+            return MobCultivationList.getFirst();
         }
 
         String realmId = mapPathMajorRealmToMobRealm(strongest.getMajorRealm());
         int stage = mapPathMinorRealmToMobStage(strongest.getMinorRealm());
 
-        return MobRankList.get(realmId, stage);
+        return MobCultivationList.get(realmId, stage);
     }
 
 
@@ -112,7 +112,7 @@ public final class MobRankResolver {
         return 3;
     }
 
-    public static MobRankCategory resolveCategory(LivingEntity entity) {
+    public static MobCultivationCategory resolveCategory(LivingEntity entity) {
         return MobCategoryResolver.resolve(entity);
     }
 
@@ -122,7 +122,7 @@ public final class MobRankResolver {
             return resolvePlayerCombatPower(player);
         }
 
-        MobRankData data = entity.getData(ModAttachments.MOB_RANK);
+        MobCultivationData data = entity.getData(ModAttachments.MOB_RANK);
         if (data == null || !data.isInitialized() || data.isUnranked()) {
             return 0;
         }
@@ -143,7 +143,7 @@ public final class MobRankResolver {
     }
 
     public static int getRankPower(String realmId, int stage) {
-        int realmIndex = MobRankList.getRealmIndex(realmId);
+        int realmIndex = MobCultivationList.getRealmIndex(realmId);
         if (realmIndex < 0) {
             return 0;
         }

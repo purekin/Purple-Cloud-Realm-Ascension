@@ -1,4 +1,4 @@
-package net.thejadeproject.ascension.mob_ranks.overlay;
+package net.thejadeproject.ascension.mob_cultivation.overlay;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.Minecraft;
@@ -13,7 +13,7 @@ import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.client.event.RenderLivingEvent;
 import net.thejadeproject.ascension.AscensionCraft;
 import net.thejadeproject.ascension.data_attachments.ModAttachments;
-import net.thejadeproject.ascension.mob_ranks.MobRankData;
+import net.thejadeproject.ascension.mob_cultivation.MobCultivationData;
 import org.joml.Matrix4f;
 
 /*
@@ -21,7 +21,7 @@ import org.joml.Matrix4f;
 * */
 
 @EventBusSubscriber(modid = AscensionCraft.MOD_ID, value = Dist.CLIENT)
-public class MobRankOverlay {
+public class MobCultivationOverlay {
 
     private static final double MAX_RENDER_DISTANCE_SQR = 64.0 * 64.0;
 
@@ -59,7 +59,7 @@ public class MobRankOverlay {
         if (mc.player.distanceToSqr(entity) > MAX_RENDER_DISTANCE_SQR) return;
         if (!mc.player.hasLineOfSight(entity)) return;
 
-        MobRankData data = entity.getData(ModAttachments.MOB_RANK);
+        MobCultivationData data = entity.getData(ModAttachments.MOB_RANK);
         if (data == null || !data.isInitialized()) return;
 
         String realm = formatRealm(data.getRealmId());

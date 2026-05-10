@@ -1,4 +1,4 @@
-package net.thejadeproject.ascension.refactor_packages.network.client_bound.mob_ranks;
+package net.thejadeproject.ascension.refactor_packages.network.client_bound.mob_culti;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.network.RegistryFriendlyByteBuf;
@@ -10,30 +10,30 @@ import net.minecraft.world.entity.LivingEntity;
 import net.neoforged.neoforge.network.handling.IPayloadContext;
 import net.thejadeproject.ascension.AscensionCraft;
 import net.thejadeproject.ascension.data_attachments.ModAttachments;
-import net.thejadeproject.ascension.mob_ranks.MobRankData;
+import net.thejadeproject.ascension.mob_cultivation.MobCultivationData;
 
-public record SyncMobRank(
+public record SyncMobCultivation(
         int entityId,
         String realmId,
         int stage,
         boolean initialized
 ) implements CustomPacketPayload {
 
-    public static final Type<SyncMobRank> TYPE =
+    public static final Type<SyncMobCultivation> TYPE =
             new Type<>(ResourceLocation.fromNamespaceAndPath(AscensionCraft.MOD_ID, "sync_mob_rank"));
 
-    public static final StreamCodec<RegistryFriendlyByteBuf, SyncMobRank> STREAM_CODEC =
-            StreamCodec.of(SyncMobRank::encode, SyncMobRank::decode);
+    public static final StreamCodec<RegistryFriendlyByteBuf, SyncMobCultivation> STREAM_CODEC =
+            StreamCodec.of(SyncMobCultivation::encode, SyncMobCultivation::decode);
 
-    private static void encode(RegistryFriendlyByteBuf buf, SyncMobRank packet) {
+    private static void encode(RegistryFriendlyByteBuf buf, SyncMobCultivation packet) {
         buf.writeInt(packet.entityId);
         buf.writeUtf(packet.realmId);
         buf.writeInt(packet.stage);
         buf.writeBoolean(packet.initialized);
     }
 
-    private static SyncMobRank decode(RegistryFriendlyByteBuf buf) {
-        return new SyncMobRank(
+    private static SyncMobCultivation decode(RegistryFriendlyByteBuf buf) {
+        return new SyncMobCultivation(
                 buf.readInt(),
                 buf.readUtf(),
                 buf.readInt(),
@@ -41,7 +41,7 @@ public record SyncMobRank(
         );
     }
 
-    public static void handlePayload(SyncMobRank payload, IPayloadContext context) {
+    public static void handlePayload(SyncMobCultivation payload, IPayloadContext context) {
         context.enqueueWork(() -> {
             Minecraft mc = Minecraft.getInstance();
             if (mc.level == null) return;
@@ -49,7 +49,7 @@ public record SyncMobRank(
             Entity entity = mc.level.getEntity(payload.entityId);
             if (!(entity instanceof LivingEntity living)) return;
 
-            MobRankData data = living.getData(ModAttachments.MOB_RANK);
+            MobCultivationData data = living.getData(ModAttachments.MOB_RANK);
             if (data == null) return;
 
             data.setRealmId(payload.realmId());

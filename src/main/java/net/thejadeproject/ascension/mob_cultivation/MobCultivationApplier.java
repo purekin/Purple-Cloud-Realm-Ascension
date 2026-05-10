@@ -1,4 +1,4 @@
-package net.thejadeproject.ascension.mob_ranks;
+package net.thejadeproject.ascension.mob_cultivation;
 
 import net.minecraft.core.Holder;
 import net.minecraft.resources.ResourceLocation;
@@ -9,7 +9,7 @@ import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.thejadeproject.ascension.AscensionCraft;
 
-public final class MobRankApplier {
+public final class MobCultivationApplier {
 
     // TODO: Fix Skeleton arrow damage not being boosted
 
@@ -32,17 +32,17 @@ public final class MobRankApplier {
             ResourceLocation.fromNamespaceAndPath(AscensionCraft.MOD_ID, "mob_rank_water_movement_efficiency");
 
 
-    private MobRankApplier() {
+    private MobCultivationApplier() {
     }
 
-    public static void applyFromData(LivingEntity entity, MobRankData data) {
-        MobRankDefinition definition = MobRankResolver.resolveDefinition(data);
+    public static void applyFromData(LivingEntity entity, MobCultivationData data) {
+        MobCultivationDefinition definition = MobCultivationResolver.resolveDefinition(data);
         applyRank(entity, definition);
     }
 
-    public static void applyRank(LivingEntity entity, MobRankDefinition definition) {
-        MobRankStatProfile finalStats = MobRankResolver.resolveFinalStats(entity, definition);
-        MobRankCategory category = MobRankResolver.resolveCategory(entity);
+    public static void applyRank(LivingEntity entity, MobCultivationDefinition definition) {
+        MobCultivationStatProfile finalStats = MobCultivationResolver.resolveFinalStats(entity, definition);
+        MobCultivationCategory category = MobCultivationResolver.resolveCategory(entity);
 
         double healthBonus = AscensionStatConversions.maxHealthBonus(finalStats.vitality());
         double damageBonus = AscensionStatConversions.attackDamageBonus(finalStats.strength());
@@ -68,11 +68,11 @@ public final class MobRankApplier {
         applyAddValue(entity, Attributes.SAFE_FALL_DISTANCE, SAFE_FALL_ID, safeFall);
     }
 
-    private static void applyPassiveStats (LivingEntity entity, MobRankDefinition definition, MobRankStatProfile finalStats) {
+    private static void applyPassiveStats (LivingEntity entity, MobCultivationDefinition definition, MobCultivationStatProfile finalStats) {
         clearHostileOnlyStats(entity);
     }
 
-    private static void applyHostileStats (LivingEntity entity, MobRankDefinition definition, MobRankStatProfile finalStats) {
+    private static void applyHostileStats (LivingEntity entity, MobCultivationDefinition definition, MobCultivationStatProfile finalStats) {
         double armorBonus = AscensionStatConversions.hostileArmorBonus(finalStats);
         double armorToughnessBonus = AscensionStatConversions.hostileArmorToughnessBonus(finalStats);
         double waterMovementBonus = AscensionStatConversions.hostileWaterMovementBonus(finalStats);
@@ -83,7 +83,7 @@ public final class MobRankApplier {
 
     }
 
-    private static void applyBossStats (LivingEntity entity, MobRankDefinition definition, MobRankStatProfile finalStats) {
+    private static void applyBossStats (LivingEntity entity, MobCultivationDefinition definition, MobCultivationStatProfile finalStats) {
         // Currently same stats as Hostile but 100% higher
         double armorBonus = AscensionStatConversions.hostileArmorBonus(finalStats);
         double armorToughnessBonus = AscensionStatConversions.hostileArmorToughnessBonus(finalStats);

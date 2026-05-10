@@ -1,4 +1,4 @@
-package net.thejadeproject.ascension.mob_ranks;
+package net.thejadeproject.ascension.mob_cultivation;
 
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.boss.enderdragon.EnderDragon;
@@ -10,10 +10,10 @@ public class MobCategoryResolver {
 
     private MobCategoryResolver() {}
 
-    public static MobRankCategory resolve(LivingEntity entity) {
-        if (isBoss(entity)) return MobRankCategory.BOSS;
-        if (isHostile(entity)) return MobRankCategory.HOSTILE;
-        return MobRankCategory.PASSIVE;
+    public static MobCultivationCategory resolve(LivingEntity entity) {
+        if (isBoss(entity)) return MobCultivationCategory.BOSS;
+        if (isHostile(entity)) return MobCultivationCategory.HOSTILE;
+        return MobCultivationCategory.PASSIVE;
     }
 
     private static boolean isHostile(LivingEntity entity) {

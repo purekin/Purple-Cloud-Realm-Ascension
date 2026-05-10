@@ -8,7 +8,7 @@ import net.thejadeproject.ascension.network.serverBound.ToggleTabletDropModePayl
 import net.thejadeproject.ascension.refactor_packages.network.client_bound.entity_data.bloodline.SyncBloodline;
 import net.thejadeproject.ascension.refactor_packages.network.client_bound.entity_data.qi.SyncQi;
 import net.thejadeproject.ascension.refactor_packages.network.client_bound.herb_pouch.SyncHerbPouchPayload;
-import net.thejadeproject.ascension.refactor_packages.network.client_bound.mob_ranks.SyncMobRank;
+import net.thejadeproject.ascension.refactor_packages.network.client_bound.mob_culti.SyncMobCultivation;
 import net.thejadeproject.ascension.network.serverBound.UnlockChapterPayload;
 import net.thejadeproject.ascension.network.serverBound.input.ChangePlayerInputState;
 import net.thejadeproject.ascension.refactor_packages.network.client_bound.entity_data.SyncEntityForm;
@@ -104,9 +104,9 @@ public class ModPayloads {
 
         // Temp for display purposes
         registrar.playToClient(
-                SyncMobRank.TYPE,
-                SyncMobRank.STREAM_CODEC,
-                SyncMobRank::handlePayload
+                SyncMobCultivation.TYPE,
+                SyncMobCultivation.STREAM_CODEC,
+                SyncMobCultivation::handlePayload
         );
 
         registrar.playToClient(
