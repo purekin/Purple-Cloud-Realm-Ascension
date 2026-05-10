@@ -6,6 +6,8 @@ import net.thejadeproject.ascension.data_attachments.ModAttachments;
 import net.thejadeproject.ascension.refactor_packages.entity_data.IEntityData;
 import net.thejadeproject.ascension.refactor_packages.paths.PathData;
 
+import java.util.Comparator;
+
 public final class MobCultivationResolver {
 
     /*
@@ -31,13 +33,6 @@ public final class MobCultivationResolver {
         return definition.baseStats().add(resolveBodyBias(entity).asProfile());
     }
 
-
-    public static MobCultivationDefinition resolveFromNearbyPlayer(LivingEntity entity) {
-        Player player = findNearestRelevantPlayer(entity, DEFAULT_PLAYER_SEARCH_RANGE);
-        if (player == null) return null;
-
-        return resolveFromPlayer(player);
-    }
 
     public static MobCultivationDefinition resolveFromPlayer(Player player) {
         PathData strongest = getStrongestPath(player);
@@ -78,13 +73,20 @@ public final class MobCultivationResolver {
     }
 
     private static Player findNearestRelevantPlayer(LivingEntity entity, double range) {
-        return entity.level().getNearestPlayer(
-                entity.getX(),
-                entity.getY(),
-                entity.getZ(),
-                range,
-                player -> player.isAlive() && !player.isSpectator()
-        );
+        double rangeSqr = range * range;
+
+        return entity.level()
+                .getEntitiesOfClass(
+                        Player.class,
+                        entity.getBoundingBox().inflate(range),
+                        player -> player.isAlive()
+                                && !player.isSpectator()
+                                && !player.isCreative()
+                                && player.distanceToSqr(entity) <= rangeSqr
+                )
+                .stream()
+                .min(Comparator.comparingDouble(a -> a.distanceToSqr(entity)))
+                .orElse(null);
     }
 
     private static String mapPathMajorRealmToMobRealm(int majorRealm) {
@@ -150,6 +152,48 @@ public final class MobCultivationResolver {
 
         int clampedStage = Math.max(1, Math.min(3, stage));
         return realmIndex * 3 + (clampedStage - 1);
+    }
+
+    public static MobCultivationDefinition resolveAroundNearbyPlayer(LivingEntity entity) {
+        Player player = findNearestRelevantPlayer(entity, DEFAULT_PLAYER_SEARCH_RANGE);
+        if (player == null) return null;
+
+        int playerPower = resolvePlayerCombatPower(player);
+        int rolledPower = rollNearbyPower(entity, playerPower);
+
+        return resolveFromPower(rolledPower);
+    }
+
+    private static int rollNearbyPower(LivingEntity entity, int playerPower) {
+        int offset = rollWeightedOffset(entity);
+
+        int maxPower = getMaxRankPower();
+        return Math.max(0, Math.min(maxPower, playerPower + offset));
+    }
+
+    private static int rollWeightedOffset(LivingEntity entity) {
+        int roll = entity.getRandom().nextInt(100);
+
+        if (roll < 12) return -3;
+        if (roll < 30) return -2;
+        if (roll < 55) return -1;
+        if (roll < 90) return 0;
+        return 1;
+    }
+
+    public static MobCultivationDefinition resolveFromPower(int power) {
+        int maxPower = getMaxRankPower();
+        int clampedPower = Math.max(0, Math.min(maxPower, power));
+
+        int realmIndex = clampedPower / 3;
+        int stage = (clampedPower % 3) + 1;
+
+        String realmId = MobCultivationList.getRealmIds().get(realmIndex);
+        return MobCultivationList.get(realmId, stage);
+    }
+
+    private static int getMaxRankPower() {
+        return (MobCultivationList.getRealmIds().size() * 3) - 1;
     }
 
 }

@@ -97,7 +97,7 @@ public class MobCultivationEvents {
         MobCultivationData data = entity.getData(ModAttachments.MOB_RANK);
         if (data == null || data.isInitialized()) return;
 
-        MobCultivationDefinition definition = MobCultivationResolver.resolveFromNearbyPlayer(entity);
+        MobCultivationDefinition definition = MobCultivationResolver.resolveAroundNearbyPlayer(entity);
         if (definition == null) {
             definition = MobCultivationRoller.rollRank(entity);
         }
