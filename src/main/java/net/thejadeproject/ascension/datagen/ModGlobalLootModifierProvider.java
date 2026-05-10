@@ -816,6 +816,10 @@ public class ModGlobalLootModifierProvider extends GlobalLootModifierProvider {
 
         //Herbs
 
+        this.add("jade_dew_grass_from_village", new AddItemModifier(new LootItemCondition[] {
+                LootTableIdCondition.builder(ResourceLocation.withDefaultNamespace("chests/village/village_plains_house")).build(),
+                LootItemRandomChanceCondition.randomChance(0.27F).build()
+        }, ModItems.JADE_DEW_GRASS_SEEDS.get()));
         this.add("hundred_year_ginseng_from_village", new AddItemModifier(new LootItemCondition[] {
                 LootTableIdCondition.builder(ResourceLocation.withDefaultNamespace("chests/village/village_plains_house")).build(),
                 LootItemRandomChanceCondition.randomChance(0.16F).build()
