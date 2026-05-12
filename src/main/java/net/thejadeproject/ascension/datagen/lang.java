@@ -303,6 +303,16 @@ public class lang extends LanguageProvider {
         add("ascension.physiques.spear_soul_mark", "Spear Marked Soul");
         add("ascension.physiques.spear_soul_mark.desc", "A spear mark is branded upon your soul, urging your will forward with piercing, relentless purpose.");
         add("ascension.physiques.spear_soul_mark.desc.short", "Your soul bears a spear mark.");
+        add("ascension.physiques.yin_eyes", "Yin Eyes");
+        add("ascension.physiques.yin_eyes.desc", "Eyes born of moonlit stillness. The soul cultivates, but slowly — as if waiting for something to complete it.");
+        add("ascension.physiques.yin_eyes.desc.short", "A half-formed gaze. Equip a sun technique and maintain it for 20 minutes to awaken it.");
+        add("ascension.physiques.yang_eyes", "Yang Eyes");
+        add("ascension.physiques.yang_eyes.desc", "Eyes born of sunlit intensity. The soul burns with potential, but remains incomplete without its counterpart.");
+        add("ascension.physiques.yang_eyes.desc.short", "A half-formed gaze. Equip a moon technique and maintain it for 20 minutes to awaken it.");
+        add("ascension.physiques.yin_yang_eyes", "Yin-Yang Eyes");
+        add("ascension.physiques.yin_yang_eyes.desc", "The divided gaze has found its balance. Moon and sun, stillness and fire — both paths now flow without resistance.");
+        add("ascension.physiques.yin_yang_eyes.desc.short", "Balanced sight. Soul and Essence cultivation flow freely.");
+        add("ascension.message.physique_evolution.yinyang_pending", "Your eyes stir. A breakthrough will complete the balance.");
 
         // Elemental body merged physiques (2-element)
         add("ascension.physiques.liver_heart_awakening", "Liver-Heart Awakening Physique");
@@ -517,14 +527,13 @@ public class lang extends LanguageProvider {
         add("ascension.skill.gibbous_moon_cultivation_skill", "Gibbous Moon Cultivation");
         add("ascension.skill.gibbous_moon_cultivation_skill.description", "Cultivates the Soul by drawing upon the swelling power of the gibbous moon. Must be practised under open sky. Greatly empowered when gazing directly at the moon. Harmful beneath direct sunlight.");
         add("ascension.skill.gibbous_moon_cultivation_skill.blocked_indoors", "You cannot cultivate the Gibbous Moon Scripture indoors.");
-        add("ascension.skill.purifying_mantra", "Purifying Mantra");
-        add("ascension.skill.purifying_mantra.description", "Recite a purifying mantra to cleanse harmful effects and needle-born debuffs. Temporary afflictions are purified at moderate Qi cost, while permanent impurities require far greater Qi to burn away.");
-        add("ascension.skill.purifying_mantra.no_impurity", "There are no impurities to purify.");
-        add("ascension.skill.purifying_mantra.not_enough_qi", "You do not have enough Qi to complete the purification.");
-        add("ascension.skill.purifying_mantra.success", "The impurity is burned away by purified qi.");
-
         add("ascension.skill.bloodfeast_banquet", "§4Bloodfeast Banquet");
         add("ascension.skill.bloodfeast_banquet.description", "§4Draw upon the life-force of nearby creatures, feasting on their blood to fuel your cultivation. The greater your realm, the wider your table.");
+        add("ascension.skill.soul_needle", "Soul Needle");
+        add("ascension.skill.soul_needle.description", "Pierces a target's soul with focused spiritual force.");
+        add("ascension.skill.soul_suppression", "Soul Suppression");
+        add("ascension.skill.soul_suppression.description", "Releases spiritual pressure, damaging and weakening nearby enemies.");
+
 
         // Body cultivation — T1
         add("ascension.skill.body_cultivation_fire", "§6Fire Body Tempering");
@@ -756,7 +765,7 @@ public class lang extends LanguageProvider {
         add("item.ascension.neutrality_pill", "Neutrality Pill");
         add("item.ascension.rebirth_pill", "Rebirth Pill");
         add("item.ascension.body_amnesia_pill", "Body Amnesia Pill");
-        add("item.ascension.antidote_pill_qdppill", "Antidote Pill");
+        add("item.ascension.antidote_qdp_pill", "Antidote Pill");
         add("item.ascension.antidote_pill_t2", "Antidote Pill");
         add("item.ascension.antidote_pill_t3", "Antidote Pill");
         add("item.ascension.fasting_pill_t1", "Fasting Pill");
@@ -767,7 +776,8 @@ public class lang extends LanguageProvider {
         add("item.ascension.cleansing_pill_t3", "Cleansing Pill");
         add("item.ascension.cleansing_pill_t4", "Cleansing Pill");
 
-        add("item.ascension.inner_reinforcement_pill_t", "Inner Reinforcement Pill");
+        add("item.ascension.inner_reinforcement_pill", "Inner Reinforcement Pill");
+        add("item.ascension.marrow_cleanse_pill", "Marrow Cleanse Pill");
         add("item.ascension.essence_gathering_pill", "Essence Gathering Pill");
         add("item.ascension.soul_focus_pill", "Soul Focus Pill");
 
