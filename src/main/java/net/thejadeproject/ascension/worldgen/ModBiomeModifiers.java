@@ -28,11 +28,6 @@ public class ModBiomeModifiers {
 
 
 
-
-
-    public static final ResourceKey<BiomeModifier> ADD_SPIRIT_VEIN_FEATURE = registerKey("add_spirit_vein_feature");
-
-
     // ── Wild Herbs ────────────────────────────────────────────────────────────
     public static final ResourceKey<BiomeModifier> ADD_WILD_GINSENG = registerKey("add_wild_ginseng");
     public static final ResourceKey<BiomeModifier> ADD_WILD_SNOW_GINSENG = registerKey("add_wild_snow_ginseng");
@@ -71,21 +66,11 @@ public class ModBiomeModifiers {
                 HolderSet.direct(biomes.getOrThrow(Biomes.BEACH)),
                 HolderSet.direct(placedFeatures.getOrThrow(ModPlacedFeatures.GOLDEN_PALM_PLACED_KEY)),
                 GenerationStep.Decoration.VEGETAL_DECORATION));
-//        context.register(ADD_IRONWOOD, new BiomeModifiers.AddFeaturesBiomeModifier(
-//                HolderSet.direct(biomes.getOrThrow(Biomes.PLAINS)),
-//                HolderSet.direct(placedFeatures.getOrThrow(ModPlacedFeatures.IRONWOOD_PLACED_KEY)),
-//                GenerationStep.Decoration.VEGETAL_DECORATION));
 
         context.register(SPAWN_RAT, new BiomeModifiers.AddSpawnsBiomeModifier(
                 HolderSet.direct(biomes.getOrThrow(Biomes.FOREST), biomes.getOrThrow(Biomes.BIRCH_FOREST)),
                         List.of(new MobSpawnSettings.SpawnerData(ModEntities.RAT.get(), 10, 2, 4))));
 
-        //Spirit Vein
-        context.register(ADD_SPIRIT_VEIN_FEATURE, new BiomeModifiers.AddFeaturesBiomeModifier(
-                biomes.getOrThrow(BiomeTags.IS_OVERWORLD),
-                HolderSet.direct(placedFeatures.getOrThrow(ModPlacedFeatures.SPIRIT_VEIN_FEATURE_PLACED_KEY)),
-                GenerationStep.Decoration.UNDERGROUND_STRUCTURES
-        ));
 
 
 

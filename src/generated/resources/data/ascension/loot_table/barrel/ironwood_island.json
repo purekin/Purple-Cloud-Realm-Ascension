@@ -39,14 +39,14 @@
               "add": false,
               "count": {
                 "type": "minecraft:uniform",
-                "max": 6.0,
-                "min": 2.0
+                "max": 3.0,
+                "min": 1.0
               },
               "function": "minecraft:set_count"
             }
           ],
           "name": "ascension:qi_replenishing_pill",
-          "weight": 60
+          "weight": 21
         },
         {
           "type": "minecraft:item",
