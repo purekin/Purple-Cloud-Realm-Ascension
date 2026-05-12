@@ -691,6 +691,7 @@ public class ModGlobalLootModifierProvider extends GlobalLootModifierProvider {
                 35
         ));
 
+
         add("flow_severing_eyes_from_enderman", new AddPhysiqueRandomPurityModifier(
                 new LootItemCondition[] {
                         LootTableIdCondition.builder(ResourceLocation.parse("minecraft:entities/enderman")).build(),

@@ -315,7 +315,9 @@ public class ModPhysiques {
             new EvolvingPhysique(Component.translatable("ascension.physiques.yin_eyes"))
                     .addEvolution(ModPhysiques.YIN_YANG_EYES.getId())
                     .addPath(ModPaths.SOUL.getId())
+                    .addPath(ModPaths.ESSENCE.getId())
                     .addPathBonus(ModPaths.SOUL.getId(), 1.0)
+                    .addPathBonus(ModPaths.ESSENCE.getId(), 0.05)
                     .setDescription(Component.translatable("ascension.physiques.yin_eyes.desc"))
                     .setShortDescription(Component.translatable("ascension.physiques.yin_eyes.desc.short"))
     );
@@ -324,7 +326,9 @@ public class ModPhysiques {
             new EvolvingPhysique(Component.translatable("ascension.physiques.yang_eyes"))
                     .addEvolution(ModPhysiques.YIN_YANG_EYES.getId())
                     .addPath(ModPaths.SOUL.getId())
+                    .addPath(ModPaths.ESSENCE.getId())
                     .addPathBonus(ModPaths.SOUL.getId(), 1.0)
+                    .addPathBonus(ModPaths.ESSENCE.getId(), 0.05)
                     .setDescription(Component.translatable("ascension.physiques.yang_eyes.desc"))
                     .setShortDescription(Component.translatable("ascension.physiques.yang_eyes.desc.short"))
     );

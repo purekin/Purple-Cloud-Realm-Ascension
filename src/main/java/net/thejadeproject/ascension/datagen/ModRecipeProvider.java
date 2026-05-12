@@ -269,6 +269,14 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .define('P', ModItems.JADE_BAMBOO_OF_SERENITY.get())
                 .unlockedBy("has_jade_bamboo_of_serenity", has(ModItems.JADE_BAMBOO_OF_SERENITY)).save(recipeOutput, "ascension:shaped/talisman_paper");
 
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.ANCESTOR_JOURNAL.get())
+                .pattern("TTT")
+                .pattern("TJT")
+                .pattern("TTT")
+                .define('T', ModItems.TALISMAN_PAPER.get())
+                .define('J', ModItems.JADE.get())
+                .unlockedBy("has_talisman_paper", has(ModItems.TALISMAN_PAPER)).save(recipeOutput, "ascension:shaped/ancestor_journal");
+
 
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.WOODEN_BLADE.get())
                 .pattern("JJ ")
@@ -378,11 +386,12 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .define('B', ModItems.BLACK_IRON_NUGGET.get())
                 .unlockedBy("has_black_iron_nugget", has(ModItems.BLACK_IRON_NUGGET)).save(recipeOutput, "ascension:shaped/black_iron_ingot_from_nugget");
 
-        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.SILVER_NEEDLE.get())
-                .pattern("  B")
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.SILVER_NEEDLE.get(), 6)
+                .pattern("  N")
                 .pattern(" B ")
-                .pattern("B  ")
+                .pattern("N  ")
                 .define('B', ModItems.FROST_SILVER_INGOT.get())
+                .define('N', ModItems.FROST_SILVER_NUGGET.get())
                 .unlockedBy("has_frost_silver_ingot", has(ModItems.FROST_SILVER_INGOT)).save(recipeOutput, "ascension:shaped/silver_needle");
 
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModBlocks.FROST_SILVER_BLOCK.get())
