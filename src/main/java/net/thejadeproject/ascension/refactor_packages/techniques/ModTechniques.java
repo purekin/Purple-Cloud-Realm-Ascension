@@ -146,6 +146,9 @@ public class ModTechniques {
     public static final DeferredHolder<ITechnique, ? extends WhiteLightningTenStageTechnique> WHITE_LIGHTNING_TEN_STAGE_TECHNIQUE =
             TECHNIQUES.register("white_lightning_ten_stage_technique",
                     () -> new WhiteLightningTenStageTechnique(baseBodyHandler));
+    public static final DeferredHolder<ITechnique, ? extends HellBoundMarrowTechnique> HELLBOUND_MARROW_SCRIPTURE =
+            TECHNIQUES.register("hellbound_marrow_scripture",
+                    () -> new HellBoundMarrowTechnique(baseBodyHandler));
 
 
 
@@ -268,7 +271,6 @@ public class ModTechniques {
         public static final DeferredHolder<ITechnique, ? extends TripleSoulTechnique> TRIPLE_SOUL_LIFE_SUTRA
 
         public static final DeferredHolder<ITechnique, ? extends AbyssDwellerTechnique> ABYSS_DWELLERS_MANUAL
-        public static final DeferredHolder<ITechnique, ? extends HellboundMarrowTechnique> HELLBOUND_MARROW_SCRIPTURE
         public static final DeferredHolder<ITechnique, ? extends NetherQiTechnique> NETHER_QI_DEVOURING_ART
 
         public static final DeferredHolder<ITechnique, ? extends MirageArrowTechnique> MIRAGE_ARROW_MANUAL

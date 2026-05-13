@@ -449,7 +449,6 @@ public class lang extends LanguageProvider {
         add("ascension.technique.zenith_sun_scripture.description", "Cultivates the Soul by drawing upon the blazing power of the sun at its peak. Must be practised under open sky. Greatly empowered when gazing directly at the sun. Harmful beneath moonlit night skies.");
 
 
-
         // Multi Part Technique Items
         add("item.ascension.scholarly_soul_rectification_of_names", "Rectification of Names");
         add("item.ascension.scholarly_soul_great_learning", "Great Learning");
@@ -462,8 +461,9 @@ public class lang extends LanguageProvider {
         add("ascension.technique.bloodfeast_soul_refining_scripture", "§4Bloodfeast Soul-Refining Scripture");
         add("ascension.technique.bloodfeast_soul_refining_scripture.short_desc", "§4A heretical scripture that refines the soul through the blood of the slain.");
         add("ascension.technique.bloodfeast_soul_refining_scripture.desc", "§4By feasting on the vital essence of nearby creatures the cultivator advances at an\nextraordinary pace. Yet the path is stained crimson each higher realm demands\nproof of the hunt, and those who hunt only their fellow cultivators grow ever more\nfearsome with each slaughter.");
-
-
+        add("ascension.technique.hellbound_marrow_scripture", "Hellbound Marrow Scripture");
+        add("ascension.technique.hellbound_marrow_scripture.description", "A brutal body scripture that burns qi through the bones, refining flesh and marrow through violence, pain, and survival.");
+        add("ascension.technique.hellbound_marrow_scripture.description.short", "Refines the body through pain and violent qi combustion.");
 
         //Skills
         add("ascension.skill.regeneration_boost", "Regenerative Body");
@@ -542,6 +542,18 @@ public class lang extends LanguageProvider {
         add("ascension.skill.soul_suppression.description", "Releases spiritual pressure, damaging and weakening nearby enemies.");
         add("ascension.skill.sword_draw", "Sword Draw");
         add("ascension.skill.sword_draw.description", "Unsheathe in an instant, surging forward and carving through enemies along your path.");
+        add("ascension.skill.soul_lantern", "Soul Lantern");
+        add("ascension.skill.soul_lantern.description", "Marks the soul of a nearby target, revealing it and weakening its body for a short time.");
+        add("ascension.skill.marrow_furnace", "Marrow Furnace");
+        add("ascension.skill.marrow_furnace.description", "Burns qi through the bones when dealing damage, refining the body path. The effect strengthens while below half health.");
+        add("ascension.skill.thunder_palm", "Thunder Palm");
+        add("ascension.skill.thunder_palm.description", "Strikes a nearby target with lightning qi, damaging and briefly slowing them.");
+        add("ascension.skill.thorn_bind", "Thorn Bind");
+        add("ascension.skill.thorn_bind.description", "Binds a target with wood qi, heavily slowing and poisoning them for a short time.");
+        add("ascension.skill.gale_step", "Gale Step");
+        add("ascension.skill.gale_step.description", "Surges forward on wind qi, pushing nearby enemies aside and softening your fall.");
+        add("ascension.skill.stone_root", "Stone Root");
+        add("ascension.skill.stone_root.description", "While grounded and still, roots your body like stone and grants brief resistance.");
 
         // Body cultivation — T1
         add("ascension.skill.body_cultivation_fire", "§6Fire Body Tempering");
