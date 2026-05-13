@@ -1,15 +1,20 @@
 package net.thejadeproject.ascension.refactor_packages.skills.custom.cultivation.weapon;
 
+import net.lucent.easygui.gui.RenderableElement;
+import net.lucent.easygui.gui.UIFrame;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.item.ItemStack;
+import net.neoforged.api.distmarker.Dist;
+import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.event.entity.living.LivingDamageEvent;
 import net.thejadeproject.ascension.data_attachments.ModAttachments;
 import net.thejadeproject.ascension.refactor_packages.breakthroughs.IBreakthroughInstance;
 import net.thejadeproject.ascension.refactor_packages.entity_data.IEntityData;
+import net.thejadeproject.ascension.refactor_packages.gui.elements.info_elements.DescriptionDisplayContainer;
 import net.thejadeproject.ascension.refactor_packages.paths.ModPaths;
 import net.thejadeproject.ascension.refactor_packages.paths.PathData;
 import net.thejadeproject.ascension.refactor_packages.qi.EntityQiContainer;
@@ -129,5 +134,13 @@ public class SwordCultivationSkill extends SimplePassiveSkill {
     @Override
     protected String getIconPath() {
         return "textures/spells/icon/placeholder.png";
+    }
+
+    @OnlyIn(Dist.CLIENT)
+    @Override
+    public RenderableElement getInformationContainer(UIFrame frame, IEntityData entityData) {
+        return new DescriptionDisplayContainer(frame,
+                getTitle(entityData),
+                getDescription(entityData));
     }
 }

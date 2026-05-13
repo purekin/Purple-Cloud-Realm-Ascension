@@ -15,6 +15,8 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
 import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.network.PacketDistributor;
 import net.thejadeproject.ascension.AscensionCraft;
@@ -568,7 +570,7 @@ public class GenericEntityData implements IEntityData {
 
     public boolean setPhysique(ResourceLocation physique,IPhysiqueData physiqueData,ResourceLocation form,IEntityFormData oldPhysiqueForm){
         if(!heldFormData.containsKey(form)) return false;
-
+        AscensionCraft.LOGGER.info("Trying to change physique to : {}", physique);
 
         ResourceLocation oldPhysique = null;
         IPhysiqueData oldPhysiqueData = null;
@@ -583,9 +585,11 @@ public class GenericEntityData implements IEntityData {
         PhysiqueChangeEvent.Pre preEvent = new PhysiqueChangeEvent.Pre(oldPhysique,oldPhysiqueData,physique,this);
         NeoForge.EVENT_BUS.post(preEvent);
         if(preEvent.isCanceled()) return false;
+
         physique = preEvent.getNewPhysique();
         IPhysique newPhysiqueInstance = AscensionRegistries.getRegistryObject(physique,AscensionRegistries.Physiques.PHSIQUES_REGISTRY);
         if(oldPhysique != null){
+            AscensionCraft.LOGGER.info("running logic for old physique removal");
             IPhysique physiqueInstance = oldPhysiqueForm.getPhysique();
 
             physiqueInstance.onPhysiqueRemoved(this,oldPhysiqueData,physique);
@@ -595,6 +599,7 @@ public class GenericEntityData implements IEntityData {
                 TryRemovePathDataEvent event = new TryRemovePathDataEvent(this,path);
                 NeoForge.EVENT_BUS.post(event);
                 if(!event.isCanceled() && !newPhysiqueInstance.paths().contains(path)){
+                    AscensionCraft.LOGGER.info("removing path : "+path);
                     removePath(path);
                 }
             }
@@ -942,7 +947,7 @@ public class GenericEntityData implements IEntityData {
         }
 
         pathData.handleRealmChange(0,0,this);
-        ITechnique technique = AscensionRegistries.Techniques.TECHNIQUES_REGISTRY.get(pathData.getLastUsedTechnique());
+        ITechnique technique = AscensionRegistries.getRegistryObject(pathData.getLastUsedTechnique(),AscensionRegistries.Techniques.TECHNIQUES_REGISTRY);
         if(technique != null) {
             ITechniqueData techniqueData = pathData.getTechniqueData(pathData.getLastUsedTechnique());
             pathData.removeLastUsedTechnique();
@@ -1051,6 +1056,7 @@ public class GenericEntityData implements IEntityData {
             if(formData.getHeldSkills() != null && formData.getHeldSkills().hasSkill(skill)) return true;
         }
         return false;
+
     }
 
     @Override

@@ -277,7 +277,7 @@ public class SwordDraw implements ICastableSkill {
 
     @OnlyIn(Dist.CLIENT)
     @Override
-    public ITextureData getIcon() {
+    public ITextureData getIcon(IEntityData entityData) {
         return new TextureData(
                 ResourceLocation.fromNamespaceAndPath(AscensionCraft.MOD_ID, "textures/spells/icon/placeholder.png"),
                 16,
@@ -286,19 +286,19 @@ public class SwordDraw implements ICastableSkill {
     }
 
     @Override
-    public Component getTitle() {
+    public Component getTitle(IEntityData entityData) {
         return Component.translatable("ascension.skill.sword_draw");
     }
 
     @Override
-    public Component getDescription() {
+    public Component getDescription(IEntityData entityData) {
         return Component.translatable("ascension.skill.sword_draw.description");
     }
 
     @OnlyIn(Dist.CLIENT)
     @Override
-    public RenderableElement getInformationContainer(UIFrame frame) {
-        return new DescriptionDisplayContainer(frame, getTitle(), getDescription());
+    public RenderableElement getInformationContainer(UIFrame frame,IEntityData entityData) {
+        return new DescriptionDisplayContainer(frame, getTitle(entityData), getDescription(entityData));
     }
 
 
