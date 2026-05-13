@@ -94,16 +94,16 @@ public class SoulLanternSkill implements ICastableSkill {
     @Override public int getCooldown(CastEndData castEndData) { return COOLDOWN_TICKS; }
     @Override public CastType getCastType() { return CastType.INSTANT; }
 
-    @Override public Component getTitle() {
+    @Override public Component getTitle(IEntityData entityData) {
         return Component.translatable("ascension.skill.soul_lantern");
     }
 
-    @Override public Component getDescription() {
+    @Override public Component getDescription(IEntityData entityData) {
         return Component.translatable("ascension.skill.soul_lantern.description");
     }
 
     @OnlyIn(Dist.CLIENT)
-    @Override public ITextureData getIcon() {
+    @Override public ITextureData getIcon(IEntityData entityData) {
         return new TextureData(ResourceLocation.fromNamespaceAndPath(
                 AscensionCraft.MOD_ID,
                 "textures/spells/icon/placeholder.png"
@@ -111,8 +111,8 @@ public class SoulLanternSkill implements ICastableSkill {
     }
 
     @OnlyIn(Dist.CLIENT)
-    @Override public RenderableElement getInformationContainer(UIFrame frame) {
-        return new DescriptionDisplayContainer(frame, getTitle(), getDescription());
+    @Override public RenderableElement getInformationContainer(UIFrame frame,IEntityData entityData) {
+        return new DescriptionDisplayContainer(frame, getTitle(entityData), getDescription(entityData));
     }
 
     @OnlyIn(Dist.CLIENT)

@@ -61,23 +61,24 @@ public abstract class SimpleInstantCastSkill implements ICastableSkill {
     }
 
     @OnlyIn(Dist.CLIENT)
-    @Override public ITextureData getIcon() {
+    @Override
+    public ITextureData getIcon(IEntityData entityData) {
         return new TextureData(ResourceLocation.fromNamespaceAndPath(
                 AscensionCraft.MOD_ID,
                 getIconPath()
         ), 16, 16);
     }
 
-    @Override public Component getTitle() {
+    @Override public Component getTitle(IEntityData entityData) {
         return Component.translatable(getTitleKey());
     }
 
-    @Override public Component getDescription() {
+    @Override public Component getDescription(IEntityData entityData) {
         return Component.translatable(getDescriptionKey());
     }
 
     @OnlyIn(Dist.CLIENT)
-    @Override public RenderableElement getInformationContainer(UIFrame frame) {
-        return new DescriptionDisplayContainer(frame, getTitle(), getDescription());
+    @Override public RenderableElement getInformationContainer(UIFrame frame,IEntityData entityData) {
+        return new DescriptionDisplayContainer(frame, getTitle(entityData), getDescription(entityData));
     }
 }
