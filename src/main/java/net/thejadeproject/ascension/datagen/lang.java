@@ -759,6 +759,14 @@ public class lang extends LanguageProvider {
         add("item.ascension.diamond_blade", "Diamond Blade");
         add("item.ascension.netherite_blade", "Netherite Blade");
 
+
+
+
+        add("item.ascension.cultivators_sword_iron", "Iron Cultivators Sword");
+
+
+
+
         add("item.ascension.wooden_spear", "Wooden Spear");
         add("item.ascension.stone_spear", "Stone Spear");
         add("item.ascension.iron_spear", "Iron Spear");
@@ -828,6 +836,10 @@ public class lang extends LanguageProvider {
 
         //Mobs
         add("entity.ascension.treasure_rat", "Treasure Rat");
+
+
+
+        add("entity.ascension.weapon_swing_vfx", "Weapon Swing Vfx");
 
 
         //Powders
