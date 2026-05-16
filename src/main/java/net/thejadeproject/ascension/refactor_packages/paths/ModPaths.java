@@ -36,12 +36,18 @@ public class ModPaths {
 
     // Central Paths
     public static final DeferredHolder<IPath, ? extends GenericPath> ESSENCE = PATHS.register("essence",()->
-            new FoundationPath(Component.translatable("ascension.path.essence"),new LnStabilityHandler())
+            new FoundationPath(Component.translatable("ascension.path.essence"))
+                    .addFoundationRequirement(0,10000)
+                    .addFoundationRequirement(1,20000)
+                    .addFoundationRequirement(2,30000)
+                    .addFoundationRequirement(3,40000)
+                    .addFoundationRequirement(4,1000000)
                     .addMajorRealmName("ascension.path.essence.mortal")
                     .addMajorRealmName("ascension.path.essence.qi_condensation")
                     .addMajorRealmName("ascension.path.essence.formation_establishment")
                     .addMajorRealmName("ascension.path.essence.golden_core")
                     .addMajorRealmName("ascension.path.essence.nascent_core")
+
             );
     public static final DeferredHolder<IPath, ? extends GenericPath> BODY = PATHS.register("body",()->
             new GenericPath(Component.translatable("ascension.path.body"))

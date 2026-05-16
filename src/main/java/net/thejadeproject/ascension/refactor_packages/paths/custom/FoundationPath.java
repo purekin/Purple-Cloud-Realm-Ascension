@@ -8,19 +8,26 @@ import net.thejadeproject.ascension.refactor_packages.paths.data.IPathData;
 import net.thejadeproject.ascension.refactor_packages.paths.data.SimplePathData;
 import net.thejadeproject.ascension.refactor_packages.paths.data.foundation.FoundationPathData;
 import net.thejadeproject.ascension.refactor_packages.paths.data.foundation.stability.IStabilityHandler;
+import net.thejadeproject.ascension.refactor_packages.paths.data.foundation.stability.LnStabilityHandler;
 import net.thejadeproject.ascension.refactor_packages.registries.AscensionRegistries;
 
-public class FoundationPath extends GenericPath{
-    private IStabilityHandler stabilityHandler;
+import java.util.HashMap;
 
-    public FoundationPath(Component title,IStabilityHandler stabilityHandler) {
+public class FoundationPath extends GenericPath{
+    private IStabilityHandler stabilityHandler = new LnStabilityHandler(100000);
+    private HashMap<Integer,IStabilityHandler> realmHandlers = new HashMap<>();
+    public FoundationPath(Component title) {
         super(title);
-        this.stabilityHandler = stabilityHandler;
+
     }
 
-
+    public FoundationPath addFoundationRequirement(int realm,int maxProgress){
+        realmHandlers.put(realm,new LnStabilityHandler(maxProgress));
+        return this;
+    }
     public IStabilityHandler getStabilityHandler(int realm){
-        return stabilityHandler;
+
+        return realmHandlers.containsKey(realm)?realmHandlers.get(realm):stabilityHandler;
     }
 
     public void onFoundationBreakthrough(IEntityData entityData, int majorRealm, int foundationStage){
