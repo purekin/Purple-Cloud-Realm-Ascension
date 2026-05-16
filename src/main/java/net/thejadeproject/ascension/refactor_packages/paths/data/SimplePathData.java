@@ -181,7 +181,7 @@ public class SimplePathData implements IPathData{
 
     @Override
     public void minorRealmUp(IEntityData entityData) {
-
+        progress = 0;
     }
 
     @Override

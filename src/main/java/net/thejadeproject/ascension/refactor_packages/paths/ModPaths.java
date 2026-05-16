@@ -6,7 +6,9 @@ import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import net.thejadeproject.ascension.AscensionCraft;
 import net.thejadeproject.ascension.refactor_packages.paths.custom.ComprehensionPath;
+import net.thejadeproject.ascension.refactor_packages.paths.custom.FoundationPath;
 import net.thejadeproject.ascension.refactor_packages.paths.custom.GenericPath;
+import net.thejadeproject.ascension.refactor_packages.paths.data.foundation.stability.LnStabilityHandler;
 import net.thejadeproject.ascension.refactor_packages.registries.AscensionRegistries;
 
 public class ModPaths {
@@ -34,7 +36,7 @@ public class ModPaths {
 
     // Central Paths
     public static final DeferredHolder<IPath, ? extends GenericPath> ESSENCE = PATHS.register("essence",()->
-            new GenericPath(Component.translatable("ascension.path.essence"))
+            new FoundationPath(Component.translatable("ascension.path.essence"),new LnStabilityHandler())
                     .addMajorRealmName("ascension.path.essence.mortal")
                     .addMajorRealmName("ascension.path.essence.qi_condensation")
                     .addMajorRealmName("ascension.path.essence.formation_establishment")
