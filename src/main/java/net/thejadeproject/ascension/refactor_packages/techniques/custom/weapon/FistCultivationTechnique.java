@@ -4,7 +4,7 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.thejadeproject.ascension.refactor_packages.entity_data.IEntityData;
 import net.thejadeproject.ascension.refactor_packages.forms.forms.ModForms;
-import net.thejadeproject.ascension.refactor_packages.paths.PathData;
+import net.thejadeproject.ascension.refactor_packages.paths.data.IPathData;
 import net.thejadeproject.ascension.refactor_packages.registries.AscensionRegistries;
 import net.thejadeproject.ascension.refactor_packages.skills.custom.ModSkills;
 import net.thejadeproject.ascension.refactor_packages.techniques.ITechniqueData;
@@ -38,7 +38,7 @@ public class FistCultivationTechnique extends GenericTechnique {
 
         refreshUniversalTechniqueSkills(heldEntity);
 
-        PathData pathData = heldEntity.getPathData(getPath());
+        IPathData pathData = heldEntity.getPathData(getPath());
         refreshRealmUnlockSkills(
                 heldEntity,
                 pathData == null ? 0 : pathData.getMajorRealm()
@@ -47,7 +47,8 @@ public class FistCultivationTechnique extends GenericTechnique {
 
     @Override
     public void onTechniqueRemoved(IEntityData heldEntity, ITechniqueData techniqueData) {
-        PathData pathData = heldEntity.getPathData(getPath());
+        // UPDATED: Using IPathData
+        IPathData pathData = heldEntity.getPathData(getPath());
 
         if (pathData != null) {
             pathData.handleRealmChange(pathData.getMajorRealm(), 0, heldEntity);
@@ -94,6 +95,5 @@ public class FistCultivationTechnique extends GenericTechnique {
         return AscensionRegistries.Techniques.TECHNIQUES_REGISTRY.get(technique)
                 instanceof FistCultivationTechnique;
     }
-
 
 }

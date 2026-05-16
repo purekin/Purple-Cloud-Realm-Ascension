@@ -4,6 +4,7 @@ import net.lucent.easygui.gui.RenderableElement;
 import net.lucent.easygui.gui.UIFrame;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.item.ItemStack;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
@@ -11,13 +12,11 @@ import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.event.entity.living.LivingDamageEvent;
 import net.thejadeproject.ascension.data_attachments.ModAttachments;
-import net.thejadeproject.ascension.refactor_packages.breakthroughs.IBreakthroughInstance;
 import net.thejadeproject.ascension.refactor_packages.entity_data.IEntityData;
 import net.thejadeproject.ascension.refactor_packages.gui.elements.info_elements.DescriptionDisplayContainer;
 import net.thejadeproject.ascension.refactor_packages.paths.ModPaths;
-import net.thejadeproject.ascension.refactor_packages.paths.PathData;
+import net.thejadeproject.ascension.refactor_packages.paths.data.IPathData;
 import net.thejadeproject.ascension.refactor_packages.qi.EntityQiContainer;
-import net.thejadeproject.ascension.refactor_packages.registries.AscensionRegistries;
 import net.thejadeproject.ascension.refactor_packages.skills.custom.passive.SimplePassiveSkill;
 import net.thejadeproject.ascension.refactor_packages.techniques.ITechnique;
 import net.thejadeproject.ascension.util.ModTags;
@@ -46,15 +45,17 @@ public class FistCultivationSkill extends SimplePassiveSkill{
 
         if (!(event.getSource().getEntity() instanceof ServerPlayer player)) return;
 
-        // CRITICAL: Ensure the damage is coming directly from the player's body (melee), not a projectile
-        if (event.getSource().getDirectEntity() != player) return;
+        // Check if the damage came from a melee hit
+        Entity directEntity = event.getSource().getDirectEntity();
+        boolean isMelee = (directEntity == player);
+
+        if (!isMelee) return;
 
         float damage = event.getNewDamage();
         if (damage < MIN_DAMAGE) return;
 
         ItemStack mainHand = player.getMainHandItem();
 
-        // Validates if the player is purely unarmed OR holding a registered Fist weapon
         boolean isFistWeapon = mainHand.isEmpty() || mainHand.is(ModTags.Items.FIST);
         if (!isFistWeapon) return;
 
@@ -62,7 +63,7 @@ public class FistCultivationSkill extends SimplePassiveSkill{
         if (entityData == null) return;
         if (!entityData.hasSkill(skillId)) return;
 
-        PathData fistPath = entityData.getPathData(ModPaths.FIST.getId());
+        IPathData fistPath = entityData.getPathData(ModPaths.FIST.getId());
         if (fistPath == null || fistPath.isBreakingThrough()) return;
 
         EntityQiContainer qiContainer = entityData.getQiContainer();
@@ -79,8 +80,7 @@ public class FistCultivationSkill extends SimplePassiveSkill{
 
         double gain = damage * BASE_MULTIPLIER * fistBonus;
 
-        ITechnique technique = fistPath.getLastUsedTechnique() == null ? null :
-                AscensionRegistries.Techniques.TECHNIQUES_REGISTRY.get(fistPath.getLastUsedTechnique());
+        ITechnique technique = fistPath.getCurrentTechnique();
 
         if (technique != null && fistPath.getCurrentRealmProgress() + gain >= technique.getMaxQiForRealm(
                 fistPath.getMajorRealm(),
@@ -112,12 +112,8 @@ public class FistCultivationSkill extends SimplePassiveSkill{
                     fistPath.getMinorRealm(),
                     fistPath.getCurrentRealmProgress()
             )) {
-                IBreakthroughInstance instance = technique.freshBreakthroughData(entityData);
-
-                if (instance != null) {
-                    fistPath.setBreakthroughInstance(instance);
-                    fistPath.setBreakingThrough(true);
-                }
+                // Trigger major breakthrough
+                fistPath.handleRealmChange(fistPath.getMajorRealm() + 1, 0, entityData);
             }
         } else {
             fistPath.setCurrentRealmProgress(fistPath.getCurrentRealmProgress() + gain);

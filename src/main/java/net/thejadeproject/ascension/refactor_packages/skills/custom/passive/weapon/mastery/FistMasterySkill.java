@@ -1,4 +1,4 @@
-package net.thejadeproject.ascension.refactor_packages.skills.custom.passive.weapon;
+package net.thejadeproject.ascension.refactor_packages.skills.custom.passive.weapon.mastery;
 
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
@@ -7,6 +7,9 @@ import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.thejadeproject.ascension.refactor_packages.paths.ModPaths;
+import net.thejadeproject.ascension.refactor_packages.skills.vfx.weaponvfx.VfxColorRegistry;
+import net.thejadeproject.ascension.refactor_packages.skills.vfx.weaponvfx.WeaponSwingVfxEntity;
+import net.thejadeproject.ascension.refactor_packages.techniques.ModTechniques;
 import net.thejadeproject.ascension.util.ModTags;
 
 public class FistMasterySkill extends GenericWeaponMasterySkill{
@@ -26,9 +29,7 @@ public class FistMasterySkill extends GenericWeaponMasterySkill{
     }
 
     @Override
-    protected String getVfxType() {
-        return "";
-    }
+    protected String getVfxType() { return "";}
 
     @Override
     public boolean matchesDamage(ServerPlayer player, DamageSource source) {
