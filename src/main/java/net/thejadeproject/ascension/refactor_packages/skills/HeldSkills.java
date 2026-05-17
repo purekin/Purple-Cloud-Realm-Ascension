@@ -122,13 +122,13 @@ public class HeldSkills {
     public static void encodeFull(RegistryFriendlyByteBuf buf,HeldSkills heldSkills){
 
         buf.writeInt(heldSkills.skills.size());
-        //System.out.println("encoding : "+heldSkills.skills.size());
-        Collection<HeldSkill> group = new ArrayList<>(heldSkills.skills.values());
-        for(HeldSkill skill : group){
-            //System.out.println("encoding skill :" +skill.getKey());
+
+        for(HeldSkill skill : heldSkills.skills.values()){
+
             skill.encode(buf);
-            //System.out.println("finished encoding");
+
         }
+
 
     }
 
