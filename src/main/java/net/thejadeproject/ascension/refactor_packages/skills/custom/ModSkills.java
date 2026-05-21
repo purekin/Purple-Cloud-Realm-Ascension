@@ -21,6 +21,7 @@ import net.thejadeproject.ascension.refactor_packages.skills.custom.active.attac
 import net.thejadeproject.ascension.refactor_packages.skills.custom.active.utility.GaleStep;
 import net.thejadeproject.ascension.refactor_packages.skills.custom.active.utility.QiFlightSkill;
 import net.thejadeproject.ascension.refactor_packages.skills.custom.active.utility.VoidstepSkill;
+import net.thejadeproject.ascension.refactor_packages.skills.custom.active.utility.SoulForgeSkill;
 import net.thejadeproject.ascension.refactor_packages.skills.custom.cultivation.GenericCultivationSkill;
 import net.thejadeproject.ascension.refactor_packages.skills.custom.cultivation.body.MarrowFurnaceCultivationSkill;
 import net.thejadeproject.ascension.refactor_packages.skills.custom.cultivation.essence.BloodfeastBanquetSkill;
@@ -256,6 +257,8 @@ public class ModSkills {
             SKILLS.register("soul_suppression", SoulSuppression::new);
     public static final DeferredHolder<ISkill, ? extends SoulLanternSkill> SOUL_LANTERN =
             SKILLS.register("soul_lantern", SoulLanternSkill::new);
+    public static final DeferredHolder<ISkill, ? extends SoulForgeSkill> SOUL_FORGE =
+            SKILLS.register("soul_forge", SoulForgeSkill::new);
 
     // ──── WEAPON SKILLS ────────────────────────────────────────────
     // Cultivation

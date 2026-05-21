@@ -658,6 +658,7 @@ public class lang extends LanguageProvider {
         add("ascension.skill.soul_forge.returned_from_container", "Your soul weapon refuses to be stored away.");
         add("ascension.skill.soul_forge.status.unbound", "No soul weapon is bound.");
         add("ascension.skill.soul_forge.status.bound", "Soul Weapon: %s | Grade: %s | Tempering: %s / %s | Summoned: %s");
+        add("ascension.skill.soul_forge.no_soul_path", "You need the Soul path to use Soul Forge.");
         add("ascension.skill.simple_soul_cultivation_skill", "Basic Soul Cultivation");
         add("ascension.skill.simple_soul_cultivation_skill.description", "A basic soul cultivation method. Quiet the body, steady the spirit, and draw soul essence into your foundation.");
 

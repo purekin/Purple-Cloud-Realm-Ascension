@@ -532,6 +532,7 @@
   "ascension.skill.soul_forge": "Soul Forge",
   "ascension.skill.soul_forge.bound": "Bound %s to your soul.",
   "ascension.skill.soul_forge.description": "Bind a weapon into your soul, then summon or dismiss it.",
+  "ascension.skill.soul_forge.no_soul_path": "You need the Soul path to use Soul Forge.",
   "ascension.skill.soul_forge.no_weapon": "No suitable weapon to bind.",
   "ascension.skill.soul_forge.returned_from_container": "Your soul weapon refuses to be stored away.",
   "ascension.skill.soul_forge.status.bound": "Soul Weapon: %s | Grade: %s | Tempering: %s / %s | Summoned: %s",

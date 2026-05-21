@@ -270,6 +270,8 @@ public class ModTechniques {
             TECHNIQUES.register("dawning_sun_scripture", () -> new DawningSunTechnique(baseSoulHandler));
     public static final DeferredHolder<ITechnique, ? extends ZenithSunTechnique> ZENITH_SUN_SCRIPTURE =
             TECHNIQUES.register("zenith_sun_scripture", () -> new ZenithSunTechnique(baseSoulHandler));
+    public static final DeferredHolder<ITechnique, ? extends SoulForgedWeaponTechnique> SOUL_FORGED_WEAPON_MANUAL =
+            TECHNIQUES.register("soul_forged_weapon_manual", () -> new SoulForgedWeaponTechnique(baseSoulHandler));
 
 
 
