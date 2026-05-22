@@ -6,6 +6,7 @@ import net.minecraft.world.item.ItemStack;
 import net.thejadeproject.ascension.common.items.ModItems;
 import net.thejadeproject.ascension.common.items.data_components.ModDataComponents;
 import net.thejadeproject.ascension.common.items.tools.data.soul_weapon.SoulWeaponComponent;
+import net.thejadeproject.ascension.data_attachments.ModAttachments;
 import net.thejadeproject.ascension.data_attachments.attachments.SoulWeaponData;
 import net.thejadeproject.ascension.util.ModTags;
 
@@ -28,8 +29,8 @@ public final class SoulWeaponHelper {
     public static float calculateSoulWeaponDamage(int soulMajor, int soulMinor, int grade, int forgedMarks, String type) {
         float soulBonus = soulMajor * 2.5F
                 + soulMinor * 0.25F
-                + grade * 1.25F
-                + forgedMarks * 0.75F;
+                + grade * 2.0F
+                + forgedMarks * 1.25F;
 
         return BASE_DAMAGE + soulBonus * getTypeMultiplier(type);
     }
@@ -39,10 +40,39 @@ public final class SoulWeaponHelper {
     }
 
     public static int getTemperingGain(LivingEntity killed) {
-        if (killed.getType().is(ModTags.EntityTypes.BOSS)) return 25;
-        if (killed.getMaxHealth() >= 100.0F) return 10;
-        if (killed.getMaxHealth() >= 40.0F) return 4;
-        return 1;
+        int gain = 1;
+
+        if (killed.hasData(ModAttachments.MOB_RANK)) {
+            var rank = killed.getData(ModAttachments.MOB_RANK);
+
+            if (!rank.isUnranked() && rank.isInitialized()) {
+                gain += rank.getStage();
+                gain += getRealmWeight(rank.getRealmId());
+                return gain;
+            }
+        }
+
+        if (killed.getType().is(ModTags.EntityTypes.BOSS)) {
+            return 25;
+        }
+
+        return gain;
+    }
+
+    private static int getRealmWeight(String realmId) {
+        return switch (realmId) {
+            case "qi_gathering" -> 2;
+            case "formation_establishment" -> 5;
+            case "golden_core" -> 9;
+            case "nascent_soul" -> 14;
+            case "soul_formation" -> 20;
+            case "void_refinement" -> 27;
+            case "body_integration" -> 35;
+            case "tribulation_transcendence" -> 44;
+            case "mahayana" -> 54;
+            case "earth_immortal" -> 65;
+            default -> 0;
+        };
     }
 
     private static float getTypeMultiplier(String type) {
@@ -67,10 +97,9 @@ public final class SoulWeaponHelper {
     public static void syncSoulRealmProgress(SoulWeaponData data, int soulMajor, int soulMinor) {
         if (!data.bound) return;
 
-        boolean advanced = soulMajor > data.lastSoulMajor
-                || soulMajor == data.lastSoulMajor && soulMinor > data.lastSoulMinor;
+        boolean advancedMajorRealm = soulMajor > data.lastSoulMajor;
 
-        if (advanced) {
+        if (advancedMajorRealm) {
             data.currentGrade = 0;
             data.currentTempering = 0;
         }
