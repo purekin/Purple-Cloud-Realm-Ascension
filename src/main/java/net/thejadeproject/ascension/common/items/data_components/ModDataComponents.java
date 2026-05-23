@@ -100,6 +100,14 @@ public class ModDataComponents {
                     .build()
     );
 
+    public static final Supplier<DataComponentType<String>> BLOODLINE_ID = DATA_COMPONENTS.register(
+            "bloodline_id",
+            () -> DataComponentType.<String>builder()
+                    .persistent(Codec.STRING)
+                    .networkSynchronized(ByteBufCodecs.STRING_UTF8)
+                    .build()
+    );
+
     public static final Supplier<DataComponentType<Boolean>> PERMANENT = DATA_COMPONENTS.register(
             "permanent",
             () -> DataComponentType.<Boolean>builder()

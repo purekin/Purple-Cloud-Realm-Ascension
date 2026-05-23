@@ -422,11 +422,11 @@ public class lang extends LanguageProvider {
         add("ascension.physiques.soul_crowned_king.desc", "You are the Peak of the Soul, Your Throne built on rivers of fallen Kings. Souls tremble before Your might.");
         add("ascension.message.physique.soul_crowned_king.acquired", "%s has become the %s. Tremble beneath their Throne!");
 
-
-
         // Physique Essence Tooltips
         add("ascension.physique_essence.tooltip.fuse", "Right-click to merge into a compatible physique");
         add("ascension.physique_essence.tooltip.replace", "Shift-right-click to replace physique entirely");
+        add("item.ascension.bloodline_essence", "Bloodline Essence");
+        add("ascension.bloodline_essence.tooltip.replace", "Shift right-click to replace your bloodline.");
 
         // Physique Evolution Messages
         add("ascension.message.physique_evolution.pacifist_mortal_reset", "You have failed to maintain a peaceful streak.");
@@ -441,6 +441,20 @@ public class lang extends LanguageProvider {
         add("ascension.message.physique_evolution.essence_bone_pill_fuel", "Refinement fuel gathered: %s/%s minutes.");
         add("ascension.message.physique_evolution.yinyang_pending", "Your eyes stir. A breakthrough will complete the balance.");
 
+
+        // Bloodlines
+        add("ascension.bloodline.human_bloodline", "Human Bloodline");
+        add("ascension.bloodline.human_bloodline.short", "A normal bloodline.");
+        add("ascension.bloodline.human_bloodline.desc", "A standard human bloodline.");
+        add("ascension.bloodline.phoenix_bloodline", "Phoenix Bloodline");
+        add("ascension.bloodline.phoenix_bloodline.short", "A lineage touched by immortal flame.");
+        add("ascension.bloodline.phoenix_bloodline.desc", "A rare bloodline carrying traces of an ancient phoenix.");
+        add("ascension.bloodline.beast_bloodline", "Beast Bloodline");
+        add("ascension.bloodline.beast_bloodline.short", "A fierce and primal lineage.");
+        add("ascension.bloodline.beast_bloodline.desc", "A savage bloodline that grows stronger through conflict and survival.");
+        add("ascension.bloodline.awakened_beast_bloodline", "Awakened Beast Bloodline");
+        add("ascension.bloodline.awakened_beast_bloodline.short", "A bloodline awakened beyond mortality.");
+        add("ascension.bloodline.awakened_beast_bloodline.desc", "An evolved beast lineage overflowing with ancient ferocity.");
 
 
         //Techniques

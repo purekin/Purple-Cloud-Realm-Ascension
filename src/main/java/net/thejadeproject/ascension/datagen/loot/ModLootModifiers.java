@@ -24,6 +24,13 @@ public class ModLootModifiers {
             LOOT_MODIFIER_SERIALIZERS.register("add_physique_random_purity",
                     () -> AddPhysiqueRandomPurityModifier.CODEC);
 
+    public static final Supplier<MapCodec<? extends IGlobalLootModifier>> ADD_BLOODLINE_ITEM  =
+            LOOT_MODIFIER_SERIALIZERS.register("add_bloodline_item", () -> AddBloodlineItemModifier.CODEC);
+
+    public static final Supplier<MapCodec<? extends IGlobalLootModifier>> ADD_BLOODLINE_RANDOM_PURITY =
+            LOOT_MODIFIER_SERIALIZERS.register("add_bloodline_random_purity",
+                    () -> AddBloodlineRandomPurityModifier.CODEC);
+
 
 
 

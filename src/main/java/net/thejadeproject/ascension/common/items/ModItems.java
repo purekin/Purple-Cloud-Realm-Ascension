@@ -15,6 +15,7 @@ import net.thejadeproject.ascension.AscensionCraft;
 import net.thejadeproject.ascension.common.blocks.ModBlocks;
 
 import net.thejadeproject.ascension.common.items.artifacts.talismans.*;
+import net.thejadeproject.ascension.common.items.bloodlines.BloodlineTransferItem;
 import net.thejadeproject.ascension.common.items.techniques.TechniqueBinderItem;
 import net.thejadeproject.ascension.common.items.techniques.TechniquePageItem;
 import net.thejadeproject.ascension.common.items.tools.*;
@@ -405,6 +406,9 @@ public class ModItems {
     //Change it into a Blood Essence texture and also make it so blood essence drop then you can combine blood essences to make the purity 100% and when its 100% only then can you use it.
     public static final DeferredItem<Item> PHYSIQUE_ESSENCE = ITEMS.register("physique_essence",
             () -> new PhysiqueTransferItem(new Item.Properties().stacksTo(1)));
+
+    public static final DeferredItem<Item> BLOODLINE_ESSENCE  = ITEMS.register("bloodline_essence",
+            () -> new BloodlineTransferItem(new Item.Properties().stacksTo(1)));
 
     // --- Elemental Cores ---
     public static final DeferredItem<Item> FIRE_CORE      = ITEMS.register("fire_core",      () -> new Item(new Item.Properties()));
