@@ -70,15 +70,17 @@ public class PillItem extends Item {
 
     @Override
     public ItemStack finishUsingItem(ItemStack stack, Level level, LivingEntity livingEntity) {
-        ItemStack result = super.finishUsingItem(stack, level, livingEntity);
-        if (level.isClientSide() || !(livingEntity instanceof Player player)) return result;
+        if (level.isClientSide() || !(livingEntity instanceof Player player)) {
+            return super.finishUsingItem(stack, level, livingEntity);
+        }
 
         double purityScale = PillEffectUtil.getPurityScale(stack);
         double realmMultiplier = PillEffectUtil.getRealmMultiplier(stack);
-
         List<IPillEffect> effects = PillEffectUtil.getPillEffects(stack);
-        boolean shouldGoOnCooldown = false;
 
+        ItemStack result = super.finishUsingItem(stack, level, livingEntity);
+
+        boolean shouldGoOnCooldown = false;
         for (IPillEffect effect : effects) {
             effect.tryConsume(livingEntity, stack, purityScale, realmMultiplier);
             if (effect.shouldGoOnCooldown()) {
@@ -92,7 +94,6 @@ public class PillItem extends Item {
 
         return result;
     }
-
     @Override
     public void appendHoverText(ItemStack stack, TooltipContext ctx,
                                 List<Component> list, TooltipFlag flag) {
