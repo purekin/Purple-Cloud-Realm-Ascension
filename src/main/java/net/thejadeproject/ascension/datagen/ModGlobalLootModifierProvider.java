@@ -132,6 +132,66 @@ public class ModGlobalLootModifierProvider extends GlobalLootModifierProvider {
                 ResourceLocation.fromNamespaceAndPath(AscensionCraft.MOD_ID, "raven_bloodline"), 10, 45
         ));
 
+        add("nine_tailed_fox_bloodline_from_fox", new AddBloodlineRandomPurityModifier(
+                new LootItemCondition[]{
+                        LootTableIdCondition.builder(ResourceLocation.withDefaultNamespace("entities/fox")).build(),
+                        LootItemKilledByPlayerCondition.killedByPlayer().build(),
+                        LootItemRandomChanceCondition.randomChance(0.10f).build()
+                },
+                ResourceLocation.fromNamespaceAndPath(AscensionCraft.MOD_ID, "nine_tailed_fox_bloodline"), 5, 35
+        ));
+
+        add("nine_tailed_fox_bloodline_from_ancient_city", new AddBloodlineRandomPurityModifier(
+                new LootItemCondition[]{
+                        LootTableIdCondition.builder(ResourceLocation.withDefaultNamespace("chests/ancient_city")).build(),
+                        LootItemRandomChanceCondition.randomChance(0.025f).build()
+                },
+                ResourceLocation.fromNamespaceAndPath(AscensionCraft.MOD_ID, "nine_tailed_fox_bloodline"), 10, 45
+        ));
+
+        add("tiger_bloodline_from_cat", new AddBloodlineRandomPurityModifier(
+                new LootItemCondition[]{
+                        LootTableIdCondition.builder(ResourceLocation.withDefaultNamespace("entities/cat")).build(),
+                        LootItemKilledByPlayerCondition.killedByPlayer().build(),
+                        LootItemRandomChanceCondition.randomChance(0.08f).build()
+                },
+                ResourceLocation.fromNamespaceAndPath(AscensionCraft.MOD_ID, "tiger_bloodline"), 5, 20
+        ));
+
+        add("tiger_bloodline_from_jungle_temple", new AddBloodlineRandomPurityModifier(
+                new LootItemCondition[]{
+                        LootTableIdCondition.builder(ResourceLocation.withDefaultNamespace("chests/jungle_temple")).build(),
+                        LootItemRandomChanceCondition.randomChance(0.08f).build()
+                },
+                ResourceLocation.fromNamespaceAndPath(AscensionCraft.MOD_ID, "tiger_bloodline"), 10, 45
+        ));
+
+        add("serpent_bloodline_from_cave_spider", new AddBloodlineRandomPurityModifier(
+                new LootItemCondition[]{
+                        LootTableIdCondition.builder(ResourceLocation.withDefaultNamespace("entities/cave_spider")).build(),
+                        LootItemKilledByPlayerCondition.killedByPlayer().build(),
+                        LootItemRandomChanceCondition.randomChance(0.10f).build()
+                },
+                ResourceLocation.fromNamespaceAndPath(AscensionCraft.MOD_ID, "serpent_bloodline"), 5, 15
+        ));
+
+        add("serpent_bloodline_from_desert_pyramid", new AddBloodlineRandomPurityModifier(
+                new LootItemCondition[]{
+                        LootTableIdCondition.builder(ResourceLocation.withDefaultNamespace("chests/desert_pyramid")).build(),
+                        LootItemRandomChanceCondition.randomChance(0.07f).build()
+                },
+                ResourceLocation.fromNamespaceAndPath(AscensionCraft.MOD_ID, "serpent_bloodline"), 10, 45
+        ));
+
+
+        add("crane_bloodline_from_village_temple", new AddBloodlineRandomPurityModifier(
+                new LootItemCondition[]{
+                        LootTableIdCondition.builder(ResourceLocation.withDefaultNamespace("chests/village/village_temple")).build(),
+                        LootItemRandomChanceCondition.randomChance(0.06f).build()
+                },
+                ResourceLocation.fromNamespaceAndPath(AscensionCraft.MOD_ID, "crane_bloodline"), 10, 40
+        ));
+
 
         //Technique Pages
 

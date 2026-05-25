@@ -468,6 +468,18 @@ public class lang extends LanguageProvider {
         add("ascension.bloodline.raven_bloodline", "Raven Bloodline");
         add("ascension.bloodline.raven_bloodline.short", "A dark and elusive lineage.");
         add("ascension.bloodline.raven_bloodline.desc", "A silent bloodline associated with shadows, cunning, and night.");
+        add("ascension.bloodline.nine_tailed_fox_bloodline", "Nine Tailed Fox Bloodline");
+        add("ascension.bloodline.nine_tailed_fox_bloodline.short", "A graceful and mystical lineage, surrounded by illusions and charm.");
+        add("ascension.bloodline.nine_tailed_fox_bloodline.desc", "A legendary bloodline said to descend from the mythical nine tailed foxes, beings known for their elegance, cunning, and overwhelming spiritual charm. They are masters of the Soul, bewitching all in their illusions and tricks.");
+        add("ascension.bloodline.tiger_bloodline", "Tiger Bloodline");
+        add("ascension.bloodline.tiger_bloodline.short", "A fierce and direct lineage.");
+        add("ascension.bloodline.tiger_bloodline.desc", "A bold bloodline carrying the presence of a mountain predator.");
+        add("ascension.bloodline.serpent_bloodline", "Serpent Bloodline");
+        add("ascension.bloodline.serpent_bloodline.short", "A quiet and patient lineage.");
+        add("ascension.bloodline.serpent_bloodline.desc", "A subtle bloodline known for silent movement and sudden strikes.");
+        add("ascension.bloodline.crane_bloodline", "Crane Bloodline");
+        add("ascension.bloodline.crane_bloodline.short", "A calm and elegant lineage.");
+        add("ascension.bloodline.crane_bloodline.desc", "A refined bloodline associated with balance, grace, and clear skies.");
 
 
         //Techniques
