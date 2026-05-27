@@ -51,7 +51,7 @@ public class ModPhysiques {
                     .addEvolution(ModPhysiques.BLESSED.getId())
                     .addEvolution(ModPhysiques.BLOOD_FIEND.getId())
                     .addPath(ModPaths.BODY.getId())
-                    .addPathBonus(ModPaths.BODY.getId(),0.5)
+                    .addPathBonus(ModPaths.BODY.getId(),5.0)
                     .setDescription(Component.translatable("ascension.physiques.mortal.description"))
                     .setShortDescription(Component.translatable("ascension.physiques.mortal.description.short"))
     );
@@ -59,7 +59,7 @@ public class ModPhysiques {
     public static final DeferredHolder<IPhysique, ? extends GenericPhysique> SEVERED_MERIDIANS = PHYSIQUES.register("severed_meridians", () ->
             new GenericPhysique(Component.translatable("ascension.physiques.severed_meridians"))
                     .addPath(ModPaths.BODY.getId())
-                    .addPathBonus(ModPaths.BODY.getId(), 0.5)
+                    .addPathBonus(ModPaths.BODY.getId(), 5.0)
                     .setDescription(Component.translatable("ascension.physiques.severed_meridians.desc"))
                     .setShortDescription(Component.translatable("ascension.physiques.severed_meridians.desc.short"))
     );
@@ -68,8 +68,8 @@ public class ModPhysiques {
             new GenericPhysique(Component.translatable("ascension.physiques.dull_mind"))
                     .addPath(ModPaths.SOUL.getId())
                     .addPath(ModPaths.BODY.getId())
-                    .addPathBonus(ModPaths.SOUL.getId(), 0.25)
-                    .addPathBonus(ModPaths.BODY.getId(), 0.75)
+                    .addPathBonus(ModPaths.SOUL.getId(), 2.5)
+                    .addPathBonus(ModPaths.BODY.getId(), 7.5)
                     .setDescription(Component.translatable("ascension.physiques.dull_mind.desc"))
                     .setShortDescription(Component.translatable("ascension.physiques.dull_mind.desc.short"))
     );
@@ -78,7 +78,7 @@ public class ModPhysiques {
     public static final DeferredHolder<IPhysique, ? extends GenericPhysique> WEAK_SOUL = PHYSIQUES.register("weak_soul", () ->
             new EvolvingPhysique(Component.translatable("ascension.physiques.weak_soul"))
                     .addPath(ModPaths.SOUL.getId())
-                    .addPathBonus(ModPaths.SOUL.getId(), 0.5)
+                    .addPathBonus(ModPaths.SOUL.getId(), 5.0)
                     .setDescription(Component.translatable("ascension.physiques.weak_soul.desc"))
                     .setShortDescription(Component.translatable("ascension.physiques.weak_soul.desc.short"))
     );
@@ -91,7 +91,7 @@ public class ModPhysiques {
             new EvolvingPhysique(Component.translatable("ascension.physiques.mortal_essence_bone"))
                     .addEvolution(ModPhysiques.ESSENCE_BONE_SPECIAL.getId())
                     .addPath(ModPaths.ESSENCE.getId())
-                    .addPathBonus(ModPaths.ESSENCE.getId(), 1.0)
+                    .addPathBonus(ModPaths.ESSENCE.getId(), 10.0)
                     .setDescription(Component.translatable("ascension.physiques.mortal_essence_bone.desc"))
                     .setShortDescription(Component.translatable("ascension.physiques.mortal_essence_bone.desc.short"))
     );
@@ -99,8 +99,8 @@ public class ModPhysiques {
             new GenericPhysique(Component.translatable("ascension.physiques.fire_attuned"))
                     .addPath(ModPaths.ESSENCE.getId())
                     .addPath(ModPaths.FIRE.getId())
-                    .addPathBonus(ModPaths.ESSENCE.getId(), 1.0)
-                    .addPathBonus(ModPaths.FIRE.getId(), 1.25)
+                    .addPathBonus(ModPaths.ESSENCE.getId(), 10.0)
+                    .addPathBonus(ModPaths.FIRE.getId(), 12.5)
                     .setDescription(Component.translatable("ascension.physiques.fire_attuned.desc"))
                     .setShortDescription(Component.translatable("ascension.physiques.fire_attuned.desc.short"))
     );
@@ -109,8 +109,8 @@ public class ModPhysiques {
             new GenericPhysique(Component.translatable("ascension.physiques.water_attuned"))
                     .addPath(ModPaths.ESSENCE.getId())
                     .addPath(ModPaths.WATER.getId())
-                    .addPathBonus(ModPaths.ESSENCE.getId(), 1.0)
-                    .addPathBonus(ModPaths.WATER.getId(), 1.25)
+                    .addPathBonus(ModPaths.ESSENCE.getId(), 10.0)
+                    .addPathBonus(ModPaths.WATER.getId(), 12.5)
                     .setDescription(Component.translatable("ascension.physiques.water_attuned.desc"))
                     .setShortDescription(Component.translatable("ascension.physiques.water_attuned.desc.short"))
     );
@@ -119,8 +119,8 @@ public class ModPhysiques {
             new GenericPhysique(Component.translatable("ascension.physiques.earth_attuned"))
                     .addPath(ModPaths.ESSENCE.getId())
                     .addPath(ModPaths.EARTH.getId())
-                    .addPathBonus(ModPaths.ESSENCE.getId(), 1.0)
-                    .addPathBonus(ModPaths.EARTH.getId(), 1.25)
+                    .addPathBonus(ModPaths.ESSENCE.getId(), 10.0)
+                    .addPathBonus(ModPaths.EARTH.getId(), 12.5)
                     .setDescription(Component.translatable("ascension.physiques.earth_attuned.desc"))
                     .setShortDescription(Component.translatable("ascension.physiques.earth_attuned.desc.short"))
     );
@@ -129,8 +129,8 @@ public class ModPhysiques {
             new GenericPhysique(Component.translatable("ascension.physiques.wood_attuned"))
                     .addPath(ModPaths.ESSENCE.getId())
                     .addPath(ModPaths.WOOD.getId())
-                    .addPathBonus(ModPaths.ESSENCE.getId(), 1.0)
-                    .addPathBonus(ModPaths.WOOD.getId(), 1.25)
+                    .addPathBonus(ModPaths.ESSENCE.getId(), 10.0)
+                    .addPathBonus(ModPaths.WOOD.getId(), 12.5)
                     .setDescription(Component.translatable("ascension.physiques.wood_attuned.desc"))
                     .setShortDescription(Component.translatable("ascension.physiques.wood_attuned.desc.short"))
     );
@@ -139,8 +139,8 @@ public class ModPhysiques {
             new GenericPhysique(Component.translatable("ascension.physiques.metal_attuned"))
                     .addPath(ModPaths.ESSENCE.getId())
                     .addPath(ModPaths.METAL.getId())
-                    .addPathBonus(ModPaths.ESSENCE.getId(), 1.0)
-                    .addPathBonus(ModPaths.METAL.getId(), 1.25)
+                    .addPathBonus(ModPaths.ESSENCE.getId(), 10.0)
+                    .addPathBonus(ModPaths.METAL.getId(), 12.5)
                     .setDescription(Component.translatable("ascension.physiques.metal_attuned.desc"))
                     .setShortDescription(Component.translatable("ascension.physiques.metal_attuned.desc.short"))
     );
@@ -149,8 +149,8 @@ public class ModPhysiques {
     public static final DeferredHolder<IPhysique, ? extends EvolvingPhysique> FIRE_BODY = PHYSIQUES.register("fire_body", () ->
             new EvolvingPhysique(Component.translatable("ascension.physiques.fire_body"))
                     .addEvolution(ModPhysiques.FIVE_PALACE_IMMORTAL.getId())
-                    .addPath(ModPaths.BODY.getId()).addPathBonus(ModPaths.BODY.getId(), 1.5)
-                    .addPath(ModPaths.FIRE.getId()).addPathBonus(ModPaths.FIRE.getId(), 1.5)
+                    .addPath(ModPaths.BODY.getId()).addPathBonus(ModPaths.BODY.getId(), 15.0)
+                    .addPath(ModPaths.FIRE.getId()).addPathBonus(ModPaths.FIRE.getId(), 15.0)
                     .setDescription(Component.translatable("ascension.physiques.fire_body.desc"))
                     .setShortDescription(Component.translatable("ascension.physiques.fire_body.desc.short"))
     );
@@ -158,8 +158,8 @@ public class ModPhysiques {
     public static final DeferredHolder<IPhysique, ? extends EvolvingPhysique> WATER_BODY = PHYSIQUES.register("water_body", () ->
             new EvolvingPhysique(Component.translatable("ascension.physiques.water_body"))
                     .addEvolution(ModPhysiques.FIVE_PALACE_IMMORTAL.getId())
-                    .addPath(ModPaths.BODY.getId()).addPathBonus(ModPaths.BODY.getId(), 1.5)
-                    .addPath(ModPaths.WATER.getId()).addPathBonus(ModPaths.WATER.getId(), 1.5)
+                    .addPath(ModPaths.BODY.getId()).addPathBonus(ModPaths.BODY.getId(), 15.0)
+                    .addPath(ModPaths.WATER.getId()).addPathBonus(ModPaths.WATER.getId(), 15.0)
                     .setDescription(Component.translatable("ascension.physiques.water_body.desc"))
                     .setShortDescription(Component.translatable("ascension.physiques.water_body.desc.short"))
     );
@@ -167,8 +167,8 @@ public class ModPhysiques {
     public static final DeferredHolder<IPhysique, ? extends EvolvingPhysique> WOOD_BODY = PHYSIQUES.register("wood_body", () ->
             new EvolvingPhysique(Component.translatable("ascension.physiques.wood_body"))
                     .addEvolution(ModPhysiques.FIVE_PALACE_IMMORTAL.getId())
-                    .addPath(ModPaths.BODY.getId()).addPathBonus(ModPaths.BODY.getId(), 1.5)
-                    .addPath(ModPaths.WOOD.getId()).addPathBonus(ModPaths.WOOD.getId(), 1.5)
+                    .addPath(ModPaths.BODY.getId()).addPathBonus(ModPaths.BODY.getId(), 15.0)
+                    .addPath(ModPaths.WOOD.getId()).addPathBonus(ModPaths.WOOD.getId(), 15.0)
                     .setDescription(Component.translatable("ascension.physiques.wood_body.desc"))
                     .setShortDescription(Component.translatable("ascension.physiques.wood_body.desc.short"))
     );
@@ -176,8 +176,8 @@ public class ModPhysiques {
     public static final DeferredHolder<IPhysique, ? extends EvolvingPhysique> EARTH_BODY = PHYSIQUES.register("earth_body", () ->
             new EvolvingPhysique(Component.translatable("ascension.physiques.earth_body"))
                     .addEvolution(ModPhysiques.FIVE_PALACE_IMMORTAL.getId())
-                    .addPath(ModPaths.BODY.getId()).addPathBonus(ModPaths.BODY.getId(), 1.5)
-                    .addPath(ModPaths.EARTH.getId()).addPathBonus(ModPaths.EARTH.getId(), 1.5)
+                    .addPath(ModPaths.BODY.getId()).addPathBonus(ModPaths.BODY.getId(), 15.0)
+                    .addPath(ModPaths.EARTH.getId()).addPathBonus(ModPaths.EARTH.getId(), 15.0)
                     .setDescription(Component.translatable("ascension.physiques.earth_body.desc"))
                     .setShortDescription(Component.translatable("ascension.physiques.earth_body.desc.short"))
     );
@@ -185,8 +185,8 @@ public class ModPhysiques {
     public static final DeferredHolder<IPhysique, ? extends EvolvingPhysique> METAL_BODY = PHYSIQUES.register("metal_body", () ->
             new EvolvingPhysique(Component.translatable("ascension.physiques.metal_body"))
                     .addEvolution(ModPhysiques.FIVE_PALACE_IMMORTAL.getId())
-                    .addPath(ModPaths.BODY.getId()).addPathBonus(ModPaths.BODY.getId(), 1.5)
-                    .addPath(ModPaths.METAL.getId()).addPathBonus(ModPaths.METAL.getId(), 1.5)
+                    .addPath(ModPaths.BODY.getId()).addPathBonus(ModPaths.BODY.getId(), 15.0)
+                    .addPath(ModPaths.METAL.getId()).addPathBonus(ModPaths.METAL.getId(), 15.0)
                     .setDescription(Component.translatable("ascension.physiques.metal_body.desc"))
                     .setShortDescription(Component.translatable("ascension.physiques.metal_body.desc.short"))
     );
@@ -197,8 +197,8 @@ public class ModPhysiques {
                         .addEvolution(ModPhysiques.YIN_YANG_EYES.getId())
                         .addPath(ModPaths.SOUL.getId())
                         .addPath(ModPaths.ESSENCE.getId())
-                        .addPathBonus(ModPaths.SOUL.getId(), 1.0)
-                        .addPathBonus(ModPaths.ESSENCE.getId(), 0.05)
+                        .addPathBonus(ModPaths.SOUL.getId(), 10.0)
+                        .addPathBonus(ModPaths.ESSENCE.getId(), 0.5)
                         .setDescription(Component.translatable("ascension.physiques.yin_eyes.desc"))
                         .setShortDescription(Component.translatable("ascension.physiques.yin_eyes.desc.short"))
         );
@@ -208,8 +208,8 @@ public class ModPhysiques {
                     .addEvolution(ModPhysiques.YIN_YANG_EYES.getId())
                     .addPath(ModPaths.SOUL.getId())
                     .addPath(ModPaths.ESSENCE.getId())
-                    .addPathBonus(ModPaths.SOUL.getId(), 1.0)
-                    .addPathBonus(ModPaths.ESSENCE.getId(), 0.05)
+                    .addPathBonus(ModPaths.SOUL.getId(), 10.0)
+                    .addPathBonus(ModPaths.ESSENCE.getId(), 0.5)
                     .setDescription(Component.translatable("ascension.physiques.yang_eyes.desc"))
                     .setShortDescription(Component.translatable("ascension.physiques.yang_eyes.desc.short"))
     );
@@ -218,8 +218,8 @@ public class ModPhysiques {
             new GenericPhysique(Component.translatable("ascension.physiques.generous_spirit"))
                     .addPath(ModPaths.SOUL.getId())
                     .addPath(ModPaths.VIRTUOUS.getId())
-                    .addPathBonus(ModPaths.SOUL.getId(), 1.0)
-                    .addPathBonus(ModPaths.VIRTUOUS.getId(), 0.5)
+                    .addPathBonus(ModPaths.SOUL.getId(), 10.0)
+                    .addPathBonus(ModPaths.VIRTUOUS.getId(), 5.0)
                     .setDescription(Component.translatable("ascension.physiques.generous_spirit.desc"))
                     .setShortDescription(Component.translatable("ascension.physiques.generous_spirit.desc.short"))
     );
@@ -231,10 +231,10 @@ public class ModPhysiques {
                     .addPath(ModPaths.BLADE.getId())
                     .addPath(ModPaths.AXE.getId())
                     .addPath(ModPaths.SPEAR.getId())
-                    .addPathBonus(ModPaths.SWORD.getId(), 1.0)
-                    .addPathBonus(ModPaths.BLADE.getId(), 1.0)
-                    .addPathBonus(ModPaths.AXE.getId(), 1.0)
-                    .addPathBonus(ModPaths.SPEAR.getId(), 1.0)
+                    .addPathBonus(ModPaths.SWORD.getId(), 10.0)
+                    .addPathBonus(ModPaths.BLADE.getId(), 10.0)
+                    .addPathBonus(ModPaths.AXE.getId(), 10.0)
+                    .addPathBonus(ModPaths.SPEAR.getId(), 10.0)
                     .setDescription(Component.translatable("ascension.physiques.flow_severing_eyes.desc"))
                     .setShortDescription(Component.translatable("ascension.physiques.flow_severing_eyes.desc.short"))
     );
@@ -243,7 +243,7 @@ public class ModPhysiques {
             new EvolvingPhysique(Component.translatable("ascension.physiques.sword_apprentice"))
                     .addEvolution(ModPhysiques.SWORD_MONSTER.getId())
                     .addPath(ModPaths.SWORD.getId())
-                    .addPathBonus(ModPaths.SWORD.getId(), 1.25)
+                    .addPathBonus(ModPaths.SWORD.getId(), 12.5)
                     .setDescription(Component.translatable("ascension.physiques.sword_apprentice.desc"))
                     .setShortDescription(Component.translatable("ascension.physiques.sword_apprentice.desc.short"))
     );
@@ -252,8 +252,8 @@ public class ModPhysiques {
             new GenericPhysique(Component.translatable("ascension.physiques.thuggish_form"))
                     .addPath(ModPaths.BODY.getId())
                     .addPath(ModPaths.FIST.getId())
-                    .addPathBonus(ModPaths.BODY.getId(), 0.75)
-                    .addPathBonus(ModPaths.FIST.getId(), 1.25)
+                    .addPathBonus(ModPaths.BODY.getId(), 7.5)
+                    .addPathBonus(ModPaths.FIST.getId(), 12.5)
                     .setDescription(Component.translatable("ascension.physiques.thuggish_form.desc"))
                     .setShortDescription(Component.translatable("ascension.physiques.thuggish_form.desc.short"))
     );
@@ -262,8 +262,8 @@ public class ModPhysiques {
             new GenericPhysique(Component.translatable("ascension.physiques.hardened_general"))
                     .addPath(ModPaths.ESSENCE.getId())
                     .addPath(ModPaths.SPEAR.getId())
-                    .addPathBonus(ModPaths.ESSENCE.getId(), 0.25)
-                    .addPathBonus(ModPaths.SPEAR.getId(), 1.25)
+                    .addPathBonus(ModPaths.ESSENCE.getId(), 2.5)
+                    .addPathBonus(ModPaths.SPEAR.getId(), 12.5)
                     .setDescription(Component.translatable("ascension.physiques.hardened_general.desc"))
                     .setShortDescription(Component.translatable("ascension.physiques.hardened_general.desc.short"))
     );
@@ -276,8 +276,8 @@ public class ModPhysiques {
             new GenericPhysique(Component.translatable("ascension.physiques.lightning_attuned"))
                     .addPath(ModPaths.ESSENCE.getId())
                     .addPath(ModPaths.LIGHTNING.getId())
-                    .addPathBonus(ModPaths.ESSENCE.getId(), 1.25)
-                    .addPathBonus(ModPaths.LIGHTNING.getId(), 1.75)
+                    .addPathBonus(ModPaths.ESSENCE.getId(), 12.5)
+                    .addPathBonus(ModPaths.LIGHTNING.getId(), 17.5)
                     .setDescription(Component.translatable("ascension.physiques.lightning_attuned.desc"))
                     .setShortDescription(Component.translatable("ascension.physiques.lightning_attuned.desc.short"))
     );
@@ -286,8 +286,8 @@ public class ModPhysiques {
             new GenericPhysique(Component.translatable("ascension.physiques.wind_attuned"))
                     .addPath(ModPaths.ESSENCE.getId())
                     .addPath(ModPaths.WIND.getId())
-                    .addPathBonus(ModPaths.ESSENCE.getId(), 1.25)
-                    .addPathBonus(ModPaths.WIND.getId(), 1.75)
+                    .addPathBonus(ModPaths.ESSENCE.getId(), 12.5)
+                    .addPathBonus(ModPaths.WIND.getId(), 17.5)
                     .setDescription(Component.translatable("ascension.physiques.wind_attuned.desc"))
                     .setShortDescription(Component.translatable("ascension.physiques.wind_attuned.desc.short"))
     );
@@ -296,7 +296,7 @@ public class ModPhysiques {
             new EvolvingPhysique(Component.translatable("ascension.physiques.special_essence_bone"))
                     .addEvolution(ModPhysiques.ESSENCE_BONE_HEAVENLY.getId())
                     .addPath(ModPaths.ESSENCE.getId())
-                    .addPathBonus(ModPaths.ESSENCE.getId(), 2.0)
+                    .addPathBonus(ModPaths.ESSENCE.getId(), 20.0)
                     .setDescription(Component.translatable("ascension.physiques.special_essence_bone.desc"))
                     .setShortDescription(Component.translatable("ascension.physiques.special_essence_bone.desc.short"))
     );
@@ -306,9 +306,9 @@ public class ModPhysiques {
                     .addPath(ModPaths.BODY.getId())
                     .addPath(ModPaths.ESSENCE.getId())
                     .addPath(ModPaths.FIRE.getId())
-                    .addPathBonus(ModPaths.BODY.getId(), 0.5)
-                    .addPathBonus(ModPaths.ESSENCE.getId(), 1.0)
-                    .addPathBonus(ModPaths.FIRE.getId(), 1.5)
+                    .addPathBonus(ModPaths.BODY.getId(), 5.0)
+                    .addPathBonus(ModPaths.ESSENCE.getId(), 10.0)
+                    .addPathBonus(ModPaths.FIRE.getId(), 15.0)
                     .setDescription(Component.translatable("ascension.physiques.flame_touched.desc"))
                     .setShortDescription(Component.translatable("ascension.physiques.flame_touched.desc.short"))
     );
@@ -319,8 +319,8 @@ public class ModPhysiques {
             new EvolvingPhysique(Component.translatable("ascension.physiques.decaying_meridians"))
                     .addPath(ModPaths.ESSENCE.getId())
                     .addPath(ModPaths.POISON.getId())
-                    .addPathBonus(ModPaths.ESSENCE.getId(), 1.35)
-                    .addPathBonus(ModPaths.POISON.getId(), 0.5)
+                    .addPathBonus(ModPaths.ESSENCE.getId(), 13.5)
+                    .addPathBonus(ModPaths.POISON.getId(), 5.0)
                     .setDescription(Component.translatable("ascension.physiques.decaying_meridians.desc"))
                     .setShortDescription(Component.translatable("ascension.physiques.decaying_meridians.desc.short"))
     );
@@ -330,7 +330,7 @@ public class ModPhysiques {
     public static final DeferredHolder<IPhysique, ? extends GenericPhysique> TWISTED_VESSELS = PHYSIQUES.register("twisted_vessels", () ->
             new EvolvingPhysique(Component.translatable("ascension.physiques.twisted_vessels"))
                     .addPath(ModPaths.ESSENCE.getId())
-                    .addPathBonus(ModPaths.ESSENCE.getId(), 1.25)
+                    .addPathBonus(ModPaths.ESSENCE.getId(), 12.5)
                     .setDescription(Component.translatable("ascension.physiques.twisted_vessels.desc"))
                     .setShortDescription(Component.translatable("ascension.physiques.twisted_vessels.desc.short"))
     );
@@ -340,7 +340,7 @@ public class ModPhysiques {
     public static final DeferredHolder<IPhysique, ? extends GenericPhysique> CLEAR_SPIRIT = PHYSIQUES.register("clear_spirit", () ->
             new GenericPhysique(Component.translatable("ascension.physiques.clear_spirit"))
                     .addPath(ModPaths.SOUL.getId())
-                    .addPathBonus(ModPaths.SOUL.getId(), 1.25)
+                    .addPathBonus(ModPaths.SOUL.getId(), 12.5)
                     .setDescription(Component.translatable("ascension.physiques.clear_spirit.desc"))
                     .setShortDescription(Component.translatable("ascension.physiques.clear_spirit.desc.short"))
     );
@@ -348,7 +348,7 @@ public class ModPhysiques {
     public static final DeferredHolder<IPhysique, ? extends GenericPhysique> SOUL_GAZE = PHYSIQUES.register("soul_gaze", () ->
             new GenericPhysique(Component.translatable("ascension.physiques.soul_gaze"))
                     .addPath(ModPaths.SOUL.getId())
-                    .addPathBonus(ModPaths.SOUL.getId(), 1.35)
+                    .addPathBonus(ModPaths.SOUL.getId(), 13.5)
                     .setDescription(Component.translatable("ascension.physiques.soul_gaze.desc"))
                     .setShortDescription(Component.translatable("ascension.physiques.soul_gaze.desc.short"))
     );
@@ -356,7 +356,7 @@ public class ModPhysiques {
     public static final DeferredHolder<IPhysique, ? extends GenericPhysique> DREAMING_SOUL = PHYSIQUES.register("dreaming_soul", () ->
             new GenericPhysique(Component.translatable("ascension.physiques.dreaming_soul"))
                     .addPath(ModPaths.SOUL.getId())
-                    .addPathBonus(ModPaths.SOUL.getId(), 1.65)
+                    .addPathBonus(ModPaths.SOUL.getId(), 16.5)
                     .setDescription(Component.translatable("ascension.physiques.dreaming_soul.desc"))
                     .setShortDescription(Component.translatable("ascension.physiques.dreaming_soul.desc.short"))
     );
@@ -365,8 +365,8 @@ public class ModPhysiques {
             new GenericPhysique(Component.translatable("ascension.physiques.ashen_soul_flame"))
                     .addPath(ModPaths.SOUL.getId())
                     .addPath(ModPaths.FIRE.getId())
-                    .addPathBonus(ModPaths.SOUL.getId(), 1.5)
-                    .addPathBonus(ModPaths.FIRE.getId(), 1.75)
+                    .addPathBonus(ModPaths.SOUL.getId(), 15.0)
+                    .addPathBonus(ModPaths.FIRE.getId(), 17.5)
                     .setDescription(Component.translatable("ascension.physiques.ashen_soul_flame.desc"))
                     .setShortDescription(Component.translatable("ascension.physiques.ashen_soul_flame.desc.short"))
     );
@@ -375,8 +375,8 @@ public class ModPhysiques {
             new GenericPhysique(Component.translatable("ascension.physiques.spear_soul_mark"))
                     .addPath(ModPaths.SOUL.getId())
                     .addPath(ModPaths.SPEAR.getId())
-                    .addPathBonus(ModPaths.SOUL.getId(), 1.75)
-                    .addPathBonus(ModPaths.SPEAR.getId(), 1.25)
+                    .addPathBonus(ModPaths.SOUL.getId(), 17.5)
+                    .addPathBonus(ModPaths.SPEAR.getId(), 12.5)
                     .setDescription(Component.translatable("ascension.physiques.spear_soul_mark.desc"))
                     .setShortDescription(Component.translatable("ascension.physiques.spear_soul_mark.desc.short"))
     );
@@ -384,7 +384,7 @@ public class ModPhysiques {
     public static final DeferredHolder<IPhysique, ? extends GenericPhysique> ACADEMIC_SPIRIT = PHYSIQUES.register("academic_spirit", () ->
             new GenericPhysique(Component.translatable("ascension.physiques.academic_spirit"))
                     .addPath(ModPaths.SOUL.getId())
-                    .addPathBonus(ModPaths.SOUL.getId(), 2.0)
+                    .addPathBonus(ModPaths.SOUL.getId(), 20.0)
                     .setDescription(Component.translatable("ascension.physiques.academic_spirit.desc"))
                     .setShortDescription(Component.translatable("ascension.physiques.academic_spirit.desc.short"))
     );
@@ -393,8 +393,8 @@ public class ModPhysiques {
             new GenericPhysique(Component.translatable("ascension.physiques.thundering_soul_core"))
                     .addPath(ModPaths.SOUL.getId())
                     .addPath(ModPaths.LIGHTNING.getId())
-                    .addPathBonus(ModPaths.SOUL.getId(), 2.0)
-                    .addPathBonus(ModPaths.LIGHTNING.getId(), 1.75)
+                    .addPathBonus(ModPaths.SOUL.getId(), 20.0)
+                    .addPathBonus(ModPaths.LIGHTNING.getId(), 17.5)
                     .setDescription(Component.translatable("ascension.physiques.thundering_soul_core.desc"))
                     .setShortDescription(Component.translatable("ascension.physiques.thundering_soul_core.desc.short"))
     );
@@ -403,8 +403,8 @@ public class ModPhysiques {
             new GenericPhysique(Component.translatable("ascension.physiques.soul_sword_heart"))
                     .addPath(ModPaths.SOUL.getId())
                     .addPath(ModPaths.SWORD.getId())
-                    .addPathBonus(ModPaths.SOUL.getId(), 2.0)
-                    .addPathBonus(ModPaths.SWORD.getId(), 1.75)
+                    .addPathBonus(ModPaths.SOUL.getId(), 20.0)
+                    .addPathBonus(ModPaths.SWORD.getId(), 17.5)
                     .setDescription(Component.translatable("ascension.physiques.soul_sword_heart.desc"))
                     .setShortDescription(Component.translatable("ascension.physiques.soul_sword_heart.desc.short"))
     );
@@ -413,8 +413,8 @@ public class ModPhysiques {
             new GenericPhysique(Component.translatable("ascension.physiques.yin_yang_eyes"))
                     .addPath(ModPaths.SOUL.getId())
                     .addPath(ModPaths.ESSENCE.getId())
-                    .addPathBonus(ModPaths.SOUL.getId(), 2.0)
-                    .addPathBonus(ModPaths.ESSENCE.getId(), 1.75)
+                    .addPathBonus(ModPaths.SOUL.getId(), 20.0)
+                    .addPathBonus(ModPaths.ESSENCE.getId(), 17.5)
                     .setDescription(Component.translatable("ascension.physiques.yin_yang_eyes.desc"))
                     .setShortDescription(Component.translatable("ascension.physiques.yin_yang_eyes.desc.short"))
     );
@@ -422,7 +422,7 @@ public class ModPhysiques {
     public static final DeferredHolder<IPhysique, ? extends GenericPhysique> DUAL_SOUL = PHYSIQUES.register("dual_soul", () ->
             new GenericPhysique(Component.translatable("ascension.physiques.dual_soul"))
                     .addPath(ModPaths.SOUL.getId())
-                    .addPathBonus(ModPaths.SOUL.getId(), 1.5)
+                    .addPathBonus(ModPaths.SOUL.getId(), 15.0)
                     .setDescription(Component.translatable("ascension.physiques.dual_soul.desc"))
                     .setShortDescription(Component.translatable("ascension.physiques.dual_soul.desc.short"))
     );
@@ -433,8 +433,8 @@ public class ModPhysiques {
             new EvolvingPhysique(Component.translatable("ascension.physiques.corrupted_entity"))
                     .addPath(ModPaths.SOUL.getId())
                     .addPath(ModPaths.ESSENCE.getId())
-                    .addPathBonus(ModPaths.SOUL.getId(), 1.6666666667)
-                    .addPathBonus(ModPaths.ESSENCE.getId(), 1.3333333334)
+                    .addPathBonus(ModPaths.SOUL.getId(), 16.666666667)
+                    .addPathBonus(ModPaths.ESSENCE.getId(), 13.333333334)
                     .setDescription(Component.translatable("ascension.physiques.corrupted_entity.desc"))
                     .setShortDescription(Component.translatable("ascension.physiques.corrupted_entity.desc.short"))
     );
@@ -444,8 +444,8 @@ public class ModPhysiques {
             new GenericPhysique(Component.translatable("ascension.physiques.iron_bulwark_spine"))
                     .addPath(ModPaths.SHIELD.getId())
                     .addPath(ModPaths.BODY.getId())
-                    .addPathBonus(ModPaths.SHIELD.getId(), 1.5)
-                    .addPathBonus(ModPaths.BODY.getId(), 1.25)
+                    .addPathBonus(ModPaths.SHIELD.getId(), 15.0)
+                    .addPathBonus(ModPaths.BODY.getId(), 12.5)
                     .setDescription(Component.translatable("ascension.physiques.iron_bulwark_spine.desc"))
                     .setShortDescription(Component.translatable("ascension.physiques.iron_bulwark_spine.desc.short"))
     );
@@ -454,8 +454,8 @@ public class ModPhysiques {
             new GenericPhysique(Component.translatable("ascension.physiques.bruised_knuckle_body"))
                     .addPath(ModPaths.FIST.getId())
                     .addPath(ModPaths.BODY.getId())
-                    .addPathBonus(ModPaths.FIST.getId(), 1.5)
-                    .addPathBonus(ModPaths.BODY.getId(), 1.25)
+                    .addPathBonus(ModPaths.FIST.getId(), 15.0)
+                    .addPathBonus(ModPaths.BODY.getId(), 12.5)
                     .setDescription(Component.translatable("ascension.physiques.bruised_knuckle_body.desc"))
                     .setShortDescription(Component.translatable("ascension.physiques.bruised_knuckle_body.desc.short"))
     );
@@ -464,8 +464,8 @@ public class ModPhysiques {
             new GenericPhysique(Component.translatable("ascension.physiques.pointed_eyes"))
                     .addPath(ModPaths.SPEAR.getId())
                     .addPath(ModPaths.ESSENCE.getId())
-                    .addPathBonus(ModPaths.SPEAR.getId(), 1.5)
-                    .addPathBonus(ModPaths.ESSENCE.getId(), 1.25)
+                    .addPathBonus(ModPaths.SPEAR.getId(), 15.0)
+                    .addPathBonus(ModPaths.ESSENCE.getId(), 12.5)
                     .setDescription(Component.translatable("ascension.physiques.pointed_eyes.desc"))
                     .setShortDescription(Component.translatable("ascension.physiques.pointed_eyes.desc.short"))
     );
@@ -473,11 +473,11 @@ public class ModPhysiques {
     public static final DeferredHolder<IPhysique, ? extends GenericPhysique> SWORD_BONE = PHYSIQUES.register("sword_bone", () ->
             new GenericPhysique(Component.translatable("ascension.physiques.sword_bone"))
                     .addPath(ModPaths.BODY.getId())
-                    .addPathBonus(ModPaths.BODY.getId(), 0.5)
+                    .addPathBonus(ModPaths.BODY.getId(), 5.0)
                     .addPath(ModPaths.ESSENCE.getId())
-                    .addPathBonus(ModPaths.ESSENCE.getId(), 0.5)
+                    .addPathBonus(ModPaths.ESSENCE.getId(), 5.0)
                     .addPath(ModPaths.SWORD.getId())
-                    .addPathBonus(ModPaths.SWORD.getId(), 1.5)
+                    .addPathBonus(ModPaths.SWORD.getId(), 15.0)
                     .setDescription(Component.translatable("ascension.physiques.sword_bone.desc"))
                     .setShortDescription(Component.translatable("ascension.physiques.sword_bone.desc.short"))
     );
@@ -486,8 +486,8 @@ public class ModPhysiques {
             new GenericPhysique(Component.translatable("ascension.physiques.thin_sword_pulse"))
                     .addPath(ModPaths.SWORD.getId())
                     .addPath(ModPaths.ESSENCE.getId())
-                    .addPathBonus(ModPaths.SWORD.getId(), 1.5)
-                    .addPathBonus(ModPaths.ESSENCE.getId(), 1.25)
+                    .addPathBonus(ModPaths.SWORD.getId(), 15.0)
+                    .addPathBonus(ModPaths.ESSENCE.getId(), 12.5)
                     .setDescription(Component.translatable("ascension.physiques.thin_sword_pulse.desc"))
                     .setShortDescription(Component.translatable("ascension.physiques.thin_sword_pulse.desc.short"))
     );
@@ -496,8 +496,8 @@ public class ModPhysiques {
             new GenericPhysique(Component.translatable("ascension.physiques.wild_cleaver_veteran"))
                     .addPath(ModPaths.BLADE.getId())
                     .addPath(ModPaths.BODY.getId())
-                    .addPathBonus(ModPaths.BLADE.getId(), 1.5)
-                    .addPathBonus(ModPaths.BODY.getId(), 1.25)
+                    .addPathBonus(ModPaths.BLADE.getId(), 15.0)
+                    .addPathBonus(ModPaths.BODY.getId(), 12.5)
                     .setDescription(Component.translatable("ascension.physiques.wild_cleaver_veteran.desc"))
                     .setShortDescription(Component.translatable("ascension.physiques.wild_cleaver_veteran.desc.short"))
     );
@@ -506,8 +506,8 @@ public class ModPhysiques {
             new GenericPhysique(Component.translatable("ascension.physiques.arrow_blessed"))
                     .addPath(ModPaths.BOW.getId())
                     .addPath(ModPaths.ESSENCE.getId())
-                    .addPathBonus(ModPaths.BOW.getId(), 1.5)
-                    .addPathBonus(ModPaths.ESSENCE.getId(), 1.25)
+                    .addPathBonus(ModPaths.BOW.getId(), 15.0)
+                    .addPathBonus(ModPaths.ESSENCE.getId(), 12.5)
                     .setDescription(Component.translatable("ascension.physiques.arrow_blessed.desc"))
                     .setShortDescription(Component.translatable("ascension.physiques.arrow_blessed.desc.short"))
     );
@@ -519,8 +519,8 @@ public class ModPhysiques {
                     .addEvolution(ModPhysiques.WRATHFUL_VAJRA.getId())
                     .addPath(ModPaths.VIRTUOUS.getId())
                     .addPath(ModPaths.BODY.getId())
-                    .addPathBonus(ModPaths.VIRTUOUS.getId(), 1.5)
-                    .addPathBonus(ModPaths.BODY.getId(), 1.0)
+                    .addPathBonus(ModPaths.VIRTUOUS.getId(), 15.0)
+                    .addPathBonus(ModPaths.BODY.getId(), 10.0)
                     .setDescription(Component.translatable("ascension.physiques.blessed.desc"))
                     .setShortDescription(Component.translatable("ascension.physiques.blessed.desc.short"))
     );
@@ -528,9 +528,9 @@ public class ModPhysiques {
     public static final DeferredHolder<IPhysique, ? extends GenericPhysique> TYRANT_BODY = PHYSIQUES.register("tyrant_body", () ->
             new GenericPhysique(Component.translatable("ascension.physiques.tyrant_body"))
                     .addPath(ModPaths.BODY.getId())
-                    .addPathBonus(ModPaths.BODY.getId(), 1.25)
+                    .addPathBonus(ModPaths.BODY.getId(), 12.5)
                     .addPath(ModPaths.FIST.getId())
-                    .addPathBonus(ModPaths.FIST.getId(), 1.75)
+                    .addPathBonus(ModPaths.FIST.getId(), 17.5)
                     .setDescription(Component.translatable("ascension.physiques.tyrant_body.desc"))
                     .setShortDescription(Component.translatable("ascension.physiques.tyrant_body.desc.short"))
     );
@@ -539,8 +539,8 @@ public class ModPhysiques {
             new GenericPhysique(Component.translatable("ascension.physiques.stone_monkey"))
                     .addPath(ModPaths.BODY.getId())
                     .addPath(ModPaths.EARTH.getId())
-                    .addPathBonus(ModPaths.BODY.getId(), 1.75)
-                    .addPathBonus(ModPaths.EARTH.getId(), 2.0)
+                    .addPathBonus(ModPaths.BODY.getId(), 17.5)
+                    .addPathBonus(ModPaths.EARTH.getId(), 20.0)
                     .setShortDescription(Component.translatable("ascension.physiques.stone_monkey.desc.short"))
                     .setDescription(Component.translatable("ascension.physiques.stone_monkey.desc"))
     );
@@ -550,9 +550,9 @@ public class ModPhysiques {
                     .addPath(ModPaths.BODY.getId())
                     .addPath(ModPaths.BUDDHIST.getId())
                     .addPath(ModPaths.VIRTUOUS.getId())
-                    .addPathBonus(ModPaths.BODY.getId(), 1.75)
-                    .addPathBonus(ModPaths.BUDDHIST.getId(), 2.0)
-                    .addPathBonus(ModPaths.VIRTUOUS.getId(), 1.25)
+                    .addPathBonus(ModPaths.BODY.getId(), 17.5)
+                    .addPathBonus(ModPaths.BUDDHIST.getId(), 20.0)
+                    .addPathBonus(ModPaths.VIRTUOUS.getId(), 12.5)
                     .setDescription(Component.translatable("ascension.physiques.virtuoso_buddha.desc"))
                     .setShortDescription(Component.translatable("ascension.physiques.virtuoso_buddha.desc.short"))
     );
@@ -561,8 +561,8 @@ public class ModPhysiques {
             new GenericPhysique(Component.translatable("ascension.physiques.wrathful_vajra"))
                     .addPath(ModPaths.BODY.getId())
                     .addPath(ModPaths.BUDDHIST.getId())
-                    .addPathBonus(ModPaths.BODY.getId(), 2.0)
-                    .addPathBonus(ModPaths.BUDDHIST.getId(), 1.75)
+                    .addPathBonus(ModPaths.BODY.getId(), 20.0)
+                    .addPathBonus(ModPaths.BUDDHIST.getId(), 17.5)
                     .setDescription(Component.translatable("ascension.physiques.wrathful_vajra.desc"))
                     .setShortDescription(Component.translatable("ascension.physiques.wrathful_vajra.desc.short"))
     );
@@ -574,9 +574,9 @@ public class ModPhysiques {
                     .addPath(ModPaths.BODY.getId())
                     .addPath(ModPaths.FIRE.getId())
                     .addPath(ModPaths.WATER.getId())
-                    .addPathBonus(ModPaths.BODY.getId(), 1.5)
-                    .addPathBonus(ModPaths.FIRE.getId(), 1.0)
-                    .addPathBonus(ModPaths.WATER.getId(), 0.5)
+                    .addPathBonus(ModPaths.BODY.getId(), 15.0)
+                    .addPathBonus(ModPaths.FIRE.getId(), 10.0)
+                    .addPathBonus(ModPaths.WATER.getId(), 5.0)
                     .setDescription(Component.translatable("ascension.physiques.molten_casted.desc"))
                     .setShortDescription(Component.translatable("ascension.physiques.molten_casted.desc.short"))
     );
@@ -587,8 +587,8 @@ public class ModPhysiques {
                         .addEvolution(ModPhysiques.BLOOD_WRAITH.getId())
                         .addPath(ModPaths.SOUL.getId())
                         .addPath(ModPaths.DEMONIC.getId())
-                        .addPathBonus(ModPaths.SOUL.getId(),1.25)
-                        .addPathBonus(ModPaths.DEMONIC.getId(),1.75)
+                        .addPathBonus(ModPaths.SOUL.getId(),12.5)
+                        .addPathBonus(ModPaths.DEMONIC.getId(),17.5)
                         .setDescription(Component.translatable("ascension.physiques.blood_fiend.desc"))
                         .setShortDescription(Component.translatable("ascension.physiques.blood_fiend.desc.short"))
         );
@@ -602,7 +602,7 @@ public class ModPhysiques {
             new EvolvingPhysique(Component.translatable("ascension.physiques.heavenly_essence_bone"))
                     .addEvolution(ModPhysiques.ESSENCE_BONE_DIVINE.getId())
                     .addPath(ModPaths.ESSENCE.getId())
-                    .addPathBonus(ModPaths.ESSENCE.getId(), 2.5)
+                    .addPathBonus(ModPaths.ESSENCE.getId(), 25.0)
                     .setDescription(Component.translatable("ascension.physiques.heavenly_essence_bone.desc"))
                     .setShortDescription(Component.translatable("ascension.physiques.heavenly_essence_bone.desc.short"))
     );
@@ -610,7 +610,7 @@ public class ModPhysiques {
     public static final DeferredHolder<IPhysique, ? extends GenericPhysique> ESSENCE_BONE_DIVINE = PHYSIQUES.register("divine_essence_bone", () ->
             new GenericPhysique(Component.translatable("ascension.physiques.divine_essence_bone"))
                     .addPath(ModPaths.ESSENCE.getId())
-                    .addPathBonus(ModPaths.ESSENCE.getId(), 3.0)
+                    .addPathBonus(ModPaths.ESSENCE.getId(), 30.0)
                     .setDescription(Component.translatable("ascension.physiques.divine_essence_bone.desc"))
                     .setShortDescription(Component.translatable("ascension.physiques.divine_essence_bone.desc.short"))
     );
@@ -618,9 +618,9 @@ public class ModPhysiques {
     public static final DeferredHolder<IPhysique, ? extends GenericPhysique> MYRIAD_POISON_VESSEL = PHYSIQUES.register("myriad_poison_vessel", () ->
             new GenericPhysique(Component.translatable("ascension.physiques.myriad_poison_vessel"))
                     .addPath(ModPaths.ESSENCE.getId())
-                    .addPathBonus(ModPaths.ESSENCE.getId(), 2.5)
+                    .addPathBonus(ModPaths.ESSENCE.getId(), 25.0)
                     .addPath(ModPaths.POISON.getId())
-                    .addPathBonus(ModPaths.POISON.getId(), 3.5)
+                    .addPathBonus(ModPaths.POISON.getId(), 35.0)
                     .setDescription(Component.translatable("ascension.physiques.myriad_poison_vessel.desc"))
                     .setShortDescription(Component.translatable("ascension.physiques.myriad_poison_vessel.desc.short"))
     );
@@ -628,12 +628,12 @@ public class ModPhysiques {
         // Body
     public static final DeferredHolder<IPhysique, ? extends GenericPhysique> FIVE_PALACE_IMMORTAL = PHYSIQUES.register("five_palace_immortal", () ->
             new GenericPhysique(Component.translatable("ascension.physiques.five_palace_immortal"))
-                    .addPath(ModPaths.BODY.getId()).addPathBonus(ModPaths.BODY.getId(), 3.0)
-                    .addPath(ModPaths.FIRE.getId()).addPathBonus(ModPaths.FIRE.getId(), 3.0)
-                    .addPath(ModPaths.WATER.getId()).addPathBonus(ModPaths.WATER.getId(), 3.0)
-                    .addPath(ModPaths.WOOD.getId()).addPathBonus(ModPaths.WOOD.getId(), 3.0)
-                    .addPath(ModPaths.EARTH.getId()).addPathBonus(ModPaths.EARTH.getId(), 3.0)
-                    .addPath(ModPaths.METAL.getId()).addPathBonus(ModPaths.METAL.getId(), 3.0)
+                    .addPath(ModPaths.BODY.getId()).addPathBonus(ModPaths.BODY.getId(), 30.0)
+                    .addPath(ModPaths.FIRE.getId()).addPathBonus(ModPaths.FIRE.getId(), 30.0)
+                    .addPath(ModPaths.WATER.getId()).addPathBonus(ModPaths.WATER.getId(), 30.0)
+                    .addPath(ModPaths.WOOD.getId()).addPathBonus(ModPaths.WOOD.getId(), 30.0)
+                    .addPath(ModPaths.EARTH.getId()).addPathBonus(ModPaths.EARTH.getId(), 30.0)
+                    .addPath(ModPaths.METAL.getId()).addPathBonus(ModPaths.METAL.getId(), 30.0)
                     .setDescription(Component.translatable("ascension.physiques.five_palace_immortal.desc"))
                     .setShortDescription(Component.translatable("ascension.physiques.five_palace_immortal.desc.short"))
     );
@@ -641,7 +641,7 @@ public class ModPhysiques {
     public static final DeferredHolder<IPhysique, ? extends GenericPhysique> TITAN_BORN = PHYSIQUES.register("titan_born", () ->
                 new GenericPhysique(Component.translatable("ascension.physiques.titan_born"))
                         .addPath(ModPaths.BODY.getId())
-                        .addPathBonus(ModPaths.BODY.getId(), 3.0)
+                        .addPathBonus(ModPaths.BODY.getId(), 30.0)
                         .setDescription(Component.translatable("ascension.physiques.titan_born.desc"))
                         .setShortDescription(Component.translatable("ascension.physiques.titan_born.desc.short"))
         );
@@ -651,8 +651,8 @@ public class ModPhysiques {
             new GenericPhysique(Component.translatable("ascension.physiques.blood_wraith"))
                     .addPath(ModPaths.SOUL.getId())
                     .addPath(ModPaths.DEMONIC.getId())
-                    .addPathBonus(ModPaths.SOUL.getId(),2.0)
-                    .addPathBonus(ModPaths.DEMONIC.getId(),2.5)
+                    .addPathBonus(ModPaths.SOUL.getId(),20.0)
+                    .addPathBonus(ModPaths.DEMONIC.getId(),25.0)
                     .setDescription(Component.translatable("ascension.physiques.blood_wraith.desc"))
                     .setShortDescription(Component.translatable("ascension.physiques.blood_wraith.desc.short"))
     );
@@ -660,7 +660,7 @@ public class ModPhysiques {
     public static final DeferredHolder<IPhysique, ? extends GenericPhysique> CRYSTAL_SOUL = PHYSIQUES.register("crystal_soul", () ->
             new GenericPhysique(Component.translatable("ascension.physiques.crystal_soul"))
                     .addPath(ModPaths.SOUL.getId())
-                    .addPathBonus(ModPaths.SOUL.getId(), 3.0)
+                    .addPathBonus(ModPaths.SOUL.getId(), 30.0)
                     .setDescription(Component.translatable("ascension.physiques.crystal_soul.desc"))
                     .setShortDescription(Component.translatable("ascension.physiques.crystal_soul.desc.short"))
     );
@@ -668,7 +668,7 @@ public class ModPhysiques {
         public static final DeferredHolder<IPhysique, ? extends GenericPhysique> SWORD_MONSTER = PHYSIQUES.register("sword_monster", () ->
                 new GenericPhysique(Component.translatable("ascension.physiques.sword_monster"))
                         .addPath(ModPaths.SWORD.getId())
-                        .addPathBonus(ModPaths.SWORD.getId(), 2.5)
+                        .addPathBonus(ModPaths.SWORD.getId(), 25.0)
                         .setDescription(Component.translatable("ascension.physiques.sword_monster.desc"))
                         .setShortDescription(Component.translatable("ascension.physiques.sword_monster.desc.short"))
         );
@@ -687,17 +687,17 @@ public class ModPhysiques {
         // Essence
 
         // Body
-//    public static final DeferredHolder<IPhysique, ? extends GenericPhysique> WORLD_DOMINATOR =
-//            PHYSIQUES.register("world_dominator", () ->
-//                    new GenericPhysique(Component.translatable("ascension.physiques.world_dominator")) {
-//                        @Override
-//                        public void onPhysiqueAdded(IEntityData heldEntity, ResourceLocation oldPhysique, IPhysiqueData oldPhysiqueData) {
-//                            super.onPhysiqueAdded(heldEntity, oldPhysique, oldPhysiqueData);
-//                            broadcastRareAcquired(heldEntity, "ascension.message.physique.world_dominator.acquired");}
-//                    }
-//                            .addPath(ModPaths.BODY.getId()).addPathBonus(ModPaths.BODY.getId(), 5.0)
-//                            .setDescription(Component.translatable("ascension.physiques.world_dominator.desc"))
-//            );
+    public static final DeferredHolder<IPhysique, ? extends GenericPhysique> WORLD_DOMINATOR =
+            PHYSIQUES.register("world_dominator", () ->
+                    new GenericPhysique(Component.translatable("ascension.physiques.world_dominator")) {
+                        @Override
+                       public void onPhysiqueAdded(IEntityData heldEntity, ResourceLocation oldPhysique, IPhysiqueData oldPhysiqueData) {
+                           super.onPhysiqueAdded(heldEntity, oldPhysique, oldPhysiqueData);
+                            broadcastRareAcquired(heldEntity, "ascension.message.physique.world_dominator.acquired");}
+                    }
+                            .addPath(ModPaths.BODY.getId()).addPathBonus(ModPaths.BODY.getId(), 50.0)
+                            .setDescription(Component.translatable("ascension.physiques.world_dominator.desc"))
+            );
 
          // Soul
 //    public static final DeferredHolder<IPhysique, ? extends GenericPhysique> SOUL_CROWNED_KING =
