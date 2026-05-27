@@ -137,7 +137,6 @@ public final class EssenceBonePhysiqueEvolutionEvents {
         }
 
         if (!canProgressRitual(player, ritual)) {
-            clearTimer(player);
             return;
         }
 
