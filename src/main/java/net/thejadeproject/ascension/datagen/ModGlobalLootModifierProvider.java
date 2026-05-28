@@ -823,6 +823,21 @@ public class ModGlobalLootModifierProvider extends GlobalLootModifierProvider {
                 LootItemKilledByPlayerCondition.killedByPlayer().build(),
                 LootItemRandomChanceCondition.randomChance(0.12F).build()}, ModItems.WIND_CORE.get()));
 
+
+        this.add("rectification_of_names_from_stronghold_library", new AddItemModifier(new LootItemCondition[]{
+                LootTableIdCondition.builder(ResourceLocation.withDefaultNamespace("chests/stronghold_library")).build(),
+                LootItemRandomChanceCondition.randomChance(0.18F).build()}, ModItems.SCHOLARLY_SOUL_RECTIFICATION_OF_NAMES.get()));
+        this.add("great_learning_from_woodland_mansion", new AddItemModifier(new LootItemCondition[]{
+                LootTableIdCondition.builder(ResourceLocation.withDefaultNamespace("chests/woodland_mansion")).build(),
+                LootItemRandomChanceCondition.randomChance(0.16F).build()}, ModItems.SCHOLARLY_SOUL_GREAT_LEARNING.get()));
+        this.add("thousand_commentaries_from_ancient_city", new AddItemModifier(new LootItemCondition[]{
+                LootTableIdCondition.builder(ResourceLocation.withDefaultNamespace("chests/ancient_city")).build(),
+                LootItemRandomChanceCondition.randomChance(0.13F).build()}, ModItems.SCHOLARLY_SOUL_THOUSAND_COMMENTARIES.get()));
+        this.add("sage_mandate_from_end_city", new AddItemModifier(new LootItemCondition[]{
+                LootTableIdCondition.builder(ResourceLocation.withDefaultNamespace("chests/end_city_treasure")).build(),
+                LootItemRandomChanceCondition.randomChance(0.10F).build()}, ModItems.SCHOLARLY_SOUL_SAGE_MANDATE.get()));
+
+
         add("ranked_mob_loot", new AddRankedMobLootModifier(
                 new LootItemCondition[]{
                         LootItemKilledByPlayerCondition.killedByPlayer().build()
