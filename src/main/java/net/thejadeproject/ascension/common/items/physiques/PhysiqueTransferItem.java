@@ -44,7 +44,7 @@ public class PhysiqueTransferItem extends Item {
             return InteractionResultHolder.fail(stack);
         }
 
-        if (purity < 100) {
+        if (purity < 0) {
             player.sendSystemMessage(
                     Component.literal("Cannot transfer physique: ")
                             .append(Component.literal(purity + "%").withStyle(ChatFormatting.GOLD))

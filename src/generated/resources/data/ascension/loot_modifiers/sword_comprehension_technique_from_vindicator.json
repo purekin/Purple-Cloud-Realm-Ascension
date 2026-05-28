@@ -16,7 +16,7 @@
       "condition": "ascension:mob_rank",
       "mode": "BETWEEN",
       "other_realm": "formation_establishment",
-      "realm": "formation_establishment",
+      "realm": "mortal",
       "stage": 2
     }
   ],

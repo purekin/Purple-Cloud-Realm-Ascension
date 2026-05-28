@@ -17,7 +17,8 @@
       "mode": "BETWEEN",
       "other_realm": "formation_establishment",
       "other_stage": 2,
-      "realm": "formation_establishment"
+      "realm": "mortal",
+      "stage": 2
     }
   ],
   "techniqueId": "ascension:lightning_essence_technique"

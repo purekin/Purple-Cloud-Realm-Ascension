@@ -15,7 +15,7 @@
     {
       "condition": "ascension:mob_rank",
       "mode": "EXACT",
-      "realm": "formation_establishment"
+      "realm": "mortal"
     }
   ],
   "techniqueId": "ascension:wind_essence_technique"

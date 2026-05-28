@@ -45,24 +45,24 @@ public final class MobCultivationRoller {
 
     private static final List<WeightedMobCultivation> ELITE_WEIGHTS = List.of(
             // Qi Gathering — most common elite tier
-            new WeightedMobCultivation(MobCultivationList.get("qi_gathering", 1), 330),
-            new WeightedMobCultivation(MobCultivationList.get("qi_gathering", 2), 200),
-            new WeightedMobCultivation(MobCultivationList.get("qi_gathering", 3), 140),
+            new WeightedMobCultivation(MobCultivationList.get("qi_gathering", 1), 330)
+ //           new WeightedMobCultivation(MobCultivationList.get("qi_gathering", 2), 200),
+ //           new WeightedMobCultivation(MobCultivationList.get("qi_gathering", 3), 140),
 
             // Formation Establishment
-            new WeightedMobCultivation(MobCultivationList.get("formation_establishment", 1), 100),
-            new WeightedMobCultivation(MobCultivationList.get("formation_establishment", 2),  70),
-            new WeightedMobCultivation(MobCultivationList.get("formation_establishment", 3),  50),
+ //           new WeightedMobCultivation(MobCultivationList.get("formation_establishment", 1), 100),
+ //           new WeightedMobCultivation(MobCultivationList.get("formation_establishment", 2),  70),
+    //        new WeightedMobCultivation(MobCultivationList.get("formation_establishment", 3),  50),
 
             // Golden Core
-            new WeightedMobCultivation(MobCultivationList.get("golden_core", 1),  40),
-            new WeightedMobCultivation(MobCultivationList.get("golden_core", 2),  30),
-            new WeightedMobCultivation(MobCultivationList.get("golden_core", 3),  20),
+  //          new WeightedMobCultivation(MobCultivationList.get("golden_core", 1),  40),
+  //          new WeightedMobCultivation(MobCultivationList.get("golden_core", 2),  30),
+  //          new WeightedMobCultivation(MobCultivationList.get("golden_core", 3),  20),
 
             // Nascent Soul — rare
-            new WeightedMobCultivation(MobCultivationList.get("nascent_soul", 1), 15),
-            new WeightedMobCultivation(MobCultivationList.get("nascent_soul", 2), 10),
-            new WeightedMobCultivation(MobCultivationList.get("nascent_soul", 3),  5)
+   //         new WeightedMobCultivation(MobCultivationList.get("nascent_soul", 1), 15),
+    //        new WeightedMobCultivation(MobCultivationList.get("nascent_soul", 2), 10),
+    //        new WeightedMobCultivation(MobCultivationList.get("nascent_soul", 3),  5)
 
             // Future realms: soul_formation, void_refinement, body_integration,
             // tribulation_transcendence, mahayana, earth_immortal

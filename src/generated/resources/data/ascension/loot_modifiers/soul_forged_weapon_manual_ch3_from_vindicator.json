@@ -15,8 +15,10 @@
     {
       "condition": "ascension:mob_rank",
       "mode": "BETWEEN",
-      "other_realm": "formation_establishment",
-      "realm": "formation_establishment"
+      "other_realm": "mortal",
+      "other_stage": 1 ,
+      "realm": "mortal",
+      "stage": 3
     }
   ],
   "pageIndex": 3,

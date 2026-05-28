@@ -16,7 +16,8 @@
       "condition": "ascension:mob_rank",
       "mode": "BETWEEN",
       "other_realm": "formation_establishment",
-      "realm": "qi_gathering"
+      "realm": "mortal",
+      "stage": 1
     }
   ],
   "techniqueId": "ascension:heart_fire_technique"

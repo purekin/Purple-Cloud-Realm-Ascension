@@ -15,7 +15,7 @@
     {
       "condition": "ascension:mob_rank",
       "mode": "EXACT",
-      "realm": "formation_establishment",
+      "realm": "mortal",
       "stage": 3
     }
   ],
