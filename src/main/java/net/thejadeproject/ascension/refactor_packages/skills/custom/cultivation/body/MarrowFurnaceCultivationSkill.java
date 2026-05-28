@@ -17,10 +17,10 @@ import java.util.List;
 
 public class MarrowFurnaceCultivationSkill extends SimplePassiveSkill {
 
-    private static final float  MIN_DAMAGE        = 4.0F;
-    private static final double BASE_MULTIPLIER   = 2.0D;
+    private static final float  MIN_DAMAGE        = 2.0F;
+    private static final double BASE_MULTIPLIER   = 8.0D;
     private static final double QI_COST_MULTIPLIER = 0.35D;
-    private static final double LOW_HEALTH_BONUS  = 0.35D;
+    private static final double LOW_HEALTH_BONUS  = 1.4D;
 
     public MarrowFurnaceCultivationSkill() {
         NeoForge.EVENT_BUS.addListener(this::onLivingDamage);

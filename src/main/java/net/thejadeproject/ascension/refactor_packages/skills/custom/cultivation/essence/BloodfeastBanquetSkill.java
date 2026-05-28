@@ -51,7 +51,7 @@ public class BloodfeastBanquetSkill implements ICastableSkill {
 
     private static final ResourceLocation ESSENCE_PATH = ModPaths.ESSENCE.getId();
 
-    private static final double BASE_QI_COST_PER_SECOND   = 40.0D;
+    private static final double BASE_QI_COST_PER_SECOND   = 30.0D;
     private static final double QI_COST_PER_REALM          = 20.0D;
     private static final double BASE_QI_COST_PER_TICK      = BASE_QI_COST_PER_SECOND / 20.0D;
     private static final double QI_COST_PER_REALM_PER_TICK = QI_COST_PER_REALM / 20.0D;
@@ -60,7 +60,7 @@ public class BloodfeastBanquetSkill implements ICastableSkill {
     private static final float BASE_DRAIN = 0.5f;
 
     /** Cultivation gained per entity drained per tick (before bonuses). */
-    private static final double CULTIVATION_PER_ENTITY = 0.8D;
+    private static final double CULTIVATION_PER_ENTITY = 5.0D;
 
     /**
      * Number of particle spawn points along the mob→player line per target.

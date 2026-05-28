@@ -23,7 +23,7 @@ import net.thejadeproject.ascension.refactor_packages.techniques.custom.soul.Pal
 
 public class PaleMoonCultivationSkill extends SimpleSoulCultivationSkill {
 
-    private static final double MOON_MULTIPLIER = 1.5D;
+    private static final double MOON_MULTIPLIER = 6.0D;
 
     public PaleMoonCultivationSkill() {
         super(PaleMoonTechnique.BASE_RATE);

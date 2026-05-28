@@ -22,7 +22,7 @@ import net.thejadeproject.ascension.refactor_packages.techniques.custom.soul.Daw
 
 public class DawningSunCultivationSkill extends SimpleSoulCultivationSkill {
 
-    private static final double SUN_MULTIPLIER = 1.5D;
+    private static final double SUN_MULTIPLIER = 6.0D;
 
     public DawningSunCultivationSkill() {
         super(DawningSunTechnique.BASE_RATE);

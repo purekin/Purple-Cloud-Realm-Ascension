@@ -17,7 +17,7 @@ import net.thejadeproject.ascension.refactor_packages.skills.custom.cultivation.
 
 public class OpenSkyBreathingCultivationSkill extends GenericCultivationSkill {
 
-    public static final double BASE_RATE = 3.0D;
+    public static final double BASE_RATE = 12.0D;
 
     public OpenSkyBreathingCultivationSkill() {
         super(BASE_RATE, ModPaths.ESSENCE.getId());

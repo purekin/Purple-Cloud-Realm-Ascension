@@ -21,7 +21,7 @@ import java.util.List;
 public class SimpleSoulCultivationSkill extends GenericCultivationSkill {
 
     protected static final ResourceLocation SOUL_PATH = ModPaths.SOUL.getId();
-    protected static final double DEFAULT_BASE_RATE = 2.0D;
+    protected static final double DEFAULT_BASE_RATE = 4.0D;
 
     private final double baseRate;
 

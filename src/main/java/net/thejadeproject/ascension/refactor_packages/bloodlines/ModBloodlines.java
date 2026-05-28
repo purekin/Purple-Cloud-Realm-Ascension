@@ -57,10 +57,10 @@ public class ModBloodlines {
             .defaultGain(0.01)
             .ifPassive(0.0)
             .ifBoss(1.0)
-            .ifRealmAtLeast("golden_core", 1, 0.08)
-            .ifRealmAtLeast("formation_establishment", 1, 0.04)
-            .ifRealmAtLeast("qi_gathering", 1, 0.02)
-            .ifHealthAtLeast(100, 0.03)
+            .ifRealmAtLeast("mortal", 3, 0.8)
+            .ifRealmAtLeast("mortal", 2, 0.4)
+            .ifRealmAtLeast("mortal", 1, 0.2)
+            .ifHealthAtLeast(10, 0.3)
             .build();
 
     /**
@@ -71,10 +71,10 @@ public class ModBloodlines {
             .defaultGain(0.005)
             .ifPassive(0.0)
             .ifBoss(0.5)
-            .ifRealmAtLeast("golden_core", 1, 0.04)
-            .ifRealmAtLeast("formation_establishment", 1, 0.02)
-            .ifRealmAtLeast("qi_gathering", 1, 0.01)
-            .ifHealthAtLeast(100, 0.015)
+            .ifRealmAtLeast("mortal", 3, 0.4)
+            .ifRealmAtLeast("mortal", 2, 0.2)
+            .ifRealmAtLeast("mortal", 1, 0.1)
+            .ifHealthAtLeast(10, 0.15)
             .build();
 
 

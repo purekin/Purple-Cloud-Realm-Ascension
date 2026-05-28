@@ -22,7 +22,7 @@ public class WaterEssenceCultivationSkill extends ElementalEssenceCultivationSki
     @Override
     protected double getEnvironmentMultiplier(Entity caster) {
         if (caster.isUnderWater()) {
-            return 1.30D;
+            return 5.2D;
         }
 
         return 0.80D;

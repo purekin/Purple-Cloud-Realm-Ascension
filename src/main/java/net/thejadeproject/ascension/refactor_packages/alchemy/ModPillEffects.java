@@ -21,17 +21,17 @@ public class ModPillEffects {
 
     //TODO see if i can loop through path registry and create one for each?
     public static final DeferredHolder<IPillEffect, ? extends CultivationPillEffect> BODY_EFFECT = PILL_EFFECTS.register("body_cultivation_pill_effect",()->
-            new CultivationPillEffect(100,ModPaths.BODY.getId(),
+            new CultivationPillEffect(1000,ModPaths.BODY.getId(),
                     Component.translatable("ascension.pill_effects.body_cultivation_pill_effect.name")
                     ,Component.translatable("ascension.pill_effects.body_cultivation_pill_effect.description"))
     );
     public static final DeferredHolder<IPillEffect, ? extends CultivationPillEffect> ESSENCE_EFFECT = PILL_EFFECTS.register("essence_cultivation_pill_effect",()->
-            new CultivationPillEffect(100,ModPaths.ESSENCE.getId(),
+            new CultivationPillEffect(1000,ModPaths.ESSENCE.getId(),
                     Component.translatable("ascension.pill_effects.essence_cultivation_pill_effect.name")
                     ,Component.translatable("ascension.pill_effects.essence_cultivation_pill_effect.description"))
     );
     public static final DeferredHolder<IPillEffect, ? extends CultivationPillEffect> SOUL_EFFECT = PILL_EFFECTS.register("soul_cultivation_pill_effect",()->
-            new CultivationPillEffect(100,ModPaths.SOUL.getId(),
+            new CultivationPillEffect(1000,ModPaths.SOUL.getId(),
                     Component.translatable("ascension.pill_effects.soul_cultivation_pill_effect.name")
                     ,Component.translatable("ascension.pill_effects.soul_cultivation_pill_effect.description"))
     );

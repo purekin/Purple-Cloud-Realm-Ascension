@@ -25,8 +25,8 @@ import java.util.List;
 public class FistCultivationSkill extends SimplePassiveSkill {
 
     private static final float  MIN_DAMAGE         = 2.0f;
-    private static final double BASE_MULTIPLIER    = 2.5D;
-    private static final double QI_COST_MULTIPLIER = 1.0D;
+    private static final double BASE_MULTIPLIER    = 5.0D;
+    private static final double QI_COST_MULTIPLIER = 0.5D;
 
     private final String titleKey;
     private final String descriptionKey;

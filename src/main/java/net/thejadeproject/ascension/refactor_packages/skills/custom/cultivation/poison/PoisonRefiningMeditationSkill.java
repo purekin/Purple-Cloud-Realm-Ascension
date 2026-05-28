@@ -27,7 +27,7 @@ import java.util.Map;
 
 public class PoisonRefiningMeditationSkill extends SimplePassiveSkill {
 
-    private static final double BASE_GAIN         = 20.0D;
+    private static final double BASE_GAIN         = 80.0D;
     private static final double BASE_QI_COST      = 15.0D;
     private static final double QI_COST_PER_REALM = 10.0D;
     private static final double REALM_STEP        = 0.5D;
@@ -36,11 +36,11 @@ public class PoisonRefiningMeditationSkill extends SimplePassiveSkill {
     private static final Map<Item, Double> POISON_ITEM_VALUES = new HashMap<>();
 
     static {
-        POISON_ITEM_VALUES.put(ModItems.QI_DEVOURING_PARASITE_PILL.get(), 2.0D);
-        POISON_ITEM_VALUES.put(Items.SPIDER_EYE,           1.0D);
-        POISON_ITEM_VALUES.put(Items.FERMENTED_SPIDER_EYE, 1.5D);
-        POISON_ITEM_VALUES.put(Items.POISONOUS_POTATO,     0.8D);
-        POISON_ITEM_VALUES.put(Items.PUFFERFISH,           1.2D);
+        POISON_ITEM_VALUES.put(ModItems.QI_DEVOURING_PARASITE_PILL.get(), 8.0D);
+        POISON_ITEM_VALUES.put(Items.SPIDER_EYE,           4.0D);
+        POISON_ITEM_VALUES.put(Items.FERMENTED_SPIDER_EYE, 6.0D);
+        POISON_ITEM_VALUES.put(Items.POISONOUS_POTATO,     3.2);
+        POISON_ITEM_VALUES.put(Items.PUFFERFISH,           4.8D);
     }
 
     public PoisonRefiningMeditationSkill() {

@@ -20,11 +20,11 @@ import java.util.List;
 
 public class WhiteLightningCultivationSkill extends SimplePassiveSkill {
 
-    private static final float  MIN_DAMAGE      = 10.0f;
-    private static final double BASE_MULTIPLIER = 3.3;
-    private static final double UNARMED_BONUS   = 0.25;
-    private static final double NO_ARMOR_BONUS  = 0.20;
-    private static final double DEBUFF_BONUS    = 0.35;
+    private static final float  MIN_DAMAGE      = 5.0f;
+    private static final double BASE_MULTIPLIER = 13.2;
+    private static final double UNARMED_BONUS   = 1;
+    private static final double NO_ARMOR_BONUS  = 0.8;
+    private static final double DEBUFF_BONUS    = 1.4;
 
     public WhiteLightningCultivationSkill() {
         NeoForge.EVENT_BUS.addListener(this::onLivingDamage);

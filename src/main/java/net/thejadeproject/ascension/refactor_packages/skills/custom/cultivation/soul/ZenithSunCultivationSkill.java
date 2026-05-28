@@ -16,7 +16,7 @@ import net.thejadeproject.ascension.refactor_packages.techniques.custom.soul.Zen
 
 public class ZenithSunCultivationSkill extends SimpleSoulCultivationSkill {
 
-    private static final double SUN_MULTIPLIER = 2.0D;
+    private static final double SUN_MULTIPLIER = 8.0D;
 
     public ZenithSunCultivationSkill() {
         super(ZenithSunTechnique.BASE_RATE);

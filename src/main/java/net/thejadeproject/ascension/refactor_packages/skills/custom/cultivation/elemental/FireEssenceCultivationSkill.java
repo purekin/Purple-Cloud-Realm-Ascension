@@ -22,11 +22,11 @@ public class FireEssenceCultivationSkill extends ElementalEssenceCultivationSkil
     @Override
     protected double getEnvironmentMultiplier(Entity caster) {
         if (caster.isInLava()) {
-            return 2.25D;
+            return 9.0D;
         }
 
         if (caster.isOnFire()) {
-            return 1.50D;
+            return 6.0D;
         }
 
         return 0.75D;

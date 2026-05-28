@@ -26,11 +26,11 @@ public class WoodEssenceCultivationSkill extends ElementalEssenceCultivationSkil
         int plants = countNearbyBlocks(caster, 3, this::isWoodResonantBlock);
 
         if (plants >= 24) {
-            return 1.35D;
+            return 5.4D;
         }
 
         if (plants >= 8) {
-            return 1.15D;
+            return 4.6D;
         }
 
         return 0.85D;

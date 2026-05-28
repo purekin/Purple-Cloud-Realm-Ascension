@@ -26,11 +26,11 @@ public class MetalEssenceCultivationSkill extends ElementalEssenceCultivationSki
         int oreCount = countNearbyBlocks(caster, 3, this::isMetalResonantBlock);
 
         if (oreCount >= 8) {
-            return 1.55D;
+            return 6.2D;
         }
 
         if (oreCount >= 2) {
-            return 1.20D;
+            return 4.8D;
         }
 
         return 0.80D;

@@ -28,7 +28,7 @@ public class EarthEssenceCultivationSkill extends ElementalEssenceCultivationSki
         boolean underground = caster.blockPosition().getY() < caster.level().getSeaLevel();
 
         if (onEarth && underground) {
-            return 1.35D;
+            return 5.4D;
         }
 
         if (onEarth || underground) {

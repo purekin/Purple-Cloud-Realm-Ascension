@@ -17,8 +17,8 @@ import java.util.List;
 
 public class BodyCultivationSkill extends SimplePassiveSkill {
 
-    private static final float  MIN_DAMAGE      = 10.0f;
-    private static final double BASE_MULTIPLIER = 3.3;
+    private static final float  MIN_DAMAGE      = 5.0f;
+    private static final double BASE_MULTIPLIER = 13.2;
 
     private final String titleKey;
     private final String descriptionKey;

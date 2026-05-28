@@ -17,7 +17,7 @@ import net.thejadeproject.ascension.refactor_packages.techniques.custom.soul.Gib
 
 public class GibbousMoonCultivationSkill extends SimpleSoulCultivationSkill {
 
-    private static final double MOON_MULTIPLIER = 2.0D;
+    private static final double MOON_MULTIPLIER = 8.0D;
 
     public GibbousMoonCultivationSkill() {
         super(GibbousMoonTechnique.BASE_RATE);

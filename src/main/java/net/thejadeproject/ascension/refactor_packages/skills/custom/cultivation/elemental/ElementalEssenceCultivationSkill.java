@@ -42,7 +42,7 @@ import java.util.List;
 public abstract class ElementalEssenceCultivationSkill implements ICastableSkill {
 
     private static final ResourceLocation ESSENCE_PATH = ModPaths.ESSENCE.getId();
-    private static final double STANDARD_ESSENCE_RATE = 2.0D;
+    private static final double STANDARD_ESSENCE_RATE = 4.0D;
 
     protected abstract ResourceLocation getElementPath();
 
