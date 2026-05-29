@@ -385,6 +385,7 @@ public class ModPhysiques {
             new EvolvingPhysique(Component.translatable("ascension.physiques.academic_spirit"))
                     .addEvolution(ModPhysiques.PRODIGIOUS_SOUL.getId())
                     .addPath(ModPaths.SOUL.getId())
+                    .addPath(ModPaths.WISDOM.getId())
                     .addPathBonus(ModPaths.SOUL.getId(), 20.0)
                     .addPathBonus(ModPaths.WISDOM.getId(),15.0)
                     .setDescription(Component.translatable("ascension.physiques.academic_spirit.desc"))
