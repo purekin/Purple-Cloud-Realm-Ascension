@@ -113,6 +113,10 @@
     "ascension:metal_core_from_skeleton",
     "ascension:lightning_core_from_witch",
     "ascension:wind_core_from_phantom",
+    "ascension:rectification_of_names_from_stronghold_library",
+    "ascension:great_learning_from_woodland_mansion",
+    "ascension:thousand_commentaries_from_ancient_city",
+    "ascension:sage_mandate_from_end_city",
     "ascension:ranked_mob_loot"
   ],
   "replace": false
