@@ -228,6 +228,13 @@ public class ModPaths {
                     .addMajorRealmName("ascension.path.virtuous.state")
                     .addMajorRealmName("ascension.path.virtuous.universal")
     );
+    public static final DeferredHolder<IPath, ? extends GenericPath> WISDOM = PATHS.register("wisdom",()->
+            new ComprehensionPath(Component.translatable("ascension.path.wisdom"))
+                    .addMajorRealmName("ascension.path.wisdom.awake")
+                    .addMajorRealmName("ascension.path.wisdom.scholar")
+                    .addMajorRealmName("ascension.path.wisdom.prodigy")
+                    .addMajorRealmName("ascension.path.wisdom.expanded_mind")
+            );
     public static void register(IEventBus modEventBus){
         PATHS.register(modEventBus);
     }

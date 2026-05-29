@@ -382,9 +382,11 @@ public class ModPhysiques {
     );
 
     public static final DeferredHolder<IPhysique, ? extends GenericPhysique> ACADEMIC_SPIRIT = PHYSIQUES.register("academic_spirit", () ->
-            new GenericPhysique(Component.translatable("ascension.physiques.academic_spirit"))
+            new EvolvingPhysique(Component.translatable("ascension.physiques.academic_spirit"))
+                    .addEvolution(ModPhysiques.PRODIGIOUS_SOUL.getId())
                     .addPath(ModPaths.SOUL.getId())
                     .addPathBonus(ModPaths.SOUL.getId(), 20.0)
+                    .addPathBonus(ModPaths.WISDOM.getId(),15.0)
                     .setDescription(Component.translatable("ascension.physiques.academic_spirit.desc"))
                     .setShortDescription(Component.translatable("ascension.physiques.academic_spirit.desc.short"))
     );
@@ -664,6 +666,15 @@ public class ModPhysiques {
                     .setDescription(Component.translatable("ascension.physiques.crystal_soul.desc"))
                     .setShortDescription(Component.translatable("ascension.physiques.crystal_soul.desc.short"))
     );
+    public static final DeferredHolder<IPhysique, ?extends GenericPhysique> PRODIGIOUS_SOUL = PHYSIQUES.register("prodigious_soul", () ->
+            new EvolvingPhysique(Component.translatable("ascension.physiques.prodigious_soul"))
+                    .addPath(ModPaths.SOUL.getId())
+                    .addPath(ModPaths.WISDOM.getId())
+                    .addPathBonus(ModPaths.SOUL.getId(), 25.0)
+                    .addPathBonus(ModPaths.WISDOM.getId(), 25.0)
+                    .setDescription(Component.translatable("ascension.physiques.prodigious_soul.desc"))
+                    .setShortDescription(Component.translatable("ascension.physiques.prodigious_soul.desc.short"))
+                    );
         // Weapon
         public static final DeferredHolder<IPhysique, ? extends GenericPhysique> SWORD_MONSTER = PHYSIQUES.register("sword_monster", () ->
                 new GenericPhysique(Component.translatable("ascension.physiques.sword_monster"))
