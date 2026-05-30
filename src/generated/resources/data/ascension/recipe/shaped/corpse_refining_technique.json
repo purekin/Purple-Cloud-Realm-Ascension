@@ -2,17 +2,20 @@
   "type": "minecraft:crafting_shaped",
   "category": "misc",
   "key": {
-    "T": {
+    "J": {
       "item": "ascension:jade"
     },
-    "J": {
-      "item": "minecraft:book"
+    "L": {
+      "item": "ascension:living_core"
+    },
+    "P": {
+      "item": "minecraft:paper"
     }
   },
   "pattern": [
-    "TTT",
-    "TJT",
-    "TTT"
+    "JJJ",
+    "PLP",
+    "JJJ"
   ],
   "result": {
     "count": 1,
