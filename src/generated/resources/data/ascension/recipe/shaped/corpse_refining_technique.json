@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "T": {
+      "item": "ascension:jade"
+    },
+    "J": {
+      "item": "minecraft:book"
+    }
+  },
+  "pattern": [
+    "TTT",
+    "TJT",
+    "TTT"
+  ],
+  "result": {
+    "count": 1,
+    "id": "ascension:technique_manual",
+    "components": {
+    "ascension:technique_id":"ascension:corpse_refining_technique"
+}
+  }
+}

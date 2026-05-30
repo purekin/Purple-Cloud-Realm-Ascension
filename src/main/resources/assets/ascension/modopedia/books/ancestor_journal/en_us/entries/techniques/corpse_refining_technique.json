@@ -1,0 +1,19 @@
+{
+  "title": "Corpse Refining Technique",
+  "icon": { "id": "ascension:technique_manual", "components": { "ascension:technique_id": "ascension:basic_cultivation_technique" } },
+  "pages": [
+    {
+      "components": [
+        { "type": "modopedia:item_gallery", "x": 42, "y": 2, "display": { "type": "modopedia:simple", "item": { "id": "ascension:technique_manual", "components": { "ascension:technique_id": "ascension:basic_cultivation_technique" } } } },
+        { "type": "modopedia:header", "x": 0, "y": 22, "text": "Corpse Refining Technique", "centered": true },
+        { "type": "modopedia:separator", "x": 0, "y": 34 },
+        { "type": "modopedia:text", "x": 0, "y": 42, "text": "Rudimentary demonic essence technique based off simplistic principles of qi. Easy to conceptualize, but its demonic nature interferes with orthodox cultivation methods, so refining corpses is ideal." }
+      ]
+    },
+    {
+      "components": [
+        { "type": "modopedia:text", "x": 0, "y": 0, "text": "The practice refines qi each cycle, sharpening perception and quickness of thought above all else. Strength and resilience grow alongside — raw physical force lags furthest behind. Broad and unhurried. Nothing that demands you leave it behind." }
+      ]
+    }
+  ]
+}

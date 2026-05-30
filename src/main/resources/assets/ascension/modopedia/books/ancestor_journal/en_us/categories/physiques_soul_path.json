@@ -7,6 +7,7 @@
     "physiques/physique_dreaming_soul",
     "physiques/physique_academic_spirit",
     "physiques/physique_ashen_soul_flame",
+    "physiques/physique_prodigious_soul",
     "physiques/physique_spear_soul_mark",
     "physiques/physique_soul_sword_heart",
     "physiques/physique_thundering_soul_core",
@@ -14,6 +15,7 @@
     "physiques/physique_yin_eyes",
     "physiques/physique_yang_eyes",
     "physiques/physique_yin_yang_eyes"
+
   ],
   "sort_num": 4,
   "display_on_front_page": false

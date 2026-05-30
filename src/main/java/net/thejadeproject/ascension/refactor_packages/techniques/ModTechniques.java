@@ -103,6 +103,10 @@ public class ModTechniques {
     public static final DeferredHolder<ITechnique, ? extends OpenSkyBreathingTechnique> OPEN_SKY_BREATHING_SCRIPTURE =
             TECHNIQUES.register("open_sky_breathing_scripture",
                     () -> new OpenSkyBreathingTechnique(baseEssenceHandler));
+    public static final DeferredHolder<ITechnique, ? extends GenericTechnique> CORPSE_REFINING_TECHNIQUE = TECHNIQUES.register("corpse_refining_technique", () ->
+            new GenericTechnique(ModPaths.ESSENCE.getId(), Component.translatable("ascension.technique.corpse_refining_technique"), 0.5, Set.of())
+                    .setStatChangeHandler(baseBodyHandler));
+
 
 
 

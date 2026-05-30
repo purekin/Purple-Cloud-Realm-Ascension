@@ -1,0 +1,14 @@
+﻿{
+  "title": "Prodigious Soul",
+  "icon": { "id": "ascension:physique_essence" },
+  "pages": [
+    {
+      "components": [
+        { "type": "modopedia:item_gallery", "x": 42, "y": 2, "display": { "type": "modopedia:simple", "item": { "id": "ascension:physique_essence" } } },
+        { "type": "modopedia:header", "x": 0, "y": 22, "text": "Prodigious Soul", "centered": true },
+        { "type": "modopedia:separator", "x": 0, "y": 34 },
+        { "type": "modopedia:text", "x": 0, "y": 42, "text": "Being a scholar opens the path of wisdom - a prodigious soul has begun the journey into the path. This physique is the soul of a prodigy, a mind honed from cultivation of wisdom. But even a prodigy can still grow further." }
+      ]
+    }
+  ]
+}

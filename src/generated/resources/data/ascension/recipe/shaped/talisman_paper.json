@@ -3,7 +3,7 @@
   "category": "misc",
   "key": {
     "P": {
-      "item": "ascension:jade_bamboo_of_serenity"
+      "item": "minecraft:bamboo"
     },
     "S": {
       "item": "minecraft:sugar_cane"
@@ -15,7 +15,7 @@
     "   "
   ],
   "result": {
-    "count": 6,
+    "count": 3,
     "id": "ascension:talisman_paper"
   }
 }
